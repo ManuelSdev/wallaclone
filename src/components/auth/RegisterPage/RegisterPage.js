@@ -1,8 +1,8 @@
 import React from 'react';
 //import Button from "../../shared/Button"
 import RegisterForm from "./RegisterForm"
-import { AuthContextConsumer } from '../auth/context';
-import { createUser } from '../../api/user'
+import { AuthContextConsumer } from '../context';
+import { createUser } from '../../../api/user'
 
 /**
  * 

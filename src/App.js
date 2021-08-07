@@ -1,16 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header';
-import LoginPage from './components/LoginPage/LoginPage';
-import RegisterPage from './components/RegisterPage/RegisterPage';
+import LoginPage from './components/auth/LoginPage/LoginPage';
+import RegisterPage from './components/auth/RegisterPage/RegisterPage';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import Layout from './components/layout/Layout';
+import UserPage from './components/userPage/UserPage';
+import NewAdPage from './components/ads/newAdPage/NewAdPage'
+import AdsPage from './components/ads/adsPage/AdsPage'
 
 
 function App() {
   return (
     <div className="App">
-      <Header></Header>
-      <RegisterPage></RegisterPage>
-      <LoginPage></LoginPage>
+      <Layout>
+        <Switch>
+          <Route path="/auth/login" component={LoginPage}></Route>
+          <Route path="/auth/register" component={RegisterPage}></Route>
+
+          <Route path="/user" component={UserPage}>
+
+          </Route>
+          <Route path="/ads/new" component={NewAdPage}></Route>
+          <Route path="/" component={AdsPage}></Route>
+
+
+        </Switch>
+      </Layout>
+
+
     </div>
   );
 }

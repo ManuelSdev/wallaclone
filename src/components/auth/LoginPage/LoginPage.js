@@ -1,8 +1,8 @@
 import React from 'react';
 //import Button from "../../shared/Button"
 import LoginForm from "./LoginForm"
-import { AuthContextConsumer } from '../auth/context';
-import { login } from '../../api/user'
+import { AuthContextConsumer } from '../context';
+import { login } from '../../../api/user'
 
 /**
  * 
