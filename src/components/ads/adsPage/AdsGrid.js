@@ -1,14 +1,21 @@
+import AdCard from "./AdCard"
 
 
-const AdsPage = () => {
+const AdsGrid = ({ ads }) => {
 
 
 
     return (
-        <div className="AdsPage">
-            PAGINA DE ANUNCIOS
+        <div className="AdsGrid">
+            <div className="columns is-multiline is-mobile">
+                {ads.map(ad => (
+                    <div class="column is-one-quarter">
+                        <AdCard key={ad.id} ad={ad} ></AdCard>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }
 
-export default AdsPage
+export default AdsGrid
