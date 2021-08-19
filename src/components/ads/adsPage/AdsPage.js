@@ -1,6 +1,6 @@
 import React from 'react';
 import { getAds } from '../../../api/ads'
-import "./AdsPage.css"
+import "./AdsPage.scss"
 import AdsGrid from './AdsGrid'
 const AdsPage = () => {
     const [ads, setAds] = React.useState([]);

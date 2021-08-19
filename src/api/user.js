@@ -9,7 +9,9 @@ export const createUser = userData => {
 export const login = credentials => {
     console.log('credentials', credentials)
     return client.post('/apiv1/users/login', credentials).then(({ accessToken }) => {
+        const hola = { humo: 7 }
         console.log('token', { accessToken })
+        console.log('token2', accessToken)
         configureClient({ accessToken });
         storage.set('auth', accessToken);
     });

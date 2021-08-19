@@ -1,15 +1,21 @@
+import React from "react"
+import ModalWindow from "../shared/modalWindow/ModalWindow"
 import Header from "./Header"
-
+import useModal from "../customHooks/useModal"
 
 
 const Layout = ({ children }) => {
 
+
+
+
     return (
-        <div className="layout">
-            <Header></Header>
+        <div className="layout" >
+            <Header ></Header>
             <main className="container">
                 {children}
             </main>
+
         </div>
     )
 }

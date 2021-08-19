@@ -1,6 +1,8 @@
 //import Button from "../../shared/Button"
 //import FormField from "../../shared/FormField"
 import React from 'react';
+import Button from '../../shared/Button';
+import FormField from '../../shared/formFields/FormField';
 
 
 const LoginForm = ({ onSubmit, isLoading }) => {
@@ -18,6 +20,8 @@ const LoginForm = ({ onSubmit, isLoading }) => {
          * El <FormField name="password"> machacará la clave password
          */
         setCredentials(oldCredentials => {
+
+            console.log(event.target)
             const newCredentials = {
                 ...oldCredentials,
                 [event.target.name]: event.target.value,
@@ -36,14 +40,14 @@ const LoginForm = ({ onSubmit, isLoading }) => {
     const handleSubmit = event => {
         event.preventDefault();
         onSubmit(credentials);
-        //console.log("submit")
+        console.log("submit")
     };
     const { username, password } = credentials;
     return (
         <form className="loginForm" onSubmit={handleSubmit}>
-            <input
+
+            <FormField
                 className="input"
-                labelClassName="label"
                 type="email"
                 name="email"
                 label="Correo electrónico"
@@ -54,10 +58,9 @@ const LoginForm = ({ onSubmit, isLoading }) => {
                 //value toma el valor que vamos teniendo en el estado
                 value={username}
             >
-            </input>
-            <input
+            </FormField>
+            <FormField
                 className="input"
-                labelClassName="label"
                 type="password"
                 name="password"
                 label="Contraseña"
@@ -65,12 +68,11 @@ const LoginForm = ({ onSubmit, isLoading }) => {
                 value={password}
                 onChange={handleChange}
             >
-            </input>
-            <button
-                //El submit será el onSubmit={handleSubmit}
-                type="submit"
-            >
-                Iniciar sesión</button>
+            </FormField>
+
+
+            <Button type="submit" >Iniciar sesión</Button>
+
 
 
 
