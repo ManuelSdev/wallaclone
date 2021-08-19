@@ -1,6 +1,4 @@
 
-//import style from './ModalWindow.module.scss';
-import a from './a.module.scss';
 function ModalWindow({ children, modalClasss, openModal, closeModal, component }) {
 
     return (

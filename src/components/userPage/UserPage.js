@@ -1,5 +1,5 @@
 import UserNavBar from "./UserNavBar"
-import './UserPage.css'
+//import './UserPage.css'
 import { Switch, Route, Redirect, Router } from 'react-router-dom';
 import { UserProfilePage, UserAdsPage, UserFavoritesPage, UserRatingsPage, UserStatisticsPage, UserChatPage } from "./sections"
 const UserPage = () => {
@@ -9,7 +9,7 @@ const UserPage = () => {
     return (
         <div className="UserPage">
             PAGINA DE USUARIO
-            <div className="user-layout">
+            <div className="is-flex is-flex-direction-row">
                 <UserNavBar></UserNavBar>
                 <Switch>
                     <Route path="/user/profile" component={UserProfilePage}></Route>

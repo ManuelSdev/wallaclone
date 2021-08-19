@@ -1,8 +1,8 @@
 //import Button from "../../shared/Button"
 //import FormField from "../../shared/FormField"
 import React from 'react';
-
-
+import FormField from '../../shared/formFields/FormField';
+import Button from '../../shared/Button';
 const RegisterForm = ({ onSubmit, isLoading }) => {
     const [credentials, setCredentials] = React.useState({
         username: '',
@@ -41,55 +41,58 @@ const RegisterForm = ({ onSubmit, isLoading }) => {
     };
     const { username, email, password } = credentials;
     return (
-        <form className="registerForm" onSubmit={handleSubmit}>
-            <input
-                className="input"
-                labelClassName="label"
-                type="text"
-                name="username"
-                label="Nombre y apellido"
-                placeholder="Nombre y apellido"
-                // onChange={even => console.log(even.target.value)}
-                //handleChange cambia el estado a medida que se escribe 
-                onChange={handleChange}
-                //value toma el valor que vamos teniendo en el estado
-                value={username}
-            >
-            </input>
-            <input
-                className="input"
-                labelClassName="label"
-                type="email"
-                name="email"
-                label="Correo electrónico"
-                placeholder="Dirección de email"
-                onChange={even => console.log(even.target.value)}
-                //handleChange cambia el estado a medida que se escribe 
-                onChange={handleChange}
-                //value toma el valor que vamos teniendo en el estado
-                value={email}
-            >
-            </input>
-            <input
-                className="input"
-                labelClassName="label"
-                type="password"
-                name="password"
-                label="Contraseña"
-                placeholder="Contraseña"
-                value={password}
-                onChange={handleChange}
-            >
-            </input>
-            <button
-                //El submit será el onSubmit={handleSubmit}
-                type="submit"
-            >
-                Crear una cuenta</button>
+        <div className="container">
+            <form className="registerForm" onSubmit={handleSubmit}>
+                <FormField
+                    className="input"
+                    labelClassName="label"
+                    type="text"
+                    name="username"
+                    label="Nombre y apellido"
+                    placeholder="Nombre y apellido"
+                    // onChange={even => console.log(even.target.value)}
+                    //handleChange cambia el estado a medida que se escribe 
+                    onChange={handleChange}
+                    //value toma el valor que vamos teniendo en el estado
+                    value={username}
+                >
+                </FormField>
+                <FormField
+                    className="input"
+                    labelClassName="label"
+                    type="email"
+                    name="email"
+                    label="Correo electrónico"
+                    placeholder="Dirección de email"
+                    onChange={even => console.log(even.target.value)}
+                    //handleChange cambia el estado a medida que se escribe 
+                    onChange={handleChange}
+                    //value toma el valor que vamos teniendo en el estado
+                    value={email}
+                >
+                </FormField>
+                <FormField
+                    className="input"
+                    labelClassName="label"
+                    type="password"
+                    name="password"
+                    label="Contraseña"
+                    placeholder="Contraseña"
+                    value={password}
+                    onChange={handleChange}
+                >
+                </FormField>
+                <Button
+                    //El submit será el onSubmit={handleSubmit}
+                    type="submit"
+                >
+                    Crear una cuenta</Button>
 
 
 
-        </form>
+            </form>
+        </div>
+
 
     )
 }
