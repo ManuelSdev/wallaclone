@@ -45,7 +45,6 @@ const RegisterForm = ({ onSubmit, isLoading }) => {
             <form className="registerForm" onSubmit={handleSubmit}>
                 <FormField
                     className="input"
-                    labelClassName="label"
                     type="text"
                     name="username"
                     label="Nombre y apellido"
@@ -59,7 +58,6 @@ const RegisterForm = ({ onSubmit, isLoading }) => {
                 </FormField>
                 <FormField
                     className="input"
-                    labelClassName="label"
                     type="email"
                     name="email"
                     label="Correo electrónico"
@@ -73,7 +71,6 @@ const RegisterForm = ({ onSubmit, isLoading }) => {
                 </FormField>
                 <FormField
                     className="input"
-                    labelClassName="label"
                     type="password"
                     name="password"
                     label="Contraseña"

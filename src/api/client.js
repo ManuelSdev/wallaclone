@@ -18,9 +18,9 @@ client.interceptors.response.use(
         });
     }
 );
-
+//test: sin bearer
 const setAuthorizationHeader = token => {
-    client.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    client.defaults.headers.common['Authorization'] = `${token}`;
 };
 
 const removeAuthorizationHeader = () => {

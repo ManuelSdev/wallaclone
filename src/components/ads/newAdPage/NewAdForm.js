@@ -27,7 +27,9 @@ const NewAdForm = ({ onSubmit, isLoading }) => {
          */
         setCredentials(oldCredentials => {
 
+            console.log(event.target.checked)
             console.log(event.target.value)
+            console.log(tags)
             const newCredentials = {
                 ...oldCredentials,
                 [event.target.name]: event.target.value,
@@ -80,7 +82,7 @@ const NewAdForm = ({ onSubmit, isLoading }) => {
                 tags={selectablesTags}
                 name="tags"
                 onChange={handleChange}
-                value="VALUE"
+                value="value x"
             >
             </CheckBoxField>
             <TextAreaField

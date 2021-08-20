@@ -34,7 +34,8 @@ const NewAdPage = () => {
             //isLogged.current = true;
         } catch (error) {
             //setError(error);
-            window.alert(error)
+            //window.alert(error)
+            console.log(error)
         } finally {
             //setIsLoading(false);
         }

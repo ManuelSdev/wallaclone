@@ -4,11 +4,16 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { configureClient } from './api/client';
+import storage from './utils/storage';
+
+const accessToken = storage.get('auth');
+configureClient({ accessToken });
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <App autoLogged={!!accessToken} />
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

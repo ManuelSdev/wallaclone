@@ -3,9 +3,11 @@
 
 const Search = () => {
     return (
-        <div className="Search">
+        <div className="Search is-flex-grow-1	">
+
             <div className="field has-addons">
                 <div className="control is-expanded">
+
                     <input className="input" type="text" placeholder="Busca en todas las categorías" />
                 </div>
                 <div className="control ">

@@ -9,8 +9,7 @@ const CheckBoxField = ({ tags, onChange, ...props }) => {
                     <label className="checkbox">{tag}{" "}
                         <input type="checkbox"
                             {...props}
-                            onChange={
-                                onChange}
+                            onChange={onChange}
                         />
 
                     </label>

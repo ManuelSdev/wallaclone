@@ -8,30 +8,26 @@ import Layout from './components/layout/Layout';
 import UserPage from './components/userPage/UserPage';
 import NewAdPage from './components/ads/newAdPage/NewAdPage'
 import AdsPage from './components/ads/adsPage/AdsPage'
-import testBulma from './components/test/testBulma'
 import { AuthContextProvider } from './components/auth/context';
+import { resetClient } from "./api/client"
 
 
-function App() {
-  const isInitiallyLogged = true
-  const [isLogged, setIsLogged] = React.useState(isInitiallyLogged);
+function App({ autoLogged }) {
+  //const autoLogged = false
+  const [isLogged, setIsLogged] = React.useState(autoLogged);
 
   const handleLogin = () => setIsLogged(true);
-  const handleLogout = () => setIsLogged(false);
+  const handleLogout = () => {
+    resetClient()
+    setIsLogged(false);
+  }
 
   const loginProps = { isLogged, handleLogin, handleLogout };
   return (
-    <div className="App">
+    <div className="App ">
       <AuthContextProvider value={loginProps}>
         <Layout>
           <Switch>
-            {
-              /*
-
-
-              */
-            }
-
             <Route path="/auth/login" component={LoginPage}></Route>
             <Route path="/auth/register" component={RegisterPage}></Route>
 
@@ -39,7 +35,6 @@ function App() {
 
             </Route>
             <Route path="/ads/new" component={NewAdPage}></Route>
-            <Route path="/bulma" component={testBulma}></Route>
             <Route path="/" component={AdsPage}></Route>
 
 

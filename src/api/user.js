@@ -13,6 +13,7 @@ export const login = credentials => {
         console.log('token', { accessToken })
         console.log('token2', accessToken)
         configureClient({ accessToken });
+        console.log(client.defaults.headers)
         storage.set('auth', accessToken);
     });
 };
