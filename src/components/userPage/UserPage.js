@@ -1,7 +1,9 @@
 import UserNavBar from "./UserNavBar"
 //import './UserPage.css'
 import { Switch, Route, Redirect, Router } from 'react-router-dom';
-import { UserProfilePage, UserAdsPage, UserFavoritesPage, UserRatingsPage, UserStatisticsPage, UserChatPage } from "./sections"
+import { UserProfilePage, UserAdsPage, UserFavoritesPage, UserRatingsPage, UserStatisticsPage, UserChatPage } from "./"
+
+
 const UserPage = () => {
 
 

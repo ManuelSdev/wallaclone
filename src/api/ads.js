@@ -1,12 +1,28 @@
 import client from './client';
 
-const advertsPath = '/apiv1/adverts';
+const adsPath = '/apiv1/adverts';
+const myAdsPath = `${adsPath}/my-ads`
+const oneAdPath = `${adsPath}/one-ad`
 
 export const getAds = () => {
-    return client.get(`${advertsPath}`);
+    //${filterPath && filterPath}
+    return client.get(`${adsPath}`);
 };
 
+export const getMyAds = () => {
+    //${filterPath && filterPath}
+    return client.get(`${myAdsPath}`);
+};
+
+export const getOneAd = (adId) => {
+    //${filterPath && filterPath}
+    return client.post(`${oneAdPath}`, adId);
+};
+
+
+
+
 export const createAd_NO = adDetails => {
-    const url = `${advertsPath}`
+    const url = `${adsPath}`
     return client.post(url, adDetails);
 };

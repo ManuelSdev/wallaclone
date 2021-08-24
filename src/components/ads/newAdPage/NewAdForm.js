@@ -4,21 +4,30 @@ import React from 'react';
 import Button from '../../shared/Button';
 import CheckBoxField from '../../shared/formFields/CheckBoxField';
 import FormField from '../../shared/formFields/FormField';
+import RadioButton from '../../shared/formFields/RadioButton';
+import RadioField from '../../shared/formFields/RadioField';
 import TextAreaField from '../../shared/formFields/TextAreaField';
 
 
 const NewAdForm = ({ onSubmit, isLoading }) => {
     const [credentials, setCredentials] = React.useState({
         name: '',
-        sale: false,
+        sale: null,
         price: 1,
         tags: [],
         description: '',
         images: null
     });
+
+
     const selectablesTags = ["Lifestyle", "leisure"]
     //El event lo recibe del onChange ("mezcla" del onchange y del oninput del form html)
     const handleChange = event => {
+
+        console.log('tttt', event.target.type)
+
+
+        //console.log(sale)
         /**
          * Usamos spreading para machacar las propiedades el estado a medida que 
          * escribimos en los formfields
@@ -26,14 +35,18 @@ const NewAdForm = ({ onSubmit, isLoading }) => {
          * El <FormField name="password"> machacará la clave password
          */
         setCredentials(oldCredentials => {
+            //console.log('TYPE', event)
+            console.log("value", event.target.value)
+            console.log("checked", event.target.checked)
 
-            console.log(event.target.checked)
-            console.log(event.target.value)
-            console.log(tags)
+            // console.log(tags)
             const newCredentials = {
                 ...oldCredentials,
                 [event.target.name]: event.target.value,
             };
+            console.log("sale", sale)
+            console.log("cdre", newCredentials)
+            console.log("++++++++++++++++++++++++++++")
             return newCredentials;
         });
     };
@@ -51,6 +64,7 @@ const NewAdForm = ({ onSubmit, isLoading }) => {
         console.log("submit")
     };
     const { name, sale, price, tags, description, images } = credentials;
+    //console.log(sale)
     const arra = ["casa", "salon"]
     return (
         <form className="NewAdForm" onSubmit={handleSubmit}>
@@ -78,6 +92,7 @@ const NewAdForm = ({ onSubmit, isLoading }) => {
             >
             </FormField>
             <CheckBoxField
+                multiple
                 type="checkbox"
                 tags={selectablesTags}
                 name="tags"
@@ -85,6 +100,27 @@ const NewAdForm = ({ onSubmit, isLoading }) => {
                 value="value x"
             >
             </CheckBoxField>
+
+            <RadioField>
+                <RadioButton
+                    name="sale"
+                    label=" Comprar"
+                    onChange={handleChange}
+                    isChecked={true}
+                    value={true}
+                ></RadioButton>
+                <RadioButton
+                    // checked={[sale]}
+                    name="sale"
+                    label=" Vender"
+                    onChange={handleChange}
+                    checked={![sale]}
+                    value={false}
+                >
+
+                </RadioButton>
+            </RadioField>
+
             <TextAreaField
                 name="description"
                 onChange={handleChange}
@@ -97,7 +133,7 @@ const NewAdForm = ({ onSubmit, isLoading }) => {
 
 
 
-        </form>
+        </form >
 
     )
 }

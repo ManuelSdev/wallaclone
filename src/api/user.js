@@ -1,6 +1,11 @@
 import client, { configureClient, resetClient } from './client';
 import storage from '../utils/storage';
 
+const userPath = '/apiv1/users';
+const createUserPath = `${userPath}/register`
+const loginPath = `${userPath}/login`
+const adFavoritePath = `${userPath}/`
+
 export const createUser = userData => {
     return client.post('/apiv1/users/register', userData)
 }
@@ -23,4 +28,15 @@ export const logout = () => {
         resetClient();
         storage.remove('auth');
     });
+};
+
+
+export const modFavorite = (adId) => {
+    //${filterPath && filterPath}
+    return client.post(`${userPath}/fav`, adId);
+};
+
+export const getFavorites = () => {
+    //${filterPath && filterPath}
+    return client.get(`${userPath}/fav`);
 };

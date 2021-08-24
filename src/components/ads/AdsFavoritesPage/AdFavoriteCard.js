@@ -1,32 +1,17 @@
-/**
- * 
- * Este componente recibe un objeto anuncio y renderiza una tarjeta 
- *
- */
 
 import { Link } from "react-router-dom";
-import Button from "../../shared/Button";
+
 
 const nameToUrl = (adName) => (
     adName.replace(/\s/g, "-")
 )
+const AdFavoriteCard = ({ ad }) => {
 
-
-const test = "hola test"
-const urtTest = nameToUrl(test)
-
-
-
-const AdCard = ({ ad, location }) => {
-    //const ads = getAds();
     const adUrl = `${nameToUrl(ad.name)}-${ad._id}`
-    //const foto = `${process.env.REACT_APP_API_BASE_URL}${ad.photo}`;
-    const foto = 'https://via.placeholder.com/150';
-    //const clica = (a) => console.log(a)
-    //console.log(ad)
-    const clica = () => { console.log(location) }
-    return (
 
+    const foto = 'https://via.placeholder.com/150';
+
+    return (
         <Link to={adUrl}>
             <div className="AdCard">
                 {/*<Button onClick={clica}></Button>*/}
@@ -51,9 +36,7 @@ const AdCard = ({ ad, location }) => {
                 </div>
             </div >
         </Link>
-
     )
-
 }
 
-export default AdCard
+export default AdFavoriteCard

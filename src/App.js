@@ -9,7 +9,9 @@ import UserPage from './components/userPage/UserPage';
 import NewAdPage from './components/ads/newAdPage/NewAdPage'
 import AdsPage from './components/ads/adsPage/AdsPage'
 import { AuthContextProvider } from './components/auth/context';
-import { resetClient } from "./api/client"
+import { logout } from "./api/user"
+import AdDetailsPage from './components/ads/AdDetailsPage/AdDetailsPage';
+import ChatPage from './components/chatPage/ChatPage';
 
 
 function App({ autoLogged }) {
@@ -18,10 +20,10 @@ function App({ autoLogged }) {
 
   const handleLogin = () => setIsLogged(true);
   const handleLogout = () => {
-    resetClient()
+    logout()
     setIsLogged(false);
   }
-
+  const dinamicAdDetailsUrl = null;
   const loginProps = { isLogged, handleLogin, handleLogout };
   return (
     <div className="App ">
@@ -31,11 +33,18 @@ function App({ autoLogged }) {
             <Route path="/auth/login" component={LoginPage}></Route>
             <Route path="/auth/register" component={RegisterPage}></Route>
 
-            <Route path="/user" component={UserPage}>
-
-            </Route>
+            <Route path="/user" component={UserPage}></Route>
+            <Route path="/chat" component={ChatPage}></Route>
             <Route path="/ads/new" component={NewAdPage}></Route>
+
+            <Route path="/:adUrl" component={AdDetailsPage}></Route>
             <Route path="/" component={AdsPage}></Route>
+            {/*<Route path="/" component={AdsPage}></Route>
+             <Route path="/">
+              {(routeProps) => (<AdsPage adUrl={dinamicAdDetailsUrl} />)}
+            </Route>*/}
+
+
 
 
           </Switch>
