@@ -2,12 +2,12 @@ import { Link } from "react-router-dom"
 
 
 
-const LinkButton = ({ children, link, ...props }) => {
+const LinkButton = ({ children, link, className, ...props }) => {
 
     return (
-        <Link className='button is-primary' to={link}>
+        <Link className={`button is-primary ${className}`} to={link} >
             {children}
-        </Link>
+        </Link >
     )
 }
 

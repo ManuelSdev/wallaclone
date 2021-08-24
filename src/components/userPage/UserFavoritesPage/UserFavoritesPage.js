@@ -9,12 +9,7 @@ import Button from "../../shared/Button";
 const UserFavoritesPage = ({ ...props }) => {
 
     const { loading, error, throwPromise, data: ads } = usePromise([]);
-    let a = 7
-    const mod = () => {
-        a = a + 1
-        ads.push(" ")
-        console.log(a)
-    }
+
     React.useEffect(() => {
         throwPromise(getFavAds())
     }, []);
@@ -24,7 +19,6 @@ const UserFavoritesPage = ({ ...props }) => {
     return (
         <div className="UserFavoritesPage">
             FAVORITOS
-            <Button onClick={mod}>{a}</Button>
             <AdsFavoriteGrid ads={ads} trigger={newPromise}{...props} />
 
             {loading &&

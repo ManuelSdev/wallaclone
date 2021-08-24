@@ -3,11 +3,11 @@ import { Link } from "react-router-dom"
 
 
 
-const Button = ({ children, link, ...props }) => {
+const Button = ({ children, link, className, ...props }) => {
 
     return (
 
-        <button className='button is-primary'  {...props}>{children}</button>
+        <button className={`button is-primary ${className}`}  {...props}>{children}</button>
 
     )
 }

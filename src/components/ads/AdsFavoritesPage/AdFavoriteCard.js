@@ -28,7 +28,7 @@ const AdFavoriteCard = ({ ad, trigger }) => {
 
             {/*<Button onClick={clica}></Button>*/}
             <div className="card ">
-                <Link to={adUrl}>
+                <Link to={`/${adUrl}`}>
                     <div className="card-image">
                         <figure className="image is-4by3">
                             <img src={foto} alt="Placeholder image"></img>
