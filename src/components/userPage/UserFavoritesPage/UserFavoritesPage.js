@@ -1,23 +1,32 @@
-import AdsGrid from "../../ads/adsPage/AdsGrid"
 import usePromise from "../../customHooks/usePromise";
 import React from "react";
-import { getAds } from "../../../api/ads";
+import { getFavAds } from "../../../api/ads";
 import Loader from "../../shared/Loaders/Loader";
+import AdsFavoriteGrid from "../../ads/AdsFavoritesPage/AdsFavoriteGrid";
+import Button from "../../shared/Button";
+
+
 const UserFavoritesPage = ({ ...props }) => {
 
-
     const { loading, error, throwPromise, data: ads } = usePromise([]);
-
-
-
+    let a = 7
+    const mod = () => {
+        a = a + 1
+        ads.push(" ")
+        console.log(a)
+    }
     React.useEffect(() => {
-        throwPromise(getAds())
+        throwPromise(getFavAds())
     }, []);
-    return (
 
+    const newPromise = () => throwPromise(getFavAds())
+    console.log(ads)
+    return (
         <div className="UserFavoritesPage">
             FAVORITOS
-            <AdsGrid ads={ads} {...props} />
+            <Button onClick={mod}>{a}</Button>
+            <AdsFavoriteGrid ads={ads} trigger={newPromise}{...props} />
+
             {loading &&
                 <Loader></Loader>
             }

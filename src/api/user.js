@@ -31,12 +31,12 @@ export const logout = () => {
 };
 
 
-export const modFavorite = (adId) => {
+export const modFavoriteId = (adId) => {
     //${filterPath && filterPath}
     return client.post(`${userPath}/fav`, adId);
 };
 
-export const getFavorites = () => {
+export const getFavoritesIds = () => {
     //${filterPath && filterPath}
     return client.get(`${userPath}/fav`);
 };

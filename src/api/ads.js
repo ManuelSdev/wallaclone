@@ -3,6 +3,7 @@ import client from './client';
 const adsPath = '/apiv1/adverts';
 const myAdsPath = `${adsPath}/my-ads`
 const oneAdPath = `${adsPath}/one-ad`
+const myFavsAds = `${adsPath}/favs`
 
 export const getAds = () => {
     //${filterPath && filterPath}
@@ -19,7 +20,10 @@ export const getOneAd = (adId) => {
     return client.post(`${oneAdPath}`, adId);
 };
 
-
+export const getFavAds = () => {
+    //${filterPath && filterPath}
+    return client.get(`${myFavsAds}`);
+};
 
 
 export const createAd_NO = adDetails => {

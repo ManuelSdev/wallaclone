@@ -1,21 +1,21 @@
 import React from 'react'
 import { ReactComponent as Heart } from "../../../assets/cards-heart.svg"
-import { modFavorite, getFavorites } from '../../../api/user'
+import { modFavoriteId, getFavoritesIds } from '../../../api/user'
 import usePromise from '../../customHooks/usePromise'
 
 
 export default function HeartIcon({ className, adId, ...props }) {
 
-    const { loading, error, throwPromise, data: favorites } = usePromise({});
+    const { loading, error, throwPromise, data: userFavoritesIds } = usePromise({});
     const request = {}
     request.adId = adId
 
     React.useEffect(() => {
-        throwPromise(getFavorites())
+        throwPromise(getFavoritesIds())
     }, [])
 
     const toggleFav = () => {
-        throwPromise(modFavorite(request))
+        throwPromise(modFavoriteId(request))
     }
 
     const fillActive = () => {
@@ -35,11 +35,11 @@ export default function HeartIcon({ className, adId, ...props }) {
     }
 
     const fillHeart = () => {
-        return favorites.hasOwnProperty(adId) ? fillActive() : fillInactive()
+        return userFavoritesIds.hasOwnProperty(adId) ? fillActive() : fillInactive()
     }
 
     const strokeHeart = () => {
-        return favorites.hasOwnProperty(adId) ? strokeActive() : strokeInactive()
+        return userFavoritesIds.hasOwnProperty(adId) ? strokeActive() : strokeInactive()
     }
     console.log("RENDERRRR")
 

@@ -1,21 +1,34 @@
-
+import React from "react";
 import { Link } from "react-router-dom";
+import HeartIcon from "../../shared/icons/HeartIcon"
+import { ReactComponent as Heart } from "../../../assets/cards-heart.svg"
+import { modFavoriteId } from "../../../api/user";
+import Button from "../../shared/Button";
 
 
 const nameToUrl = (adName) => (
     adName.replace(/\s/g, "-")
 )
-const AdFavoriteCard = ({ ad }) => {
+const AdFavoriteCard = ({ ad, trigger }) => {
+
 
     const adUrl = `${nameToUrl(ad.name)}-${ad._id}`
 
     const foto = 'https://via.placeholder.com/150';
+    const request = {}
+    request.adId = ad._id
+    const updateFavIdAndNewPromise = async () => {
+        await modFavoriteId(request)
+        trigger()
 
+    }
     return (
-        <Link to={adUrl}>
-            <div className="AdCard">
-                {/*<Button onClick={clica}></Button>*/}
-                <div className="card">
+
+        <div className="AdCard">
+
+            {/*<Button onClick={clica}></Button>*/}
+            <div className="card ">
+                <Link to={adUrl}>
                     <div className="card-image">
                         <figure className="image is-4by3">
                             <img src={foto} alt="Placeholder image"></img>
@@ -29,13 +42,24 @@ const AdFavoriteCard = ({ ad }) => {
                                 <p className="subtitle is-6">{ad.description}</p>
                             </div>
                         </div>
-                        <div className="content">
-                            {ad.tags}
-                        </div>
                     </div>
-                </div>
-            </div >
-        </Link>
+                </Link>
+                <Button onClick={updateFavIdAndNewPromise} >
+                    <Heart
+                        className="mr-2"
+                        width="30"
+                        height="30"
+                        fill="red"
+                    ></Heart>
+                    Eliminar
+                </Button>
+
+            </div>
+
+
+        </div >
+
+
     )
 }
 
