@@ -2,7 +2,7 @@ import UserNavBar from "./UserNavBar"
 //import './UserPage.css'
 import { Switch, Route, Redirect, Router } from 'react-router-dom';
 import { UserProfilePage, UserAdsPage, UserFavoritesPage, UserRatingsPage, UserStatisticsPage, UserChatPage } from "./"
-
+import EditAdPage from "../ads/editAdPage/EditAdPage"
 
 const UserPage = () => {
 
@@ -20,12 +20,13 @@ const UserPage = () => {
                     <Route path="/user/favs" component={UserFavoritesPage}></Route>
                     <Route path="/user/ratings" component={UserRatingsPage}></Route>
                     <Route path="/user/statistics" component={UserStatisticsPage}></Route>
+                    <Route path="/user/edit/:adId" component={EditAdPage}></Route>
                     <Route path="/user" component={UserProfilePage}></Route>
 
                 </Switch>
             </div>
 
-        </div>
+        </div >
     )
 }
 

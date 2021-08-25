@@ -9,8 +9,11 @@ import RadioField from '../../shared/formFields/RadioField';
 import TextAreaField from '../../shared/formFields/TextAreaField';
 
 
-const NewAdForm = ({ onSubmit, isLoading }) => {
-    const [credentials, setCredentials] = React.useState({
+const AdForm = ({ onSubmit, isLoading, ad }) => {
+    // console.log("RENDER EN AD FORM")
+    //console.log("primer ad", ad)
+
+    const [values, setValues] = React.useState({
         name: '',
         sale: null,
         price: 1,
@@ -19,14 +22,25 @@ const NewAdForm = ({ onSubmit, isLoading }) => {
         images: null
     });
 
-
+    React.useEffect(() => {
+        //console.log("useEffect ad", ad)
+        setValues(
+            {
+                name: ad?.name ?? '',
+                sale: null,
+                price: ad?.price ?? 1,
+                tags: [],
+                description: ad?.description ?? '',
+                images: null
+            }
+        )
+        //    console.log("useEffect ad 2-", ad)
+    }, [ad])
     const selectablesTags = ["Lifestyle", "leisure"]
     //El event lo recibe del onChange ("mezcla" del onchange y del oninput del form html)
     const handleChange = event => {
 
-        console.log('tttt', event.target.type)
-
-
+        //console.log('tttt', event.target.type)
         //console.log(sale)
         /**
          * Usamos spreading para machacar las propiedades el estado a medida que 
@@ -34,20 +48,20 @@ const NewAdForm = ({ onSubmit, isLoading }) => {
          * El <FormField name="email"> machacará la clave email
          * El <FormField name="password"> machacará la clave password
          */
-        setCredentials(oldCredentials => {
+        setValues(oldValues => {
             //console.log('TYPE', event)
-            console.log("value", event.target.value)
-            console.log("checked", event.target.checked)
+            //console.log("value", event.target.value)
+            //console.log("checked", event.target.checked)
 
             // console.log(tags)
-            const newCredentials = {
-                ...oldCredentials,
+            const newValues = {
+                ...oldValues,
                 [event.target.name]: event.target.value,
             };
-            console.log("sale", sale)
-            console.log("cdre", newCredentials)
-            console.log("++++++++++++++++++++++++++++")
-            return newCredentials;
+            //console.log("sale", sale)
+            // console.log("cdre", newValues)
+            // console.log("++++++++++++++++++++++++++++")
+            return newValues;
         });
     };
     /**
@@ -60,15 +74,14 @@ const NewAdForm = ({ onSubmit, isLoading }) => {
      */
     const handleSubmit = event => {
         event.preventDefault();
-        onSubmit(credentials);
+        onSubmit(values);
         console.log("submit")
     };
-    const { name, sale, price, tags, description, images } = credentials;
+    const { name, sale, price, tags, description, images } = values;
     //console.log(sale)
     const arra = ["casa", "salon"]
     return (
-        <form className="NewAdForm" onSubmit={handleSubmit}>
-
+        <form className="AdForm" onSubmit={handleSubmit}>
             <FormField
                 type="text"
                 name="name"
@@ -106,7 +119,7 @@ const NewAdForm = ({ onSubmit, isLoading }) => {
                     name="sale"
                     label=" Comprar"
                     onChange={handleChange}
-                    isChecked={true}
+                    // isChecked={true}
                     value={true}
                 ></RadioButton>
                 <RadioButton
@@ -128,7 +141,7 @@ const NewAdForm = ({ onSubmit, isLoading }) => {
             >
 
             </TextAreaField>
-            <Button type="submit" >Iniciar sesión</Button>
+            <Button type="submit" >Subir producto</Button>
 
 
 
@@ -138,4 +151,4 @@ const NewAdForm = ({ onSubmit, isLoading }) => {
     )
 }
 
-export default NewAdForm
+export default AdForm

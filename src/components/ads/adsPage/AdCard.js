@@ -27,7 +27,7 @@ const AdCard = ({ ad, location }) => {
     const clica = () => { console.log(location) }
     return (
 
-        <Link to={`/{adUrl}`}>
+        <Link to={`/${adUrl}`}>
             <div className="AdCard">
                 {/*<Button onClick={clica}></Button>*/}
                 <div className="card">

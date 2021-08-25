@@ -1,4 +1,4 @@
-import NewAdForm from "./NewAdForm"
+import AdForm from "./AdForm"
 import { createAd_NO } from "../../../api/ads"
 import ModalWindow from "../../shared/modalWindow/ModalWindow";
 import style from './NewAdPage.module.scss'
@@ -47,7 +47,7 @@ const NewAdPage = () => {
         <div className={style.NewAdPage}>
             SUBIR PRODUCTO
             <div className={style.container}>
-                <NewAdForm onSubmit={handleSubmit}></NewAdForm>
+                <AdForm onSubmit={handleSubmit}></AdForm>
             </div>
         </div>
     )

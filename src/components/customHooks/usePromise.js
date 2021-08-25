@@ -18,6 +18,7 @@ function usePromise(initialValue) {
       return setError(error);
     }
     setData(data);
+    console.log("PROMESA FINALIZADA")
   };
 
   const throwPromise = async function (promise) {

@@ -27,7 +27,7 @@ export default function UserCardHeader({ ad }) {
 
                 <Button className="mr-2">Vendido</Button>
                 <Button className="mr-2">Reservado</Button>
-                <LinkButton className="mr-2" link={"/"}>Editar</LinkButton>
+                <LinkButton className="mr-2" link={`/user/edit/${ad._id}`}>Editar</LinkButton>
                 <Button>Eliminar</Button>
             </div>
         </div>
