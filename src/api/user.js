@@ -36,6 +36,11 @@ export const modFavoriteId = (adId) => {
     return client.post(`${userPath}/fav`, adId);
 };
 
+export const updateFavorites = (requestHasFavorites) => {
+    //${filterPath && filterPath}
+    return client.put(`${userPath}/fav`, requestHasFavorites);
+};
+
 export const getFavoritesIds = () => {
     //${filterPath && filterPath}
     return client.get(`${userPath}/fav`);

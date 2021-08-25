@@ -7,6 +7,7 @@ import { AuthContextConsumer } from '../../../components/auth/context';
 import CardHeader from "./CardHeader"
 import UserCardHeader from "./UserCardHeader"
 
+
 const catchAdIdUrl = (url) => {
     const index = 1 + url.lastIndexOf("-")
     const adId = url.slice(index)
@@ -68,7 +69,7 @@ const AdDetailPage = ({ isLogged }) => {
 const ConnectedAdDetailsPage = props => {
     return (
         <AuthContextConsumer>
-            {value => <AdDetailPage {...value} {...props} />}
+            {value => <AdDetailPage {...value.loginProps} {...props} />}
         </AuthContextConsumer>
     );
 };

@@ -1,6 +1,5 @@
 import React from 'react'
 import LinkButton from '../../shared/LinkButton';
-import { ReactComponent as HeartIcon2 } from "../../../assets/heart.svg"
 import Button from '../../shared/Button';
 import HeartIcon from "../../shared/icons/HeartIcon"
 
