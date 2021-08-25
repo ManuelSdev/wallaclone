@@ -69,7 +69,7 @@ const AdDetailPage = ({ isLogged }) => {
 const ConnectedAdDetailsPage = props => {
     return (
         <AuthContextConsumer>
-            {value => <AdDetailPage {...value.loginProps} {...props} />}
+            {value => <AdDetailPage {...value} {...props} />}
         </AuthContextConsumer>
     );
 };

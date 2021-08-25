@@ -2,13 +2,12 @@ import React from 'react'
 import { ReactComponent as Heart } from "../../../assets/cards-heart.svg"
 import { updateFavorites, getFavoritesIds } from '../../../api/user'
 import usePromise from '../../customHooks/usePromise'
-import { AuthContextConsumer } from '../../auth/context'
 import Button from '../Button'
 
 
-const HeartIcon = ({ className, adId, throwPromise, userFavoritesIds, ...props }) => {
+const HeartIcon = ({ className, adId, ...props }) => {
 
-    //const { loading, error, throwPromise, data: userFavoritesIds } = usePromise({});
+    const { loading, error, throwPromise, data: userFavoritesIds } = usePromise({});
 
 
     React.useEffect(() => {
@@ -86,11 +85,4 @@ const HeartIcon = ({ className, adId, throwPromise, userFavoritesIds, ...props }
     )
 }
 
-const ConnectedHeartIcon = props => {
-    return (
-        <AuthContextConsumer>
-            {value => <HeartIcon {...value.favProps} {...props} />}
-        </AuthContextConsumer>
-    );
-};
-export default ConnectedHeartIcon
+export default HeartIcon

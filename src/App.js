@@ -26,23 +26,17 @@ function App({ autoLogged }) {
   }
   const loginProps = { isLogged, handleLogin, handleLogout };
 
-  const { loading, error, throwPromise, data: userFavoritesIds } = usePromise({});
 
-  const favProps = { throwPromise, userFavoritesIds };
-  console.log(userFavoritesIds)
 
-  //console.log("APP RULES++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
-  const a = () => console.log("jjklhsdjh", userFavoritesIds)
 
 
   return (
     <div className="App ">
 
-      <AuthContextProvider value={{ loginProps, favProps }}>
+      <AuthContextProvider value={{ loginProps }}>
 
         <Layout>
-          <Button onClick={a}></Button>
           <Switch>
             <Route path="/auth/login" component={LoginPage}></Route>
             <Route path="/auth/register" component={RegisterPage}></Route>
