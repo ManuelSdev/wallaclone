@@ -5,7 +5,6 @@ import useModal from "../customHooks/useModal"
 
 
 const Layout = ({ children }) => {
-
     return (
         <div className="Layout" >
             <section className="section">

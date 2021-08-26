@@ -1,8 +1,9 @@
 import React from 'react';
 //import Button from "../../shared/Button"
 import LoginForm from "./LoginForm"
-import { AuthContextConsumer } from '../context';
+import { useAuthContext } from '../context';
 import { login } from '../../../api/user'
+import usePromise from '../../customHooks/usePromise';
 import './LoginForm.scss'
 
 /**
@@ -13,41 +14,38 @@ import './LoginForm.scss'
  * El paso de parámetros anterior es igual que cuando llegan por props que baja el padre
  * 
  */
-const LoginPage = () => {
+const LoginPage = ({ history, location }) => {
 
-    /*
-    const [error, setError] = React.useState(null);
-    const [isLoading, setIsLoading] = React.useState(false);
-    //Esta uso de useRef almacena un valor que persiste mientras no lo cambies
-    const isLogged = React.useRef(false);
+    const { handleLogin, isLogged } = useAuthContext()
+    //No usamos el estado data de usePromise ni le pasamos parametro de valor de estado inicial
+    //porque no esperamos recibir datos con la petición de login
+    const { loading, error, throwPromise, } = usePromise()
 
-    const resetError = () => setError(null);
 
-    React.useEffect(() => {
-        if (isLogged.current) {
-            onLogin();
-            const { from } = location.state || { from: { pathname: '/' } };
-            //** const from = location.state ? location.state.from : {pathname: '/'}
+    console.log(location)
 
-            history.replace(from);
-        }
-    });
-    */
+    //** const from = location.state ? location.state.from : {pathname: '/'}
+
+
     //Este método bajará como prop onSubmit a <LoginForm>
     const handleSubmit = async credentials => {
-        // login(credentials).then(() => onLogin());
+        // login(credentials).then(handleLogin);
         //resetError();
         //setIsLoading(true);
         console.log("holi")
         try {
-            await login(credentials);
-            //Los cambios en la referencia no ejectutan un nuevo render
-            //isLogged.current = true;
+            await throwPromise(login(credentials));
+            handleLogin()
+            const { from } = { from: { pathname: '/' } };
+            history.replace(from);
+
         } catch (error) {
             //setError(error);
+            console.log(error)
             window.alert(error)
         } finally {
             //setIsLoading(false);
+            console.log("PROMESA LOGIN OK")
         }
     };
 

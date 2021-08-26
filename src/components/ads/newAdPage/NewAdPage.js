@@ -2,8 +2,11 @@ import AdForm from "./AdForm"
 import { createAd_NO } from "../../../api/ads"
 import ModalWindow from "../../shared/modalWindow/ModalWindow";
 import style from './NewAdPage.module.scss'
-
+import { useAuthContext } from "../../auth/context";
 const NewAdPage = () => {
+
+    const { isLogged } = useAuthContext()
+    console.log(isLogged)
     /*
     const [error, setError] = React.useState(null);
     const [isLoading, setIsLoading] = React.useState(false);

@@ -13,6 +13,8 @@ import { logout } from "./api/user"
 import AdDetailsPage from './components/ads/AdDetailsPage/AdDetailsPage';
 import ChatPage from './components/chatPage/ChatPage';
 import HomePage from './components/homePage/HomePage';
+import NotFoundPage from './NotFoundPage';
+import PrivateRoute from './components/auth/privateRouter/PrivateRoute';
 
 
 function App({ autoLogged }) {
@@ -28,14 +30,14 @@ function App({ autoLogged }) {
   const loginProps = { isLogged, handleLogin, handleLogout };
   return (
     <div className="App ">
-      <AuthProvider value={loginProps}>
+      <AuthProvider {...loginProps}>
         <Layout>
           <Switch>
             <Route path="/auth/login" component={LoginPage}></Route>
             <Route path="/auth/register" component={RegisterPage}></Route>
 
-            <Route path="/user" component={UserPage}></Route>
-            <Route path="/chat" component={ChatPage}></Route>
+            <PrivateRoute path="/user" component={UserPage}></PrivateRoute>
+            <PrivateRoute path="/chat" component={ChatPage}></PrivateRoute>
             <Route path="/ads/new" component={NewAdPage}></Route>
 
             <Route path="/ads/:adUrl" component={AdDetailsPage}></Route>
@@ -45,8 +47,11 @@ function App({ autoLogged }) {
              <Route path="/">
               {(routeProps) => (<AdsPage adUrl={dinamicAdDetailsUrl} />)}
             </Route>*/}
-
-
+            <Route exact path="/404">
+              <NotFoundPage />
+            </Route>
+            {/*Si no matchea ninguna ruta anterior, redirect a /404*/}
+            <Redirect to="/404" />
 
 
           </Switch>

@@ -34,6 +34,7 @@ export const AuthConsumer = AuthContext.Consumer;
  */
 export const useAuthContext = () => {
     const authValue = React.useContext(AuthContext);
+
     return authValue;
 };
 

@@ -33,16 +33,6 @@ const AdDetailPage = () => {
         console.log(ad)
     }, [])
 
-    const test = () => {
-        isLogged && ad.userId === ad.requesterId ?
-            console.log("si")
-            :
-            console.log("no")
-    }
-
-
-
-    test()
 
     return (
         <div className="AdDetailPage">
