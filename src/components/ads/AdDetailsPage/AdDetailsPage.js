@@ -51,7 +51,8 @@ const AdDetailPage = ({ isLogged }) => {
             <AdDetailsCard
                 ad={ad}
                 cardHeader={
-                    loading ? null
+                    loading ?
+                        null
                         :
                         isLogged && ad.userId === ad.requesterId ?
                             <UserCardHeader ad={ad} />

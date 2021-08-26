@@ -35,6 +35,14 @@ export const modFavoriteId = (adId) => {
     //${filterPath && filterPath}
     return client.post(`${userPath}/fav`, adId);
 };
+export const pushFavId = (adId) => {
+    //${filterPath && filterPath}
+    return client.put(`${userPath}/fav`, adId);
+};
+export const updateFavId = (adIdParams, action) => {
+    //${filterPath && filterPath}
+    return client.put(`${userPath}/${adIdParams}`, action);
+};
 
 export const getFavoritesIds = () => {
     //${filterPath && filterPath}

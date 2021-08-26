@@ -36,3 +36,5 @@ export const createAd_NO = adDetails => {
     const url = `${adsPath}`
     return client.post(url, adDetails);
 };
+
+

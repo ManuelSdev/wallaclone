@@ -1,51 +1,69 @@
 import React from 'react'
 import { ReactComponent as Heart } from "../../../assets/cards-heart.svg"
-import { modFavoriteId, getFavoritesIds } from '../../../api/user'
+import { updateFavId, getFavoritesIds } from '../../../api/user'
 import usePromise from '../../customHooks/usePromise'
 
 
-export default function HeartIcon({ className, adId, ...props }) {
+const HeartIcon = ({ className, adId, ...props }) => {
 
-    const { loading, error, throwPromise, data: userFavoritesIds } = usePromise({});
-    const request = {}
-    request.adId = adId
+    const { loading, error, throwPromise, data: userFavoritesIds } = usePromise([]);
+
 
     React.useEffect(() => {
         throwPromise(getFavoritesIds())
     }, [])
 
-    const toggleFav = () => {
-        throwPromise(modFavoriteId(request))
-    }
+    const toggle = userFavoritesIds.includes(adId) ?
+        {
+            fav: () => throwPromise(updateFavId(adId, { action: 'pull' })),
+            fill: "red",
+            stroke: "green",
+        }
+        :
+        {
+            fav: () => throwPromise(updateFavId(adId, { action: 'push' })),
+            fill: "white",
+            stroke: "black",
+        }
 
-    const fillActive = () => {
-        return "red"
-    }
 
-    const fillInactive = () => {
-        return "white"
-    }
 
-    const strokeActive = () => {
-        return "green"
-    }
+    /*
+const toggleFav = () => {
+    throwPromise(updateFavId(request))
+}
 
-    const strokeInactive = () => {
-        return "black"
-    }
+const fillActive = () => {
+    return "red"
+}
 
-    const fillHeart = () => {
-        return userFavoritesIds.hasOwnProperty(adId) ? fillActive() : fillInactive()
-    }
+const fillInactive = () => {
+    return "white"
+}
 
-    const strokeHeart = () => {
-        return userFavoritesIds.hasOwnProperty(adId) ? strokeActive() : strokeInactive()
-    }
-    console.log("RENDERRRR")
+const strokeActive = () => {
+    return "green"
+}
 
+const strokeInactive = () => {
+    return "black"
+}
+
+const fillHeart = () => {
+    return userFavoritesIds.includes(adId) ? fillActive() : fillInactive()
+}
+
+const strokeHeart = () => {
+    return userFavoritesIds.includes(adId) ? strokeActive() : strokeInactive()
+}
+console.log("RENDERRRR")
+*/
     return (
         <div className={className}>
-            <Heart onClick={toggleFav} fill={fillHeart()} stroke={strokeHeart()}{...props}></Heart>
+            <Heart onClick={toggle.fav} fill={toggle.fill} stroke={toggle.stroke} {...props}></Heart>
         </div>
     )
 }
+//onClick={toggle.fav} fill={toggle.fill} stroke={toggle.stroke}
+
+export default HeartIcon
