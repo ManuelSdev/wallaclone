@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import { getOneAd } from "../../../api/ads"
 import usePromise from "../../customHooks/usePromise"
 import AdDetailsCard from "./AdDetailsCard"
-import { AuthContextConsumer } from '../../../components/auth/context';
+import { useAuthContext } from '../../../components/auth/context';
 import CardHeader from "./CardHeader"
 import UserCardHeader from "./UserCardHeader"
 
@@ -15,8 +15,8 @@ const catchAdIdUrl = (url) => {
 
 //console.log(typeof (adUrl.lasIndexOf("-")))
 
-const AdDetailPage = ({ isLogged }) => {
-
+const AdDetailPage = () => {
+    const { isLogged } = useAuthContext()
     const { loading, error, throwPromise, data: ad } = usePromise({})
 
     //Pillo los parametros de la url que ponen los Link de cada anuncio con el nombre+id de cada uno de ellos
@@ -66,11 +66,5 @@ const AdDetailPage = ({ isLogged }) => {
     )
 }
 
-const ConnectedAdDetailsPage = props => {
-    return (
-        <AuthContextConsumer>
-            {value => <AdDetailPage {...value} {...props} />}
-        </AuthContextConsumer>
-    );
-};
-export default ConnectedAdDetailsPage
+
+export default AdDetailPage

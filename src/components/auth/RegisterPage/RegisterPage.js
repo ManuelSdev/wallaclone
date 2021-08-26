@@ -63,16 +63,5 @@ const RegisterPage = () => {
     )
 
 }
-/**
- * en value recibe las propiedades del contexto
- * en props recibe propiedades que puedan llegar desde componentes superiores
- */
-const ConnectedRegisterPage = props => {
-    return (
-        <AuthContextConsumer>
-            {value => <RegisterPage {...value} {...props} />}
-        </AuthContextConsumer>
-    );
-};
 
-export default ConnectedRegisterPage;
+export default RegisterPage;

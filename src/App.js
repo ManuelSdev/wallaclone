@@ -8,10 +8,11 @@ import Layout from './components/layout/Layout';
 import UserPage from './components/userPage/UserPage';
 import NewAdPage from './components/ads/newAdPage/NewAdPage'
 import AdsPage from './components/ads/adsPage/AdsPage'
-import { AuthContextProvider } from './components/auth/context';
+import { AuthProvider } from './components/auth/context';
 import { logout } from "./api/user"
 import AdDetailsPage from './components/ads/AdDetailsPage/AdDetailsPage';
 import ChatPage from './components/chatPage/ChatPage';
+import HomePage from './components/homePage/HomePage';
 
 
 function App({ autoLogged }) {
@@ -27,7 +28,7 @@ function App({ autoLogged }) {
   const loginProps = { isLogged, handleLogin, handleLogout };
   return (
     <div className="App ">
-      <AuthContextProvider value={loginProps}>
+      <AuthProvider value={loginProps}>
         <Layout>
           <Switch>
             <Route path="/auth/login" component={LoginPage}></Route>
@@ -37,8 +38,9 @@ function App({ autoLogged }) {
             <Route path="/chat" component={ChatPage}></Route>
             <Route path="/ads/new" component={NewAdPage}></Route>
 
-            <Route path="/:adUrl" component={AdDetailsPage}></Route>
-            <Route path="/" component={AdsPage}></Route>
+            <Route path="/ads/:adUrl" component={AdDetailsPage}></Route>
+            <Route path="/ads" component={AdsPage}></Route>
+            <Route path="/" component={HomePage}></Route>
             {/*<Route path="/" component={AdsPage}></Route>
              <Route path="/">
               {(routeProps) => (<AdsPage adUrl={dinamicAdDetailsUrl} />)}
@@ -49,7 +51,7 @@ function App({ autoLogged }) {
 
           </Switch>
         </Layout>
-      </AuthContextProvider>
+      </AuthProvider>
 
     </div>
   );

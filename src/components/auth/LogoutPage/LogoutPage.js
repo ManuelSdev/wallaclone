@@ -1,8 +1,8 @@
 import Button from "../../shared/Button"
-import { AuthContextConsumer } from "../context"
+import { AuthContextConsumer, useAuthContext } from "../context"
 
-const LogoutPage = ({ handleLogout }) => {
-
+const LogoutPage = () => {
+    const { handleLogout } = useAuthContext()
     return (
         <div className="LogoutPage">
             <h2>¿Desea cerrar la sesión?</h2>
@@ -15,12 +15,6 @@ const LogoutPage = ({ handleLogout }) => {
     )
 }
 
-const ConnectedLogoutPage = props => {
-    return (
-        <AuthContextConsumer>
-            {value => <LogoutPage {...value} {...props} />}
-        </AuthContextConsumer>
-    );
-};
 
-export default ConnectedLogoutPage;
+
+export default LogoutPage;

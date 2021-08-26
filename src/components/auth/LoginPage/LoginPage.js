@@ -14,6 +14,7 @@ import './LoginForm.scss'
  * 
  */
 const LoginPage = () => {
+
     /*
     const [error, setError] = React.useState(null);
     const [isLoading, setIsLoading] = React.useState(false);
@@ -62,16 +63,6 @@ const LoginPage = () => {
     )
 
 }
-/**
- * en value recibe las propiedades del contexto
- * en props recibe propiedades que puedan llegar desde componentes superiores
- */
-const ConnectedLoginPage = props => {
-    return (
-        <AuthContextConsumer>
-            {value => <LoginPage {...value} {...props} />}
-        </AuthContextConsumer>
-    );
-};
 
-export default ConnectedLoginPage;
+
+export default LoginPage;

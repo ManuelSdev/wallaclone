@@ -8,18 +8,21 @@ import LoginPage from "../auth/LoginPage/LoginPage"
 import LinkButton from "../shared/LinkButton"
 import { ReactComponent as LogoIcon } from "../../assets/letra.svg"
 import client from "../../api/client"
-import { AuthContextConsumer } from "../auth/context"
+import { useAuthContext } from "../auth/context"
 import { Fragment } from "react"
 import LogoutPage from "../auth/LogoutPage/LogoutPage"
 
-const Header = ({ isLogged }) => {
+const Header = () => {
     const a = () => { console.log(client.defaults.headers) };
-
+    const { isLogged } = useAuthContext()
     return (
         <nav className="navbar is-fixed-top  ">
             <div className="navbar-brand " >
                 <div className="navbar-item">
-                    <LogoIcon width="30" height="30" onClick={console.log('holaaaaaaaaaaaaaaaaaaaaaa')} ></LogoIcon>
+                    <Link to="/">
+                        <LogoIcon width="30" height="30" onClick={console.log('holaaaaaaaaaaaaaaaaaaaaaa')} ></LogoIcon>
+
+                    </Link>
                 </div>
 
             </div>
@@ -55,12 +58,5 @@ const Header = ({ isLogged }) => {
     )
 }
 
-const ConnectedHeader = props => {
-    return (
-        <AuthContextConsumer>
-            {value => <Header {...value} {...props} />}
-        </AuthContextConsumer>
-    );
-};
 
-export default ConnectedHeader;
+export default Header;
