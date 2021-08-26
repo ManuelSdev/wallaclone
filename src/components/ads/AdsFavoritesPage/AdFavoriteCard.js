@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import HeartIcon from "../../shared/icons/HeartIcon"
 import { ReactComponent as Heart } from "../../../assets/cards-heart.svg"
-import { modFavoriteId } from "../../../api/user";
+import { updateFavId } from "../../../api/user";
 import Button from "../../shared/Button";
 
 
@@ -18,7 +18,7 @@ const AdFavoriteCard = ({ ad, trigger }) => {
     const request = {}
     request.adId = ad._id
     const updateFavIdAndNewPromise = async () => {
-        await modFavoriteId(request)
+        await updateFavId(ad._id, "pull")
         trigger()
 
     }

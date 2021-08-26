@@ -9,7 +9,6 @@ import Button from "../../shared/Button";
 const UserFavoritesPage = ({ ...props }) => {
 
     const { loading, error, throwPromise, data: ads } = usePromise([]);
-
     React.useEffect(() => {
         throwPromise(getFavAds())
     }, []);
