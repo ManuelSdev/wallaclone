@@ -30,14 +30,15 @@ const AdDetailPage = () => {
 
     React.useEffect(() => {
         throwPromise(getOneAd(request))
-        console.log(ad)
+
     }, [])
 
 
+
+    console.log(ad)
     return (
         <div className="AdDetailPage">
             DETALLE ANUNCIO
-            <div>{ad.name}</div>
             <AdDetailsCard
                 ad={ad}
                 cardHeader={

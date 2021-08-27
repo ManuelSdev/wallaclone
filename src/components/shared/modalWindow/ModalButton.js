@@ -12,8 +12,8 @@ const ModalButton = ({ children, component }) => {
                 {children}
             </Button>
             <ModalWindow
-                component={component}
                 modalClasss={modalClass}
+                component={component}
                 openModal={openModal}
                 closeModal={closeModal}
             >

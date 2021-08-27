@@ -6,7 +6,6 @@ import React from 'react'
 
 export default function AdDetailsCard({ ad, cardHeader }) {
     const foto = 'https://via.placeholder.com/150';
-    console.log("+++++++++++++++++++++++++++", ad)
     return (
         <div className="AdDetailCard container is-max-desktop">
             <div className="box">

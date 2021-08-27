@@ -13,7 +13,7 @@ const AdsPage = ({ ...props }) => {
     React.useEffect(() => {
         throwPromise(getAds())
     }, []);
-
+    console.log(ads)
     return (
         <div className="AdsPage">
             PAGINA DE ANUNCIOS

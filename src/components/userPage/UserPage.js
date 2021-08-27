@@ -3,10 +3,9 @@ import UserNavBar from "./UserNavBar"
 import { Switch, Route, Redirect, Router } from 'react-router-dom';
 import { UserProfilePage, UserAdsPage, UserFavoritesPage, UserRatingsPage, UserStatisticsPage, UserChatPage } from "./"
 import EditAdPage from "../ads/editAdPage/EditAdPage"
+import usePromise from "../customHooks/usePromise";
 
 const UserPage = () => {
-
-
 
     return (
         <div className="UserPage">

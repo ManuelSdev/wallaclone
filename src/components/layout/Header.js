@@ -10,11 +10,11 @@ import { ReactComponent as LogoIcon } from "../../assets/letra.svg"
 import client from "../../api/client"
 import { useAuthContext } from "../auth/context"
 import { Fragment } from "react"
-import LogoutPage from "../auth/LogoutPage/LogoutPage"
+import ConfirmActionPage from "../shared/ConfirmActionPage"
 
 const Header = () => {
     const a = () => { console.log(client.defaults.headers) };
-    const { isLogged } = useAuthContext()
+    const { isLogged, handleLogout } = useAuthContext()
     return (
         <nav className="navbar is-fixed-top  ">
             <div className="navbar-brand " >
@@ -38,7 +38,16 @@ const Header = () => {
                             <LinkButton link={'/ads/new'}>Subir producto</LinkButton>
                             {isLogged ? (
 
-                                <ModalButton component={<LogoutPage />}>Cerrar sesión</ModalButton>
+                                <ModalButton
+                                    component={
+                                        <ConfirmActionPage
+                                            action={handleLogout}
+                                            question={"¿Desea cerrar la sesión?"}
+                                            confirmButtonText={"Cerrar sesión"}
+                                            waitConfirm={isLogged ? true : false}
+                                            redirectAfterConfirm={"/"}
+                                        />}
+                                >Cerrar sesión</ModalButton>
                             ) : (
                                 <Fragment>
                                     <LinkButton link={'/auth/login'}>Inicia sesión</LinkButton>

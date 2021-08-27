@@ -17,8 +17,9 @@ function usePromise(initialValue) {
     if (error) {
       return setError(error);
     }
+    console.log("START SET DATA")
     setData(data);
-    console.log("PROMESA FINALIZADA")
+    console.log("FINISH SET DATA")
   };
 
   const throwPromise = async function (promise) {
