@@ -21,7 +21,9 @@ const AdForm = ({ onSubmit, isLoading, ad }) => {
         description: '',
         images: null
     });
-
+    //useEffect solo aplica cuando recibimos la props "ad" que pasa EditAdPage.js, que usa este mismo
+    //formulario para editar los detalles del anuncio
+    //
     React.useEffect(() => {
         //console.log("useEffect ad", ad)
         setValues(

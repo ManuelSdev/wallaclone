@@ -2,7 +2,7 @@ import client from './client';
 
 const adsPath = '/apiv1/adverts';
 const myAdsPath = `${adsPath}/my-ads`
-const oneAdPath = `${adsPath}/one-ad`
+const oneAdPath = `${adsPath}/oneAd`
 const myFavsAds = `${adsPath}/favs`
 const updateAdPath = `${adsPath}/update`
 export const getAds = () => {
@@ -17,7 +17,7 @@ export const getMyAds = () => {
 
 export const getOneAd = (adIdParams) => {
     //${filterPath && filterPath}
-    return client.get(`${adsPath}/${adIdParams}`);
+    return client.get(`${oneAdPath}/${adIdParams}`);
 };
 
 export const getFavAds = () => {

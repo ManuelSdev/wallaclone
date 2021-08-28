@@ -8,9 +8,8 @@ import { useHistory } from "react-router-dom";
 
 //TODO: MANEJO ERRORES
 const NewAdPage = () => {
-    const { isLogged } = useAuthContext()
     const history = useHistory()
-
+    //TODO: TIRA DE usePromise
     const handleSubmit = async credentials => {
 
         try {

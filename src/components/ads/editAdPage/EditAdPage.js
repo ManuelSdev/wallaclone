@@ -14,10 +14,9 @@ const NewAdPage = () => {
     //Pillo los parametros de la url que ponen los Link de cada anuncio con el nombre+id de cada uno de ellos
     const { adId } = useParams();
     //console.log(adId)
-    //Creo objeto para la petición
-    const adIdRequest = {}
+
     //CathadIdUrl() extrae el id de anuncio y lo guardo en la propiedad adId del objeto que mando en la petición
-    adIdRequest.adId = adId
+    const adIdRequest = adId
     //console.log("RENDER EN EDIT PAGE")
     //console.log("EDIT PAGE ad", ad)
 
