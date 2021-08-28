@@ -1,5 +1,5 @@
 import React from "react"
-import { useParams } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import { getOneAd, deleteAd } from "../../../api/ads"
 import usePromise from "../../customHooks/usePromise"
 import AdDetailsCard from "./AdDetailsCard"
@@ -19,6 +19,7 @@ const catchAdIdUrl = (url) => {
 const AdDetailPage = () => {
     const { isLogged } = useAuthContext()
     const { loading, error, throwPromise, data: ad } = usePromise({})
+    const history = useHistory()
 
     //Pillo los parametros de la url que ponen los Link de cada anuncio con el nombre+id de cada uno de ellos
     const { adUrl } = useParams();
@@ -27,18 +28,25 @@ const AdDetailPage = () => {
     //CathadIdUrl() extrae el id de anuncio y lo guardo en la propiedad adId del objeto que mando en la petición
     request.adId = catchAdIdUrl(adUrl)
 
-    //console.log(isLogged)
-
     React.useEffect(() => {
         throwPromise(getOneAd(request))
-        console.log(ad)
     }, [])
 
-    const handleDelete = (e) => {
-        e.stopPropagation();
-        throwPromise(deleteAd(ad._id))
+    const handleDelete = async (ev) => {
+        ev.stopPropagation();
+        try {
+            throwPromise(deleteAd(ad._id))
+            await history.push("/user/ads");
+            //console.log("history", history)
+        } catch (error) {
+            //setError(error);
+            console.log(error)
+            window.alert(error)
+        } finally {
+            //setIsLoading(false);
+            //console.log("PROMESA LOGIN OK")
+        }
     }
-
     return (
         <Layout>
             <div className="AdDetailPage">
@@ -58,9 +66,7 @@ const AdDetailPage = () => {
                 ></AdDetailsCard>
             </div>
         </Layout>
-
     )
 }
-
 
 export default AdDetailPage

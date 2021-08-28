@@ -23,7 +23,6 @@ const AdsPage = ({ ...props }) => {
                 }
             </div>
         </Layout>
-
     )
 }
 

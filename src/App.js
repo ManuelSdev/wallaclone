@@ -5,7 +5,7 @@ import logo from './logo.svg';
 import React from 'react';
 import LoginPage from './components/auth/LoginPage/LoginPage';
 import RegisterPage from './components/auth/RegisterPage/RegisterPage';
-import { Switch, Route, Redirect, Router } from 'react-router-dom';
+import { Switch, Route, Redirect, Router, useHistory } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import UserPage from './components/userPage/UserPage';
 import NewAdPage from './components/ads/newAdPage/NewAdPage'
@@ -21,26 +21,23 @@ import PrivateRoute from './components/auth/privateRouter/PrivateRoute';
 
 function App({ autoLogged }) {
   //const autoLogged = false
+  const history = useHistory()
   const [isLogged, setIsLogged] = React.useState(autoLogged);
 
   const handleLogin = () => setIsLogged(true);
   const handleLogout = () => {
     logout()
-    setIsLogged(false);
+    setIsLogged(false)
+    history.push('/')
   }
   const loginProps = { isLogged, handleLogin, handleLogout };
   return (
     <div className="App ">
       <AuthProvider {...loginProps}>
         <Switch>
-          {/**
-             *          <Route path="/auth/login" component={LoginPage}></Route>
-            <Route path="/auth/register" component={RegisterPage}></Route>
-             */}
           <PrivateRoute path="/user" component={UserPage}></PrivateRoute>
           <PrivateRoute path="/chat" component={ChatPage}></PrivateRoute>
           <PrivateRoute path="/ads/new" component={NewAdPage}></PrivateRoute>
-
           <Route path="/ads/:adUrl" component={AdDetailsPage}></Route>
           <Route path="/ads" component={AdsPage}></Route>
           <Route path="/" component={HomePage}></Route>
@@ -53,11 +50,8 @@ function App({ autoLogged }) {
           </Route>
           {/*Si no matchea ninguna ruta anterior, redirect a /404*/}
           <Redirect to="/404" />
-
-
         </Switch>
       </AuthProvider>
-
     </div>
   );
 }

@@ -6,10 +6,8 @@ import LinkButton from "../LinkButton";
 
 
 const ModalWindow = ({ modalClass, openModal, closeModal, children, component, buttonText }) => {
-    //const { modalClass, openModal, closeModal } = useModal()
 
     return (
-
         <div className={modalClass} >
             <div className="modal-background" onClick={closeModal}></div>
             <div className="modal-content" onClick={openModal}>

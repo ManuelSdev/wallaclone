@@ -24,10 +24,7 @@ const LoginPage = ({ from }) => {
     const location = useLocation()
     const history = useHistory()
 
-    // console.log("LOFATION", location)
-
     //** const from = location.state ? location.state.from : {pathname: '/'}
-
 
     //Este método bajará como prop onSubmit a <LoginForm>
     const handleSubmit = async credentials => {
@@ -36,15 +33,13 @@ const LoginPage = ({ from }) => {
         //setIsLoading(true);
         // console.log("holi")
         try {
-            await throwPromise(login(credentials));
-            handleLogin()
+            throwPromise(login(credentials));
+            await handleLogin()
             // const { from } = location.state || { from: { pathname: '/' } };
-            console.log("FROMMMMM", from)
-            console.log("history", history)
-
-            history.replace(from);
-            console.log("history", history)
-
+            //console.log("FROMMMMM", from)
+            //console.log("history", history)
+            await history.replace(from);
+            // console.log("history", history)
         } catch (error) {
             //setError(error);
             console.log(error)
@@ -54,19 +49,14 @@ const LoginPage = ({ from }) => {
             //console.log("PROMESA LOGIN OK")
         }
     };
-
-
     //console.log(isLogged)
     return (
         <div className="LoginPage">
             <div className="container">
                 <LoginForm onSubmit={handleSubmit}></LoginForm>
             </div>
-
         </div>
     )
-
 }
-
 
 export default LoginPage;

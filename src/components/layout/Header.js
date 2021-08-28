@@ -25,12 +25,6 @@ const Header = () => {
 
     React.useEffect(() => {
         console.log("GESTIONA MODAL", modalClass)
-        /**
-            isLogged ?
-            closeModal()
-            :
-            location.pathname.startsWith("/auth") && openModal()
-         */
         location.pathname.startsWith("/auth") && openModal()
         isLogged && closeModal()
 
@@ -89,10 +83,7 @@ const Header = () => {
                 <AuthPage ></AuthPage>
             </ModalWindow>
         </Fragment >
-
-
     )
 }
-
 
 export default Header;

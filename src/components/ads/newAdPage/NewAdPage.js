@@ -3,9 +3,11 @@ import { createAd_NO } from "../../../api/ads"
 import ModalWindow from "../../shared/modalWindow/ModalWindow";
 import style from './NewAdPage.module.scss'
 import { useAuthContext } from "../../auth/context";
+import Layout from "../../layout/Layout";
+import { useHistory } from "react-router-dom";
 const NewAdPage = () => {
-
     const { isLogged } = useAuthContext()
+    const history = useHistory()
     //console.log(isLogged)
     /*
     const [error, setError] = React.useState(null);
@@ -30,9 +32,9 @@ const NewAdPage = () => {
         // login(credentials).then(() => onLogin());
         //resetError();
         //setIsLoading(true);
-        console.log("holi")
         try {
             await createAd_NO(credentials);
+            await history.push("/user");
             //Los cambios en la referencia no ejectutan un nuevo render
             //isLogged.current = true;
         } catch (error) {
@@ -44,15 +46,15 @@ const NewAdPage = () => {
         }
     };
 
-
-
     return (
-        <div className={style.NewAdPage}>
-            SUBIR PRODUCTO
-            <div className={style.container}>
-                <AdForm onSubmit={handleSubmit}></AdForm>
+        <Layout>
+            <div className={style.NewAdPage}>
+                SUBIR PRODUCTO
+                <div className={style.container}>
+                    <AdForm onSubmit={handleSubmit}></AdForm>
+                </div>
             </div>
-        </div>
+        </Layout>
     )
 }
 

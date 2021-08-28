@@ -9,14 +9,7 @@ const PrivateRoute = props => {
     const history = useHistory()
     //console.log("LOCATION EN PRIVATE", location)
     //console.log("HISTORY EN PRIVATE ROUTER*******************", history)
-    const Redi = () => {
-        // console.log("try redireccccccccccccccccccccccccc")
 
-
-
-        return (<Redirect to={{ pathname: '/auth', state: { from: location } }} />)
-
-    }
     /**
      * Si estás logado, devuelve un Route normal
      * si no, redirect. La propiedad to de Redirect
@@ -47,8 +40,7 @@ const PrivateRoute = props => {
     return isLogged ? (
         <Route {...props} />
     ) : (
-
-        <Redi></Redi>
+        <Redirect to={{ pathname: '/auth', state: { from: location } }} />
     );
 };
 

@@ -16,10 +16,8 @@ import useModal from '../../customHooks/useModal';
 export default function UserCardHeader({ ad, handleDelete }) {
     const { modalClass, openModal, closeModal, handleCloseModal, handleOpenModal } = useModal()
 
-
     console.log(ad)
     return (
-
         <div className="is-flex is-flex-direction-row is-justify-content-space-between">
             <div className="is-flex is-flex-direction-row ">
                 <figure className="pr-4 image is-64x64">
@@ -32,10 +30,8 @@ export default function UserCardHeader({ ad, handleDelete }) {
             </div>
             <div className="">
                 <div className="pr-4">DESTÁCALO?</div>
-
             </div>
             <div className="is-flex is-flex-direction-row  is-justify-content-flex-end ">
-
                 <Button className="mr-2">Vendido</Button>
                 <Button className="mr-2">Reservado</Button>
                 <LinkButton className="mr-2" link={`/user/edit/${ad._id}`}>Editar</LinkButton>
@@ -52,14 +48,8 @@ export default function UserCardHeader({ ad, handleDelete }) {
                             <Button onClick={handleCloseModal}>Cancelar</Button>
                         </div>
                     </div>
-
-
-
-
                 </ModalWindow>
-
             </div>
         </div>
     )
-
 }

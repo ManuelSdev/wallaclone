@@ -23,8 +23,7 @@ const UserPage = () => {
                         <Route path="/user/ratings" component={UserRatingsPage}></Route>
                         <Route path="/user/statistics" component={UserStatisticsPage}></Route>
                         <Route path="/user/edit/:adId" component={EditAdPage}></Route>
-                        <Route path="/user" component={UserProfilePage}></Route>
-
+                        <Route path="/user" component={UserAdsPage}></Route>
                     </Switch>
                 </div>
 
