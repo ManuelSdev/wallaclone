@@ -42,10 +42,8 @@ const Header = () => {
                     <div className="navbar-item">
                         <Link to="/">
                             <LogoIcon width="30" height="30"  ></LogoIcon>
-
                         </Link>
                     </div>
-
                 </div>
                 <div className="navbar-menu">
                     <div className="navbar-start is-expanded is-flex-grow-1	">
@@ -56,28 +54,12 @@ const Header = () => {
                     <div className="navbar-end">
                         <div className="navbar-item">
                             <div className="buttons">
-
-
-
                                 {isLogged ? (
                                     <Fragment>
                                         <LinkButton link={'/ads/new'}>Crear anuncio</LinkButton>
                                         <LinkButton link={'/user'}>Mi zona</LinkButton>
                                     </Fragment>
-
-
                                 ) : (
-                                    /**
-                                     
-                                                   <ModalButton
-                                         buttonText={"Regístrate o inicia sesion"}
-                                         modalClass={modalClass}
-                                         openModal={openModal}
-                                         closeModal={closeModal}
-                                     >
-                                         <AuthPage handleCancel={closeModal}></AuthPage>
-                                     </ModalButton>
-                                     */
                                     <Fragment>
                                         <LinkButton
                                             handleButton={handleOpenModal}
@@ -91,12 +73,8 @@ const Header = () => {
                                         >
                                             Regístrate o inicia sesion
                                         </LinkButton>
-
                                     </Fragment>
-
-
                                 )}
-
                                 <Button onClick={handleLogout} ></Button>
                             </div>
                         </div>

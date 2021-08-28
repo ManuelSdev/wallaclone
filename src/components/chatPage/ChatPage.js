@@ -1,9 +1,13 @@
 import React from 'react'
+import Layout from '../layout/Layout'
 
 export default function ChatPage() {
     return (
-        <div>
-            CHAT PAGE
-        </div>
+        <Layout>
+            <div>
+                CHAT PAGE
+            </div>
+        </Layout>
+
     )
 }

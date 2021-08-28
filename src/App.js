@@ -28,39 +28,34 @@ function App({ autoLogged }) {
     logout()
     setIsLogged(false);
   }
-  const dinamicAdDetailsUrl = null;
   const loginProps = { isLogged, handleLogin, handleLogout };
   return (
     <div className="App ">
       <AuthProvider {...loginProps}>
-        <Layout>
-          <Switch>
-            {/**
+        <Switch>
+          {/**
              *          <Route path="/auth/login" component={LoginPage}></Route>
             <Route path="/auth/register" component={RegisterPage}></Route>
              */}
+          <PrivateRoute path="/user" component={UserPage}></PrivateRoute>
+          <PrivateRoute path="/chat" component={ChatPage}></PrivateRoute>
+          <PrivateRoute path="/ads/new" component={NewAdPage}></PrivateRoute>
 
-
-            <PrivateRoute path="/user" component={UserPage}></PrivateRoute>
-            <PrivateRoute path="/chat" component={ChatPage}></PrivateRoute>
-            <PrivateRoute path="/ads/new" component={NewAdPage}></PrivateRoute>
-
-            <Route path="/ads/:adUrl" component={AdDetailsPage}></Route>
-            <Route path="/ads" component={AdsPage}></Route>
-            <Route path="/" component={HomePage}></Route>
-            {/*<Route path="/" component={AdsPage}></Route>
+          <Route path="/ads/:adUrl" component={AdDetailsPage}></Route>
+          <Route path="/ads" component={AdsPage}></Route>
+          <Route path="/" component={HomePage}></Route>
+          {/*<Route path="/" component={AdsPage}></Route>
              <Route path="/">
               {(routeProps) => (<AdsPage adUrl={dinamicAdDetailsUrl} />)}
             </Route>*/}
-            <Route exact path="/404">
-              <NotFoundPage />
-            </Route>
-            {/*Si no matchea ninguna ruta anterior, redirect a /404*/}
-            <Redirect to="/404" />
+          <Route exact path="/404">
+            <NotFoundPage />
+          </Route>
+          {/*Si no matchea ninguna ruta anterior, redirect a /404*/}
+          <Redirect to="/404" />
 
 
-          </Switch>
-        </Layout>
+        </Switch>
       </AuthProvider>
 
     </div>

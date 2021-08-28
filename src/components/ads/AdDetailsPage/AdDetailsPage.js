@@ -6,6 +6,7 @@ import AdDetailsCard from "./AdDetailsCard"
 import { useAuthContext } from '../../../components/auth/context';
 import CardHeader from "./CardHeader"
 import UserCardHeader from "./UserCardHeader"
+import Layout from "../../layout/Layout"
 
 const catchAdIdUrl = (url) => {
     const index = 1 + url.lastIndexOf("-")
@@ -39,24 +40,25 @@ const AdDetailPage = () => {
     }
 
     return (
-        <div className="AdDetailPage">
-            DETALLE ANUNCIO
-            <div>{ad.name}</div>
-            <AdDetailsCard
-                ad={ad}
-                cardHeader={
-                    loading ?
-                        null
-                        :
-                        isLogged && ad.userId === ad.requesterId ?
-                            <UserCardHeader handleDelete={handleDelete} ad={ad} />
+        <Layout>
+            <div className="AdDetailPage">
+                DETALLE ANUNCIO
+                <div>{ad.name}</div>
+                <AdDetailsCard
+                    ad={ad}
+                    cardHeader={
+                        loading ?
+                            null
                             :
-                            <CardHeader ad={ad} />
-                }
+                            isLogged && ad.userId === ad.requesterId ?
+                                <UserCardHeader handleDelete={handleDelete} ad={ad} />
+                                :
+                                <CardHeader ad={ad} />
+                    }
+                ></AdDetailsCard>
+            </div>
+        </Layout>
 
-            ></AdDetailsCard>
-
-        </div>
     )
 }
 
