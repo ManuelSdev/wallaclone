@@ -5,6 +5,7 @@ import { useAuthContext } from '../context';
 import { login } from '../../../api/user'
 import usePromise from '../../customHooks/usePromise';
 import './LoginForm.scss'
+import { useHistory, useLocation } from 'react-router-dom';
 
 /**
  * 
@@ -14,15 +15,16 @@ import './LoginForm.scss'
  * El paso de parámetros anterior es igual que cuando llegan por props que baja el padre
  * 
  */
-const LoginPage = ({ history, location }) => {
+const LoginPage = ({ from }) => {
 
     const { handleLogin, isLogged } = useAuthContext()
     //No usamos el estado data de usePromise ni le pasamos parametro de valor de estado inicial
     //porque no esperamos recibir datos con la petición de login
     const { loading, error, throwPromise, } = usePromise()
+    const location = useLocation()
+    const history = useHistory()
 
-
-    console.log(location)
+    // console.log("LOFATION", location)
 
     //** const from = location.state ? location.state.from : {pathname: '/'}
 
@@ -32,12 +34,16 @@ const LoginPage = ({ history, location }) => {
         // login(credentials).then(handleLogin);
         //resetError();
         //setIsLoading(true);
-        console.log("holi")
+        // console.log("holi")
         try {
             await throwPromise(login(credentials));
             handleLogin()
-            const { from } = { from: { pathname: '/' } };
+            // const { from } = location.state || { from: { pathname: '/' } };
+            console.log("FROMMMMM", from)
+            console.log("history", history)
+
             history.replace(from);
+            console.log("history", history)
 
         } catch (error) {
             //setError(error);
@@ -45,7 +51,7 @@ const LoginPage = ({ history, location }) => {
             window.alert(error)
         } finally {
             //setIsLoading(false);
-            console.log("PROMESA LOGIN OK")
+            //console.log("PROMESA LOGIN OK")
         }
     };
 

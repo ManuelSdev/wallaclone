@@ -10,16 +10,13 @@ import ConfirmActionPage from '../../shared/ConfirmActionPage';
 import { deleteAd } from '../../../api/ads';
 import usePromise from '../../customHooks/usePromise';
 import { Redirect } from 'react-router';
+import ModalWindow from '../../shared/modalWindow/ModalWindow';
+import useModal from '../../customHooks/useModal';
+
+export default function UserCardHeader({ ad, handleDelete }) {
+    const { modalClass, openModal, closeModal, handleCloseModal, handleOpenModal } = useModal()
 
 
-export default function UserCardHeader({ ad }) {
-
-    const { loading, error, throwPromise } = usePromise({})
-    const handleDelete = (e) => {
-        e.stopPropagation();
-        throwPromise(deleteAd(ad._id))
-
-    }
     console.log(ad)
     return (
 
@@ -42,17 +39,25 @@ export default function UserCardHeader({ ad }) {
                 <Button className="mr-2">Vendido</Button>
                 <Button className="mr-2">Reservado</Button>
                 <LinkButton className="mr-2" link={`/user/edit/${ad._id}`}>Editar</LinkButton>
-                <ModalButton
-                    adId={ad._id}
-                    confirmText={"Eliminar anuncio"}
-                    handleDelete={handleDelete}
-                    component={
-                        <ConfirmActionPage
-                            question={"¿Desea eliminar el anuncio?"}
+                <Button onClick={openModal}>Eliminar</Button>
+                <ModalWindow
+                    modalClass={modalClass}
+                    openModal={openModal}
+                    closeModal={handleCloseModal}
+                >
+                    <div>
+                        ¿Desea eliminar el anuncio?
+                        <div className="buttons">
+                            <Button onClick={handleDelete}>Eliminar anuncio</Button>
+                            <Button onClick={handleCloseModal}>Cancelar</Button>
+                        </div>
+                    </div>
 
 
-                        />}
-                >Eliminar</ModalButton>
+
+
+                </ModalWindow>
+
             </div>
         </div>
     )

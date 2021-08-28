@@ -1,6 +1,6 @@
 import React from "react"
 import { useParams } from "react-router-dom"
-import { getOneAd } from "../../../api/ads"
+import { getOneAd, deleteAd } from "../../../api/ads"
 import usePromise from "../../customHooks/usePromise"
 import AdDetailsCard from "./AdDetailsCard"
 import { useAuthContext } from '../../../components/auth/context';
@@ -33,6 +33,10 @@ const AdDetailPage = () => {
         console.log(ad)
     }, [])
 
+    const handleDelete = (e) => {
+        e.stopPropagation();
+        throwPromise(deleteAd(ad._id))
+    }
 
     return (
         <div className="AdDetailPage">
@@ -45,7 +49,7 @@ const AdDetailPage = () => {
                         null
                         :
                         isLogged && ad.userId === ad.requesterId ?
-                            <UserCardHeader ad={ad} />
+                            <UserCardHeader handleDelete={handleDelete} ad={ad} />
                             :
                             <CardHeader ad={ad} />
                 }

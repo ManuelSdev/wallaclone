@@ -1,13 +1,15 @@
 import Button from "../Button"
-function ModalWindow({ children, modalClasss, openModal, closeModal, component, handleDelete, confirmText }) {
 
+
+function Modal({ children, modalClass, openModal, closeModal, component, handleDelete, confirmText }) {
+    console.log("CLASSS", modalClass)
     return (
-        <div className={modalClasss} >
+        <div className={modalClass} >
             <div className="modal-background" onClick={closeModal}></div>
             <div className="modal-content" onClick={openModal}>
                 <div className="box">
 
-                    {component}
+                    {children}
                     <div className="buttons">
                         <Button onClick={handleDelete}>{confirmText}</Button>
                         <Button onClick={closeModal}>{children}</Button>
@@ -22,4 +24,4 @@ function ModalWindow({ children, modalClasss, openModal, closeModal, component, 
 
 }
 
-export default ModalWindow
+export default Modal

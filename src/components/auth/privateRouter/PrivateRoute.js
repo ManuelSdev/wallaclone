@@ -1,11 +1,22 @@
 
 
-import { Redirect, Route, useLocation } from 'react-router-dom';
+import { Redirect, Route, useHistory, useLocation } from 'react-router-dom';
 import { useAuthContext } from '../context';
 
 const PrivateRoute = props => {
     const { isLogged } = useAuthContext();
     const location = useLocation();
+    const history = useHistory()
+    //console.log("LOCATION EN PRIVATE", location)
+    //console.log("HISTORY EN PRIVATE ROUTER*******************", history)
+    const Redi = () => {
+        // console.log("try redireccccccccccccccccccccccccc")
+
+
+
+        return (<Redirect to={{ pathname: '/auth', state: { from: location } }} />)
+
+    }
     /**
      * Si estás logado, devuelve un Route normal
      * si no, redirect. La propiedad to de Redirect
@@ -36,7 +47,8 @@ const PrivateRoute = props => {
     return isLogged ? (
         <Route {...props} />
     ) : (
-        <Redirect to={{ pathname: '/auth/login', state: { from: location } }} />
+
+        <Redi></Redi>
     );
 };
 

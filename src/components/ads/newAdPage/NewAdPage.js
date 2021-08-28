@@ -6,7 +6,7 @@ import { useAuthContext } from "../../auth/context";
 const NewAdPage = () => {
 
     const { isLogged } = useAuthContext()
-    console.log(isLogged)
+    //console.log(isLogged)
     /*
     const [error, setError] = React.useState(null);
     const [isLoading, setIsLoading] = React.useState(false);

@@ -1,25 +1,27 @@
-import Button from "../Button"
-function ModalWindow({ children, modalClasss, openModal, closeModal, component, handleDelete, confirmText }) {
+import Button from "../Button";
+import useModal from "../../customHooks/useModal";
+//import ModalWindow from "./ModalWindow";
+import { Link } from "react-router-dom";
+import LinkButton from "../LinkButton";
+
+
+const ModalWindow = ({ modalClass, openModal, closeModal, children, component, buttonText }) => {
+    //const { modalClass, openModal, closeModal } = useModal()
 
     return (
-        <div className={modalClasss} >
+
+        <div className={modalClass} >
             <div className="modal-background" onClick={closeModal}></div>
             <div className="modal-content" onClick={openModal}>
                 <div className="box">
-
-                    {component}
-                    <div className="buttons">
-                        <Button onClick={handleDelete}>{confirmText}</Button>
-                        <Button onClick={closeModal}>{children}</Button>
-
+                    <div className=" is-flex is-justify-content-flex-end">
+                        <button onClick={closeModal} className="delete" aria-label="delete" ></button>
                     </div>
+                    {children}
                 </div>
-
             </div>
-            <button className="modal-close is-large" aria-label="close"></button>
         </div>
     )
-
 }
 
 export default ModalWindow

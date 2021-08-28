@@ -35,12 +35,15 @@ function App({ autoLogged }) {
       <AuthProvider {...loginProps}>
         <Layout>
           <Switch>
-            <Route path="/auth/login" component={LoginPage}></Route>
+            {/**
+             *          <Route path="/auth/login" component={LoginPage}></Route>
             <Route path="/auth/register" component={RegisterPage}></Route>
+             */}
+
 
             <PrivateRoute path="/user" component={UserPage}></PrivateRoute>
             <PrivateRoute path="/chat" component={ChatPage}></PrivateRoute>
-            <Route path="/ads/new" component={NewAdPage}></Route>
+            <PrivateRoute path="/ads/new" component={NewAdPage}></PrivateRoute>
 
             <Route path="/ads/:adUrl" component={AdDetailsPage}></Route>
             <Route path="/ads" component={AdsPage}></Route>
