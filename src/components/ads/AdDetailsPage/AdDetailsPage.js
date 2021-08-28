@@ -23,13 +23,11 @@ const AdDetailPage = () => {
 
     //Pillo los parametros de la url que ponen los Link de cada anuncio con el nombre+id de cada uno de ellos
     const { adUrl } = useParams();
-    //Creo objeto para la petición
-    const request = {}
     //CathadIdUrl() extrae el id de anuncio y lo guardo en la propiedad adId del objeto que mando en la petición
-    request.adId = catchAdIdUrl(adUrl)
+    const adId = catchAdIdUrl(adUrl)
 
     React.useEffect(() => {
-        throwPromise(getOneAd(request))
+        throwPromise(getOneAd(adId))
     }, [])
 
     const handleDelete = async (ev) => {

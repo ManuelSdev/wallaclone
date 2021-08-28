@@ -15,9 +15,9 @@ export const getMyAds = () => {
     return client.get(`${myAdsPath}`);
 };
 
-export const getOneAd = (adId) => {
+export const getOneAd = (adIdParams) => {
     //${filterPath && filterPath}
-    return client.post(`${oneAdPath}`, adId);
+    return client.get(`${adsPath}/${adIdParams}`);
 };
 
 export const getFavAds = () => {
