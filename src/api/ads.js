@@ -31,6 +31,11 @@ export const updateAd = (adIdParams, newValues) => {
     return client.put(`${adsPath}/${adIdParams}`, newValues);
 };
 
+export const deleteAd = (adIdParams) => {
+    //${filterPath && filterPath}
+    console.log("ID PARAMS", adIdParams)
+    return client.delete(`${adsPath}/${adIdParams}`);
+};
 
 export const createAd_NO = adDetails => {
     const url = `${adsPath}`

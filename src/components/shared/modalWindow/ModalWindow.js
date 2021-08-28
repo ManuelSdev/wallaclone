@@ -1,5 +1,5 @@
-
-function ModalWindow({ children, modalClasss, openModal, closeModal, component }) {
+import Button from "../Button"
+function ModalWindow({ children, modalClasss, openModal, closeModal, component, handleDelete, confirmText }) {
 
     return (
         <div className={modalClasss} >
@@ -8,7 +8,11 @@ function ModalWindow({ children, modalClasss, openModal, closeModal, component }
                 <div className="box">
 
                     {component}
+                    <div className="buttons">
+                        <Button onClick={handleDelete}>{confirmText}</Button>
+                        <Button onClick={closeModal}>{children}</Button>
 
+                    </div>
                 </div>
 
             </div>

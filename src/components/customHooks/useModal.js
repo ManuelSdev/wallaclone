@@ -4,13 +4,15 @@ const useModal = () => {
     const [modalClass, setModalClass] = React.useState("modal")
 
     const openModal = (e) => {
-        //e.stopPropagation();
+        e.stopPropagation();
         //e.nativeEvent.stopImmediatePropagation();
         console.log('open');
         setModalClass("modal is-active")
     }
 
-    const closeModal = () => {
+    const closeModal = (e) => {
+        e.stopPropagation();
+        //e.nativeEvent.stopImmediatePropagation();
         console.log('close');
         setModalClass("modal")
     }

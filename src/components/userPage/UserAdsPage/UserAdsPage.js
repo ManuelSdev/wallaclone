@@ -7,20 +7,25 @@ import AdsGrid from '../../ads/adsPage/AdsGrid'
 
 const UserAdsPage = () => {
     const { loading, error, throwPromise, data: ads } = usePromise([]);
-
     React.useEffect(() => {
         throwPromise(getMyAds())
+        console.log("USE EFFECT DE usersAdsPage")
+
     }, []);
-    return (
-        <div className="UserAdsPage container">
-            MIS ANUNCIOS
-            <Loader></Loader>
-            <AdsGrid ads={ads} />
-            {loading &&
-                <Loader></Loader>
-            }
-        </div>
-    )
+
+    return loading ? (
+        <Loader></Loader>
+    ) :
+        ads.length ? (
+            <div className="UserAdsPage container">
+                MIS ANUNCIOS
+
+                <AdsGrid ads={ads} />
+
+            </div>
+        ) : (
+            <div>NO TIENES ANUNCIOS</div>
+        )
 }
 
 export default UserAdsPage

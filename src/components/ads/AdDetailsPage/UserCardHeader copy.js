@@ -5,24 +5,10 @@ import LinkButton from '../../shared/LinkButton';
 import { ReactComponent as HeartIcon2 } from "../../../assets/heart.svg"
 import Button from '../../shared/Button';
 import HeartIcon from "../../shared/icons/HeartIcon"
-import ModalButton from '../../shared/modalWindow/ModalButton';
-import ConfirmActionPage from '../../shared/ConfirmActionPage';
-import { deleteAd } from '../../../api/ads';
-import usePromise from '../../customHooks/usePromise';
-import { Redirect } from 'react-router';
 
 
 export default function UserCardHeader({ ad }) {
-
-    const { loading, error, throwPromise } = usePromise({})
-    const handleDelete = (e) => {
-        e.stopPropagation();
-        throwPromise(deleteAd(ad._id))
-
-    }
-    console.log(ad)
     return (
-
         <div className="is-flex is-flex-direction-row is-justify-content-space-between">
             <div className="is-flex is-flex-direction-row ">
                 <figure className="pr-4 image is-64x64">
@@ -42,19 +28,8 @@ export default function UserCardHeader({ ad }) {
                 <Button className="mr-2">Vendido</Button>
                 <Button className="mr-2">Reservado</Button>
                 <LinkButton className="mr-2" link={`/user/edit/${ad._id}`}>Editar</LinkButton>
-                <ModalButton
-                    adId={ad._id}
-                    confirmText={"Eliminar anuncio"}
-                    handleDelete={handleDelete}
-                    component={
-                        <ConfirmActionPage
-                            question={"¿Desea eliminar el anuncio?"}
-
-
-                        />}
-                >Eliminar</ModalButton>
+                <Button>Eliminar</Button>
             </div>
         </div>
     )
-
 }
