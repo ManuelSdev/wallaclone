@@ -29,8 +29,8 @@ function InputFile({ onChange, ...props }) {
   };
 
   return (
-    <>
-      <input
+    <div className="file is-boxed">
+      <input class="file-input" type="file" name="resume"
         ref={inputRef}
         type="file"
         style={{ display: 'none' }}
@@ -45,7 +45,8 @@ function InputFile({ onChange, ...props }) {
         height="200"
         style={{ objectFit: 'contain' }}
       />
-    </>
+
+    </div >
   );
 }
 

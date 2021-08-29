@@ -1,4 +1,4 @@
-import { createAd_NO } from "../../../api/ads"
+import { createAd } from "../../../api/ads"
 import ModalWindow from "../../shared/modalWindow/ModalWindow";
 import style from './NewAdPage.module.scss'
 import { useAuthContext } from "../../auth/context";
@@ -10,10 +10,9 @@ import AdForm from "./AdForm";
 const NewAdPage = () => {
     const history = useHistory()
     //TODO: TIRA DE usePromise
-    const handleSubmit = async credentials => {
-
+    const handleSubmit = async newAd => {
         try {
-            await createAd_NO(credentials);
+            await createAd(newAd);
             await history.push("/user");
         } catch (error) {
             //setError(error);

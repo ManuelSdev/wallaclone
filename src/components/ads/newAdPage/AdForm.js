@@ -9,6 +9,7 @@ import RadioButton from '../../shared/formFields/RadioButton';
 import RadioField from '../../shared/formFields/RadioField';
 import SelectTags from '../../shared/formFields/SelectTags/SelectTags';
 import TextAreaField from '../../shared/formFields/TextAreaField';
+import InputFile from '../../shared/formFields/InputFile';
 
 
 const AdForm = ({ onSubmit, isLoading, ad }) => {
@@ -101,8 +102,10 @@ const AdForm = ({ onSubmit, isLoading, ad }) => {
                 onChange={handleChange}
                 value={description}
             >
-
             </TextAreaField>
+            {sale && <InputFile name="images" onChange={handleChange} />
+            }
+
             <Button type="submit" >Subir producto</Button>
 
 

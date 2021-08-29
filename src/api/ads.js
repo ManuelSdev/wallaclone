@@ -1,4 +1,5 @@
 import client from './client';
+import { withFormData } from '../utils/converters';
 
 const adsPath = '/apiv1/adverts';
 const myAdsPath = `${adsPath}/my-ads`
@@ -38,6 +39,7 @@ export const deleteAd = (adIdParams) => {
 };
 
 export const createAd_NO = adDetails => {
+    console.log("NEW ADD*****************", adDetails)
     const url = `${adsPath}`
     return client.post(url, adDetails);
 };
@@ -46,3 +48,7 @@ export const getTags = () => {
     return client.get(`${adsPath}/tags`);
 };
 
+export const createAd = withFormData(newAd => {
+    //console.log("NEW ADD*****************", newAd)
+    return client.post(adsPath, newAd);
+});

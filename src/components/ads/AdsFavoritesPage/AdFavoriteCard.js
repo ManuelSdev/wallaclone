@@ -24,8 +24,7 @@ const AdFavoriteCard = ({ ad, trigger }) => {
     }
     return (
 
-        <div className="AdCard">
-
+        <div className="AdCard column is-is-one-fifth">
             {/*<Button onClick={clica}></Button>*/}
             <div className="card ">
                 <Link to={`/ads/${adUrl}`}>
