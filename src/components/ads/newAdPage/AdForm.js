@@ -1,89 +1,54 @@
 //import Button from "../../shared/Button"
 //import FormField from "../../shared/FormField"
 import React from 'react';
+import useForm from '../../customHooks/useForm';
 import Button from '../../shared/Button';
-import CheckBoxField from '../../shared/formFields/CheckBoxField';
+import CheckBoxGroup from '../../shared/formFields/CheckBoxGroup';
 import FormField from '../../shared/formFields/FormField';
 import RadioButton from '../../shared/formFields/RadioButton';
 import RadioField from '../../shared/formFields/RadioField';
+import SelectTags from '../../shared/formFields/SelectTags/SelectTags';
 import TextAreaField from '../../shared/formFields/TextAreaField';
 
 
 const AdForm = ({ onSubmit, isLoading, ad }) => {
     // console.log("RENDER EN AD FORM")
     //console.log("primer ad", ad)
-
-    const [values, setValues] = React.useState({
+    const { formValue: advert, handleChange, handleSubmit, validate, setFormValue } = useForm({
         name: '',
-        sale: null,
-        price: 1,
+        sale: true,
+        price: "",
         tags: [],
         description: '',
-        images: null
+        images: null,
     });
+
+
+
     //useEffect solo aplica cuando recibimos la props "ad" que pasa EditAdPage.js, que usa este mismo
     //formulario para editar los detalles del anuncio
     //
+
     React.useEffect(() => {
         //console.log("useEffect ad", ad)
-        setValues(
-            {
-                name: ad?.name ?? '',
-                sale: null,
-                price: ad?.price ?? 1,
-                tags: [],
-                description: ad?.description ?? '',
-                images: null
-            }
-        )
-        //    console.log("useEffect ad 2-", ad)
+        ad &&
+            setFormValue(
+                {
+                    name: ad?.name ?? '',
+                    sale: ad?.sale ?? true,
+                    price: ad?.price ?? '',
+                    tags: ad?.tags ?? [],
+                    description: ad?.description ?? '',
+                    images: null
+                }
+            )
     }, [ad])
-    const selectablesTags = ["Lifestyle", "leisure"]
-    //El event lo recibe del onChange ("mezcla" del onchange y del oninput del form html)
-    const handleChange = event => {
 
-        //console.log('tttt', event.target.type)
-        //console.log(sale)
-        /**
-         * Usamos spreading para machacar las propiedades el estado a medida que 
-         * escribimos en los formfields
-         * El <FormField name="email"> machacará la clave email
-         * El <FormField name="password"> machacará la clave password
-         */
-        setValues(oldValues => {
-            //console.log('TYPE', event)
-            //console.log("value", event.target.value)
-            //console.log("checked", event.target.checked)
+    const { name, sale, price, tags, description } = advert;
 
-            // console.log(tags)
-            const newValues = {
-                ...oldValues,
-                [event.target.name]: event.target.value,
-            };
-            //console.log("sale", sale)
-            // console.log("cdre", newValues)
-            // console.log("++++++++++++++++++++++++++++")
-            return newValues;
-        });
-    };
-    /**
-     * 
-     * Este método sustituye al submit del form 
-     * Llamará al método onSubmit (que el padre LoginPage pasa por props) 
-     * pasando como parámetro las credentials para que LoginPage las use
-     * en su propio método, también llamado handleSubmit, para la péticion
-     * de login con el login() que importa de auth.js
-     */
-    const handleSubmit = event => {
-        event.preventDefault();
-        onSubmit(values);
-        console.log("submit")
-    };
-    const { name, sale, price, tags, description, images } = values;
-    //console.log(sale)
-    const arra = ["casa", "salon"]
+    console.log("FORMULARIO", advert)
     return (
-        <form className="AdForm" onSubmit={handleSubmit}>
+        <form className="AdForm" onSubmit={handleSubmit(onSubmit)}>
             <FormField
                 type="text"
                 name="name"
@@ -97,7 +62,7 @@ const AdForm = ({ onSubmit, isLoading, ad }) => {
             >
             </FormField>
             <FormField
-                type="tel"
+                type="number"
                 name="price"
                 label="Precio"
                 value={price}
@@ -106,37 +71,32 @@ const AdForm = ({ onSubmit, isLoading, ad }) => {
                 onChange={handleChange}
             >
             </FormField>
-            <CheckBoxField
-                multiple
-                type="checkbox"
-                tags={selectablesTags}
-                name="tags"
-                onChange={handleChange}
-                value="value x"
-            >
-            </CheckBoxField>
+            <SelectTags multiple name="tags" value={tags} onChange={handleChange} mainLabel="Selecciona,al menos, un tag" />
 
-            <RadioField>
-                <RadioButton
-                    name="sale"
-                    label=" Comprar"
-                    onChange={handleChange}
-                    // isChecked={true}
-                    value={true}
-                ></RadioButton>
+            <RadioField mainLabel="¿Vendes o compras?">
                 <RadioButton
                     // checked={[sale]}
                     name="sale"
                     label=" Vender"
                     onChange={handleChange}
-                    checked={![sale]}
-                    value={false}
+                    checked={sale}
+                    value="sell"
                 >
 
                 </RadioButton>
+                <RadioButton
+                    name="sale"
+                    label=" Comprar"
+                    onChange={handleChange}
+                    checked={!sale}
+                    value="buy"
+                ></RadioButton>
+
             </RadioField>
 
             <TextAreaField
+                label="Descripción"
+                placeholder="Añade información relevante como estado, modelo, color..."
                 name="description"
                 onChange={handleChange}
                 value={description}

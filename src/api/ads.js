@@ -42,4 +42,7 @@ export const createAd_NO = adDetails => {
     return client.post(url, adDetails);
 };
 
+export const getTags = () => {
+    return client.get(`${adsPath}/tags`);
+};
 

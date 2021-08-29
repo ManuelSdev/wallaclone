@@ -1,10 +1,10 @@
 import React from "react"
 import { useParams } from "react-router";
-import AdForm from "../newAdPage/AdForm"
 import { getOneAd, updateAd } from "../../../api/ads"
 import ModalWindow from "../../shared/modalWindow/ModalWindow";
 import style from '../../ads/newAdPage/NewAdPage.module.scss'
 import usePromise from "../../customHooks/usePromise";
+import AdForm from "../newAdPage/AdForm";
 
 
 

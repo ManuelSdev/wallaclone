@@ -22,7 +22,7 @@ const getValueByType = {
   'select-multiple': ({ selectedOptions }) =>
     [...selectedOptions].map(({ value }) => value),
 
-  radio: ({ checked }) => checked,
+  radio: ({ value }) => value === "sell" ? true : false,
 
   file: ({ files }) => files[0] || null,
 };
@@ -40,8 +40,13 @@ function useForm(initialFormValue) {
   };
 
   const handleChange = ev => {
+    console.log("EVENT TARGET", ev.target)
+    console.log("EVENT TARGET TYPE", ev.target.type)
     const valueGetter = getValueByType[ev.target.type] || defaultGetValue;
     updateFormValue(ev.target.name, valueGetter(ev.target));
+    console.log("EVENT TARGET NAME", ev.target.name)
+    console.log("VALOR VALUE GETTER", valueGetter(ev.target))
+
   };
 
   const handleSubmit = onSubmit => ev => {
