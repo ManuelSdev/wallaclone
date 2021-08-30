@@ -17,6 +17,7 @@ import ChatPage from './components/chatPage/ChatPage';
 import HomePage from './components/homePage/HomePage';
 import NotFoundPage from './NotFoundPage';
 import PrivateRoute from './components/auth/privateRouter/PrivateRoute';
+import MemberPage from './components/memberPage/MemberPage';
 
 
 function App({ autoLogged }) {
@@ -36,10 +37,12 @@ function App({ autoLogged }) {
       <AuthProvider {...loginProps}>
         <Switch>
           <PrivateRoute path="/user" component={UserPage}></PrivateRoute>
-          <PrivateRoute path="/chat" component={ChatPage}></PrivateRoute>
-          <PrivateRoute path="/ads/new" component={NewAdPage}></PrivateRoute>
-          <Route path="/ads/:adUrl" component={AdDetailsPage}></Route>
-          <Route path="/ads" component={AdsPage}></Route>
+          <PrivateRoute exact path="/chat" component={ChatPage}></PrivateRoute>
+          <PrivateRoute exact path="/ads/new" component={NewAdPage}></PrivateRoute>
+          <Route exact path="/ads/:adUrl" component={AdDetailsPage}></Route>
+          <Route exact path="/ads" component={AdsPage}></Route>
+          <Route path="/members/:memberId" component={MemberPage}></Route>
+
           <Route path="/" component={HomePage}></Route>
           {/*<Route path="/" component={AdsPage}></Route>
              <Route path="/">

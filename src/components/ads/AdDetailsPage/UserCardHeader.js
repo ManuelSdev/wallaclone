@@ -12,22 +12,32 @@ import usePromise from '../../customHooks/usePromise';
 import { Redirect } from 'react-router';
 import ModalWindow from '../../shared/modalWindow/ModalWindow';
 import useModal from '../../customHooks/useModal';
+import { Link } from 'react-router-dom';
 
+
+const nameToUrl = (adName) => (
+    adName.replace(/\s/g, "-")
+)
+const test = "algo"
 export default function UserCardHeader({ ad, handleDelete }) {
     const { modalClass, openModal, closeModal, handleCloseModal, handleOpenModal } = useModal()
-
+    console.log("AD AUTHOR", ad.author)
+    const authorUrl = ad.author && nameToUrl(ad.author)
     console.log(ad)
     return (
+
         <div className="is-flex is-flex-direction-row is-justify-content-space-between">
-            <div className="is-flex is-flex-direction-row ">
-                <figure className="pr-4 image is-64x64">
-                    <img className="is-rounded" src="https://bulma.io/images/placeholders/128x128.png" />
-                </figure>
-                <div>
-                    <div >nombreUsuario</div>
-                    <div>numeroProductos</div>
+            <Link to={`/members/${authorUrl}`}>
+                <div className="is-flex is-flex-direction-row ">
+                    <figure className="pr-4 image is-64x64">
+                        <img className="is-rounded" src="https://bulma.io/images/placeholders/128x128.png" />
+                    </figure>
+                    <div>
+                        <div >{ad.author}</div>
+                        <div>numeroProductos</div>
+                    </div>
                 </div>
-            </div>
+            </Link>
             <div className="">
                 <div className="pr-4">DESTÁCALO?</div>
             </div>

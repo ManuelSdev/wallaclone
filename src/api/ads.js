@@ -5,6 +5,7 @@ const adsPath = '/apiv1/adverts';
 const myAdsPath = `${adsPath}/my-ads`
 const oneAdPath = `${adsPath}/oneAd`
 const myFavsAds = `${adsPath}/favs`
+const memberAds = `${adsPath}/memberAds`
 const updateAdPath = `${adsPath}/update`
 export const getAds = () => {
     //${filterPath && filterPath}
@@ -24,6 +25,11 @@ export const getOneAd = (adIdParams) => {
 export const getFavAds = () => {
     //${filterPath && filterPath}
     return client.get(`${myFavsAds}`);
+};
+
+export const getMemberAds = (authorParams) => {
+    //${filterPath && filterPath}
+    return client.get(`${memberAds}/${authorParams}`);
 };
 
 export const updateAd = (adIdParams, newValues) => {
@@ -51,4 +57,9 @@ export const getTags = () => {
 export const createAd = withFormData(newAd => {
     //console.log("NEW ADD*****************", newAd)
     return client.post(adsPath, newAd);
+});
+
+export const updateImg = withFormData(newImg => {
+    //console.log("NEW ADD*****************", newAd)
+    return client.post(adsPath, newImg);
 });

@@ -30,6 +30,11 @@ export const logout = () => {
     });
 };
 
+export const getUserByName = (userName) => {
+    //${filterPath && filterPath}
+    return client.get(`${userPath}/${userName}`);
+};
+
 
 export const modFavoriteId = (adId) => {
     //${filterPath && filterPath}

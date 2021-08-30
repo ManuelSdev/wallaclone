@@ -53,8 +53,8 @@ const AdForm = ({ onSubmit, isLoading, ad }) => {
             <FormField
                 type="text"
                 name="name"
-                label="¿Qué vas a vender?"
-                placeholder="¿Qué vas a vender?"
+                label={sale ? "¿Qué vas a vender?" : "¿Qué estás buscando?"}
+                //placeholder="¿Qué vas a vender?"
                 //onChange={even => console.log(even.target)}
                 //handleChange cambia el estado a medida que se escribe 
                 onChange={handleChange}
@@ -62,16 +62,18 @@ const AdForm = ({ onSubmit, isLoading, ad }) => {
                 value={name}
             >
             </FormField>
-            <FormField
-                type="number"
-                name="price"
-                label="Precio"
-                value={price}
-                //min="1"
-                //step="10"
-                onChange={handleChange}
-            >
-            </FormField>
+            {sale &&
+                <FormField
+                    type="number"
+                    name="price"
+                    label="Precio"
+                    value={price}
+                    //min="1"
+                    //step="10"
+                    onChange={handleChange}
+                >
+                </FormField>
+            }
             <SelectTags multiple name="tags" value={tags} onChange={handleChange} mainLabel="Selecciona,al menos, un tag" />
 
             <RadioField mainLabel="¿Vendes o compras?">
@@ -103,10 +105,9 @@ const AdForm = ({ onSubmit, isLoading, ad }) => {
                 value={description}
             >
             </TextAreaField>
-            {sale && <InputFile name="images" onChange={handleChange} />
-            }
+            {sale && <InputFile name="images" onChange={handleChange} />}
 
-            <Button type="submit" >Subir producto</Button>
+            <Button type="submit" >Subir anuncio</Button>
 
 
 

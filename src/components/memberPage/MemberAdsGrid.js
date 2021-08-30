@@ -1,7 +1,7 @@
-import AdCard from "./AdCard"
+import AdCard from "../ads/adsPage/AdCard"
 
 
-const AdsGrid = ({ ads, ...props }) => {
+const MemberAdsGrid = ({ ads, ...props }) => {
 
     return (
         <div className="AdsGrid">
@@ -14,4 +14,4 @@ const AdsGrid = ({ ads, ...props }) => {
     )
 }
 
-export default AdsGrid
+export default MemberAdsGrid

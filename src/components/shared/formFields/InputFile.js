@@ -30,7 +30,7 @@ function InputFile({ onChange, ...props }) {
 
   return (
     <div className="file is-boxed">
-      <input class="file-input" type="file" name="resume"
+      <input className="file-input" type="file" name="resume"
         ref={inputRef}
         type="file"
         style={{ display: 'none' }}

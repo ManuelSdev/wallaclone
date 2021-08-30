@@ -4,7 +4,7 @@ import { getOneAd, deleteAd } from "../../../api/ads"
 import usePromise from "../../customHooks/usePromise"
 import AdDetailsCard from "./AdDetailsCard"
 import { useAuthContext } from '../../../components/auth/context';
-import CardHeader from "./CardHeader"
+import CardHeader from "./MemberCardHeader"
 import UserCardHeader from "./UserCardHeader"
 import Layout from "../../layout/Layout"
 
