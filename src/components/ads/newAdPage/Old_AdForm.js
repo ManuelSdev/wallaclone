@@ -10,8 +10,6 @@ import TextAreaField from '../../shared/formFields/TextAreaField';
 
 
 const AdForm = ({ onSubmit, isLoading, ad }) => {
-    // console.log("RENDER EN AD FORM")
-    //console.log("primer ad", ad)
 
     const [radioValue, setRadioValue] = React.useState("sell")
     const [values, setValues] = React.useState({

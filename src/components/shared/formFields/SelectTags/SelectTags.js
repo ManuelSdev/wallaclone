@@ -1,7 +1,5 @@
 import React from 'react';
-
 import { getTags } from "../../../../api/ads"
-
 import CheckboxGroup from '../../../shared/formFields/CheckBoxGroup';
 
 function SelectTags({ mainLabel, ...props }) {
@@ -16,11 +14,6 @@ function SelectTags({ mainLabel, ...props }) {
       <label className="label mb-auto">{mainLabel}</label>
       <CheckboxGroup options={tags} {...props} />
     </div>
-
-
-
-
-
   )
 }
 

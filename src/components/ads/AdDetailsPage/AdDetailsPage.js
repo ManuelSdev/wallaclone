@@ -7,6 +7,7 @@ import { useAuthContext } from '../../../components/auth/context';
 import CardHeader from "./MemberCardHeader"
 import UserCardHeader from "./UserCardHeader"
 import Layout from "../../layout/Layout"
+import Loader from "../../shared/Loaders/Loader"
 
 const catchAdIdUrl = (url) => {
     const index = 1 + url.lastIndexOf("-")
@@ -33,9 +34,9 @@ const AdDetailPage = () => {
     const handleDelete = async (ev) => {
         ev.stopPropagation();
         try {
-            throwPromise(deleteAd(ad._id))
-            await history.push("/user/ads");
-            //console.log("history", history)
+            await throwPromise(deleteAd(ad._id))
+            history.push("/user/ads");
+            console.log("anuncio fuera")
         } catch (error) {
             //setError(error);
             console.log(error)
@@ -47,22 +48,24 @@ const AdDetailPage = () => {
     }
     return (
         <Layout>
-            <div className="AdDetailPage">
-                DETALLE ANUNCIO
-                <div>{ad.name}</div>
-                <AdDetailsCard
-                    ad={ad}
-                    cardHeader={
-                        loading ?
-                            null
-                            :
-                            isLogged && ad.userId === ad.requesterId ?
-                                <UserCardHeader handleDelete={handleDelete} ad={ad} />
+            {loading ?
+                <Loader />
+                :
+                <div className="AdDetailPage">
+                    <AdDetailsCard
+                        ad={ad}
+                        cardHeader={
+                            loading ?
+                                null
                                 :
-                                <CardHeader ad={ad} />
-                    }
-                ></AdDetailsCard>
-            </div>
+                                isLogged && ad.userId === ad.requesterId ?
+                                    <UserCardHeader handleDelete={handleDelete} ad={ad} />
+                                    :
+                                    <CardHeader ad={ad} />
+                        }
+                    ></AdDetailsCard>
+                </div>
+            }
         </Layout>
     )
 }

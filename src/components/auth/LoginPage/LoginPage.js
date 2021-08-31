@@ -17,39 +17,20 @@ import { useHistory, useLocation } from 'react-router-dom';
  */
 const LoginPage = ({ from }) => {
 
-    const { handleLogin, isLogged } = useAuthContext()
+    const { handleLogin } = useAuthContext()
     //No usamos el estado data de usePromise ni le pasamos parametro de valor de estado inicial
-    //porque no esperamos recibir datos con la petición de login
-    const { loading, error, throwPromise, } = usePromise()
-    const location = useLocation()
+    //porque no esperamos recibir datos con la petición de login, salvo el posible error
+    const { error, throwPromise, } = usePromise()
     const history = useHistory()
 
     //** const from = location.state ? location.state.from : {pathname: '/'}
 
-    /*
-        const handleSubmit = async credentials => {
-            try {
-                await throwPromise(login(credentials));
-                handleLogin()
-    
-                await history.replace(from);
-            } catch (error) {
-                //setError(error);
-                console.log(error)
-                window.alert(error)
-            } finally {
-                //setIsLoading(false);
-                //console.log("PROMESA LOGIN OK")
-            }
-        };
-    */
     const handleSubmit = async credentials => {
         await throwPromise(login(credentials));
-        console.log("PROMMMMMMMMMMMMMMMMMM")
         handleLogin()
         history.replace(from);
     };
-    error && console.log(error.reason)
+
     return (
         <div className="LoginPage">
             <div className="container">

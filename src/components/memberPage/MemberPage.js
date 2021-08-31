@@ -4,6 +4,7 @@ import { getMemberAds } from "../../api/ads"
 import { getUserByName } from "../../api/user"
 import usePromise from "../customHooks/usePromise"
 import Layout from "../layout/Layout"
+import Loader from "../shared/Loaders/Loader"
 import MemberAdsGrid from "./MemberAdsGrid"
 
 
@@ -22,7 +23,6 @@ const MemberPage = () => {
     const { loading: loadingAds, error: errorAds, throwPromise: adsPromise, data: ads } = usePromise([])
 
     React.useEffect(() => {
-
         userPromise(getUserByName(memberName))
         adsPromise(getMemberAds(memberName))
     }, []);
@@ -37,25 +37,24 @@ const MemberPage = () => {
     const { memberId } = useParams()
     const memberNameInUrl = catchUserNameInUrl(memberId)
     const memberName = urlToName(memberNameInUrl)
-    console.log("3333333333333333333", user)
-    console.log("5555555555555555555", ads)
 
-
-    // const adAuthor = catchAdIdUrl(adUrl)
     return (
         <Layout>
-            <div className="MemberPage container">
-                PAGINA DEL MIEMBRO
-                <div className="box">
-                    <div>Nombre de usuario: {user.username} </div>
-                </div>
-                <div>EN VENTA  COMPRA</div>
-                <MemberAdsGrid ads={ads} ></MemberAdsGrid>
-
-            </div>
+            {
+                (loadingUser || loadingAds) ?
+                    <Loader />
+                    :
+                    <div className="MemberPage container">
+                        <div className="box">
+                            <div>Nombre de usuario: {user.username} </div>
+                        </div>
+                        <MemberAdsGrid ads={ads} ></MemberAdsGrid>
+                    </div>
+            }
         </Layout>
-
     )
+
 }
+
 
 export default MemberPage

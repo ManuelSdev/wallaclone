@@ -1,7 +1,5 @@
 import React from 'react'
 import LinkButton from '../../shared/LinkButton';
-import { ReactComponent as HeartIcon2 } from "../../../assets/heart.svg"
-import Button from '../../shared/Button';
 import HeartIcon from "../../shared/icons/HeartIcon"
 import { Link } from 'react-router-dom';
 
@@ -11,9 +9,9 @@ const nameToUrl = (adName) => (
 )
 
 export default function MemberCardHeader({ ad }) {
-    console.log("AD AUTHOR", ad.author)
+
     const authorUrl = ad.author && nameToUrl(ad.author)
-    console.log("-----------------------------", authorUrl)
+
     return (
         <div className="is-flex is-flex-direction-row is-justify-content-space-between">
             <Link to={`/members/${authorUrl}`}>
@@ -27,7 +25,6 @@ export default function MemberCardHeader({ ad }) {
                     </div>
                 </div>
             </Link>
-
             <div className="">
                 <div className="pr-4">ratingStars</div>
                 <div>numeroValoraciones</div>

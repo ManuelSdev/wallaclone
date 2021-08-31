@@ -1,11 +1,17 @@
 
 import React from "react"
-import loaderStyles from './Loader.module.scss'
+import styleModule from './Loader.module.scss'
 
 const Loader = () => {
 
     return (
-        <div className={loaderStyles.ldsRing}><div></div><div></div><div></div><div></div></div>
+        <div className=" container is-flex is-justify-content-center">
+            <div className="is-flex  is-align-items-center">
+                <div className={styleModule.ldsRing}><div></div><div></div><div></div><div></div></div>
+
+            </div>
+        </div>
+
     )
 
 

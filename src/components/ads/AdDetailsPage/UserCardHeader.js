@@ -2,14 +2,7 @@
 
 import React from 'react'
 import LinkButton from '../../shared/LinkButton';
-import { ReactComponent as HeartIcon2 } from "../../../assets/heart.svg"
 import Button from '../../shared/Button';
-import HeartIcon from "../../shared/icons/HeartIcon"
-import ModalButton from '../../shared/modalWindow/ModalButton';
-import ConfirmActionPage from '../../shared/ConfirmActionPage';
-import { deleteAd } from '../../../api/ads';
-import usePromise from '../../customHooks/usePromise';
-import { Redirect } from 'react-router';
 import ModalWindow from '../../shared/modalWindow/ModalWindow';
 import useModal from '../../customHooks/useModal';
 import { Link } from 'react-router-dom';

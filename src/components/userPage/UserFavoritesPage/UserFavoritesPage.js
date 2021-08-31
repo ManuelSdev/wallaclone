@@ -15,16 +15,15 @@ const UserFavoritesPage = ({ ...props }) => {
 
     const newPromise = () => throwPromise(getFavAds())
     console.log(ads)
-    return (
+    return loading ? (
+        <Loader />
+    ) : (
         <div className="UserFavoritesPage">
-            FAVORITOS
             <AdsFavoriteGrid ads={ads} trigger={newPromise}{...props} />
-
-            {loading &&
-                <Loader></Loader>
-            }
         </div>
     )
+
+
 }
 
 export default UserFavoritesPage

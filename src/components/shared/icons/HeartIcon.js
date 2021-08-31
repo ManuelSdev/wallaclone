@@ -3,10 +3,12 @@ import { ReactComponent as Heart } from "../../../assets/cards-heart.svg"
 import { updateFavId, getFavoritesIds } from '../../../api/user'
 import usePromise from '../../customHooks/usePromise'
 
-
+/**
+ * Las ...props que recibe son las width y height que pasan al svg
+ */
 const HeartIcon = ({ className, adId, ...props }) => {
 
-    const { loading, error, throwPromise, data: userFavoritesIds } = usePromise([]);
+    const { throwPromise, data: userFavoritesIds } = usePromise([]);
 
 
     React.useEffect(() => {
@@ -26,44 +28,11 @@ const HeartIcon = ({ className, adId, ...props }) => {
             stroke: "black",
         }
 
-
-
-    /*
-const toggleFav = () => {
-    throwPromise(updateFavId(request))
-}
-
-const fillActive = () => {
-    return "red"
-}
-
-const fillInactive = () => {
-    return "white"
-}
-
-const strokeActive = () => {
-    return "green"
-}
-
-const strokeInactive = () => {
-    return "black"
-}
-
-const fillHeart = () => {
-    return userFavoritesIds.includes(adId) ? fillActive() : fillInactive()
-}
-
-const strokeHeart = () => {
-    return userFavoritesIds.includes(adId) ? strokeActive() : strokeInactive()
-}
-console.log("RENDERRRR")
-*/
     return (
         <div className={className}>
             <Heart onClick={toggle.fav} fill={toggle.fill} stroke={toggle.stroke} {...props}></Heart>
         </div>
     )
 }
-//onClick={toggle.fav} fill={toggle.fill} stroke={toggle.stroke}
 
 export default HeartIcon
