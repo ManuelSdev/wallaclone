@@ -26,34 +26,34 @@ const LoginPage = ({ from }) => {
 
     //** const from = location.state ? location.state.from : {pathname: '/'}
 
-    //Este método bajará como prop onSubmit a <LoginForm>
+    /*
+        const handleSubmit = async credentials => {
+            try {
+                await throwPromise(login(credentials));
+                handleLogin()
+    
+                await history.replace(from);
+            } catch (error) {
+                //setError(error);
+                console.log(error)
+                window.alert(error)
+            } finally {
+                //setIsLoading(false);
+                //console.log("PROMESA LOGIN OK")
+            }
+        };
+    */
     const handleSubmit = async credentials => {
-        // login(credentials).then(handleLogin);
-        //resetError();
-        //setIsLoading(true);
-        // console.log("holi")
-        try {
-            throwPromise(login(credentials));
-            await handleLogin()
-            // const { from } = location.state || { from: { pathname: '/' } };
-            //console.log("FROMMMMM", from)
-            //console.log("history", history)
-            await history.replace(from);
-            // console.log("history", history)
-        } catch (error) {
-            //setError(error);
-            console.log(error)
-            window.alert(error)
-        } finally {
-            //setIsLoading(false);
-            //console.log("PROMESA LOGIN OK")
-        }
+        await throwPromise(login(credentials));
+        console.log("PROMMMMMMMMMMMMMMMMMM")
+        handleLogin()
+        history.replace(from);
     };
-    //console.log(isLogged)
+    error && console.log(error.reason)
     return (
         <div className="LoginPage">
             <div className="container">
-                <LoginForm onSubmit={handleSubmit}></LoginForm>
+                <LoginForm error={error?.reason} onSubmit={handleSubmit}></LoginForm>
             </div>
         </div>
     )

@@ -3,6 +3,8 @@ import React from 'react';
 import RegisterForm from "./RegisterForm"
 import { AuthContextConsumer } from '../context';
 import { createUser } from '../../../api/user'
+import usePromise from '../../customHooks/usePromise';
+import { useHistory } from 'react-router-dom';
 
 /**
  * 
@@ -13,55 +15,29 @@ import { createUser } from '../../../api/user'
  * 
  */
 const RegisterPage = () => {
-    /*
-    const [error, setError] = React.useState(null);
-    const [isLoading, setIsLoading] = React.useState(false);
-    //Esta uso de useRef almacena un valor que persiste mientras no lo cambies
-    const isLogged = React.useRef(false);
 
-    const resetError = () => setError(null);
-
-    React.useEffect(() => {
-        if (isLogged.current) {
-            onLogin();
-            const { from } = location.state || { from: { pathname: '/' } };
-            //** const from = location.state ? location.state.from : {pathname: '/'}
-
-            history.replace(from);
-        }
-    });
-    */
+    const { loading, error, throwPromise, data: userCreated } = usePromise(false)
     //Este método bajará como prop onSubmit a <LoginForm>
+    const history = useHistory()
     const handleSubmit = async newUserData => {
-        // login(credentials).then(() => onLogin());
-        //resetError();
-        //setIsLoading(true);
-        console.log("holi")
-        console.log('DATOS', newUserData)
-        try {
-            await createUser(newUserData);
-            //Los cambios en la referencia no ejectutan un nuevo render
-            //isLogged.current = true;
-            console.log('usuario creado', newUserData)
-        } catch (error) {
-            //setError(error);
-            window.alert(error)
-        } finally {
-            //setIsLoading(false);
-        }
-    };
+        await throwPromise(createUser(newUserData));
+        history.push("/auth/login")
+    }
 
-
-    //console.log(isLogged)
     return (
         <div className="RegisterPage">
             <div className="container">
-                <RegisterForm onSubmit={handleSubmit}></RegisterForm>
+                <RegisterForm error={error?.reason} onSubmit={handleSubmit}></RegisterForm>
             </div>
 
         </div>
     )
 
-}
+
+};
+
+
+
+
 
 export default RegisterPage;

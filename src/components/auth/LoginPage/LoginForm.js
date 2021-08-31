@@ -2,10 +2,11 @@
 //import FormField from "../../shared/FormField"
 import React from 'react';
 import Button from '../../shared/Button';
+import FormError from '../../shared/formFields/FormError';
 import FormField from '../../shared/formFields/FormField';
 
 
-const LoginForm = ({ onSubmit, isLoading }) => {
+const LoginForm = ({ onSubmit, error, isLoading }) => {
     const [credentials, setCredentials] = React.useState({
         email: '',
         password: '',
@@ -21,7 +22,7 @@ const LoginForm = ({ onSubmit, isLoading }) => {
          */
         setCredentials(oldCredentials => {
 
-            console.log(event.target)
+            // console.log(event.target)
             const newCredentials = {
                 ...oldCredentials,
                 [event.target.name]: event.target.value,
@@ -40,7 +41,7 @@ const LoginForm = ({ onSubmit, isLoading }) => {
     const handleSubmit = event => {
         event.preventDefault();
         onSubmit(credentials);
-        console.log("submit")
+        //console.log("submit")
     };
     const { username, password } = credentials;
     return (
@@ -69,15 +70,9 @@ const LoginForm = ({ onSubmit, isLoading }) => {
                 onChange={handleChange}
             >
             </FormField>
-
-
             <Button type="submit" >Iniciar sesión</Button>
-
-
-
-
+            {error && <FormError error={error}></FormError>}
         </form>
-
     )
 }
 

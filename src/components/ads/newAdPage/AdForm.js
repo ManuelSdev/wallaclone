@@ -47,7 +47,7 @@ const AdForm = ({ onSubmit, isLoading, ad }) => {
 
     const { name, sale, price, tags, description } = advert;
 
-    console.log("FORMULARIO", advert)
+    // console.log("FORMULARIO", advert)
     return (
         <form className="AdForm" onSubmit={handleSubmit(onSubmit)}>
             <FormField

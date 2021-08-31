@@ -20,11 +20,11 @@ const Header = () => {
     const { isLogged, handleLogout } = useAuthContext()
     const { modalClass, openModal, closeModal, handleCloseModal, handleOpenModal } = useModal()
     const location = useLocation()
-    console.log("Estado de modalClasss en Header", modalClass)
+    //console.log("Estado de modalClasss en Header", modalClass)
     //console.log("LOCATION QUE PILLA EL HEADER", location.pathname)
 
     React.useEffect(() => {
-        console.log("GESTIONA MODAL", modalClass)
+        // console.log("GESTIONA MODAL", modalClass)
         location.pathname.startsWith("/auth") && openModal()
         isLogged && closeModal()
 

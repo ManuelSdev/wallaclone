@@ -3,7 +3,8 @@
 import React from 'react';
 import FormField from '../../shared/formFields/FormField';
 import Button from '../../shared/Button';
-const RegisterForm = ({ onSubmit, isLoading }) => {
+import FormError from '../../shared/formFields/FormError';
+const RegisterForm = ({ onSubmit, error, isLoading }) => {
     const [credentials, setCredentials] = React.useState({
         username: '',
         email: '',
@@ -12,12 +13,6 @@ const RegisterForm = ({ onSubmit, isLoading }) => {
 
     //El event lo recibe del onChange ("mezcla" del onchange y del oninput del form html)
     const handleChange = event => {
-        /**
-         * Usamos spreading para machacar las propiedades el estado a medida que 
-         * escribimos en los formfields
-         * El <FormField name="email"> machacará la clave email
-         * El <FormField name="password"> machacará la clave password
-         */
         setCredentials(oldCredentials => {
             const newCredentials = {
                 ...oldCredentials,
@@ -48,11 +43,7 @@ const RegisterForm = ({ onSubmit, isLoading }) => {
                     type="text"
                     name="username"
                     label="Nombre y apellido"
-                    placeholder="Nombre y apellido"
-                    // onChange={even => console.log(even.target.value)}
-                    //handleChange cambia el estado a medida que se escribe 
                     onChange={handleChange}
-                    //value toma el valor que vamos teniendo en el estado
                     value={username}
                 >
                 </FormField>
@@ -63,7 +54,6 @@ const RegisterForm = ({ onSubmit, isLoading }) => {
                     label="Correo electrónico"
                     placeholder="Dirección de email"
                     onChange={even => console.log(even.target.value)}
-                    //handleChange cambia el estado a medida que se escribe 
                     onChange={handleChange}
                     //value toma el valor que vamos teniendo en el estado
                     value={email}
@@ -84,13 +74,9 @@ const RegisterForm = ({ onSubmit, isLoading }) => {
                     type="submit"
                 >
                     Crear una cuenta</Button>
-
-
-
+                {error && <FormError error={error}></FormError>}
             </form>
         </div>
-
-
     )
 }
 
