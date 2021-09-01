@@ -26,8 +26,22 @@ const AdsGrid = ({ ads, ...props }) => {
      
     
      */
+    const validTagsArrays = ads.map(ad =>
+        ad.tags.map(tag => (
+            tag.includes(tags[0]) || tag.includes(tags[1]) || tag.includes(tags[2])) && true
+        ))
+
+    const checkTags = (adTags) => adTags.map(tag => (tag && tags[0] && tag.replaceAll(",", "  ").toLowerCase().includes(tags[0].replaceAll(",", "  "))) || (tag && tags[1] && tag?.replaceAll(",", "  ").includes(tags[1].replaceAll(",", "  "))) || (tag && tags[2] && tag?.includes(tags[2].replaceAll(",", "  "))) && true)
 
 
+    const validTags = validTagsArrays.map(tagsArray => tagsArray[0])
+
+
+    // tags.map(tag => (tag.includes(tags[0]) || tag.includes(tags[1]) || tag.includes(tags[2])) && true)
+    //((ad.tags[0].includes(tags[0]) || ad.tags.includes(tags[1]) || ad.tags.includes(tags[0]))
+
+    console.log("####################", validTags)
+    console.log("####################", validTags.includes(true))
 
     return (
         <div className="AdsGrid">
@@ -36,17 +50,26 @@ const AdsGrid = ({ ads, ...props }) => {
                     ad.name.includes(searchKeys) && <AdCard key={ad._id} ad={ad} {...props}></AdCard>
                 ))*/}
 
+                {ads.map(ad => (console.log(ad.tags[0].replaceAll(",", " "), ad._id, ad.name)))}
+                {ads.map(ad => (console.log(ad)))}
                 {ads.map(ad => (
                     (!tags.length) ?
-                        (ad.name.includes(searchKeys) || ad.description.includes(searchKeys))
-                        && (ad.price >= minPrice && ad.price <= maxPrice)
-                        && <AdCard key={ad._id} ad={ad} {...props}></AdCard>
-                        :
-                        ((ad.tags.includes(tags[0]) || ad.tags.includes(tags[1]) || ad.tags.includes(tags[0]))
-                            && (ad.name.includes(searchKeys) || ad.description.includes(searchKeys))
-                            && (ad.price >= minPrice && ad.price <= maxPrice)
+                        ((ad.name).replaceAll(",", "  ").toLowerCase().includes((searchKeys.replaceAll(",", "  ").toLowerCase())) || (ad.description.replaceAll(",", "  ").toLowerCase()).includes((searchKeys.replaceAll(",", "  ").toLowerCase())))
+                            && (!ad.price) ?
+                            <AdCard key={ad._id} ad={ad} {...props}></AdCard>
+                            :
+                            (ad.price >= minPrice && ad.price <= maxPrice)
                             && <AdCard key={ad._id} ad={ad} {...props}></AdCard>
-                        )))}
+                        :
+                        checkTags(ad.tags).includes(true)
+                            //validTags.includes(true)
+                            && ((ad.name).replaceAll(",", "  ").toLowerCase().includes((searchKeys.replaceAll(",", "  ").toLowerCase())) || (ad.description.replaceAll(",", "  ").toLowerCase()).includes((searchKeys.replaceAll(",", "  ").toLowerCase())))
+                            && (!ad.price) ?
+                            <AdCard key={ad._id} ad={ad} {...props}></AdCard>
+                            :
+                            (ad.price >= minPrice && ad.price <= maxPrice)
+                            && <AdCard key={ad._id} ad={ad} {...props}></AdCard>
+                ))}
 
             </div>
         </div>

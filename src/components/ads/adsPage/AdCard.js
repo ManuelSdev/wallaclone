@@ -17,21 +17,30 @@ const AdCard = ({ ad }) => {
             <div className="AdCard ">
                 {/*<Button onClick={clica}></Button>*/}
                 <div className="card">
-                    <div className="card-image">
-                        <figure className="image is-4by3">
-                            <img src={ad.images} alt="Placeholder image"></img>
-                        </figure>
-                    </div>
+                    {ad.sale ?
+                        <div className="card-image">
+                            <figure className="image is-4by3">
+                                <img src={ad.images} alt="Placeholder image"></img>
+                            </figure>
+                        </div>
+                        :
+                        <div>ESTOY BUSCANDO</div>
+
+                    }
+
                     <div className="card-content">
                         <div className="media">
                             <div className="media-content is-clipped">
-                                <p className="title is-3">{ad.price} €</p>
+                                {ad.sale && <p className="title is-3">{ad.price} €</p>}
+
                                 <p className="subtitle is-4">{ad.name}</p>
                                 <p className="subtitle is-6">{ad.description}</p>
                             </div>
                         </div>
                         <div className="content">
-                            {ad.tags}
+                            {ad.tags.map(tag => (
+                                <span>{tag}</span>
+                            ))}
                         </div>
                     </div>
                 </div>

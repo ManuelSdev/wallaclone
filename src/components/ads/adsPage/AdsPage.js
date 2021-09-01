@@ -20,7 +20,7 @@ const AdsPage = ({ ...props }) => {
     }, []);
 
 
-    console.log("FILTERS ON?", ads)
+    console.log("FILTERS ON?++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++", ads)
     return (
         <Layout>
 

@@ -10,9 +10,10 @@ import RadioField from '../../shared/formFields/RadioField';
 import SelectTags from '../../shared/formFields/SelectTags/SelectTags';
 import TextAreaField from '../../shared/formFields/TextAreaField';
 import InputFile from '../../shared/formFields/InputFile';
+import FormError from '../../shared/formFields/FormError';
 
 
-const AdForm = ({ onSubmit, isLoading, ad }) => {
+const AdForm = ({ onSubmit, error, ad }) => {
     // console.log("RENDER EN AD FORM")
     //console.log("primer ad", ad)
     const { formValue: advert, handleChange, handleSubmit, validate, setFormValue } = useForm({
@@ -108,7 +109,7 @@ const AdForm = ({ onSubmit, isLoading, ad }) => {
             {sale && <InputFile name="images" onChange={handleChange} />}
 
             <Button type="submit" >Subir anuncio</Button>
-
+            {error && <FormError error={error}></FormError>}
 
 
 

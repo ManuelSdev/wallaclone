@@ -70,7 +70,7 @@ function App({ autoLogged }) {
           <Route exact path="/ads" component={AdsPage}></Route>
           <Route path="/members/:memberId" component={MemberPage}></Route>
 
-          <Route path="/" component={HomePage}></Route>
+          <Route path="/" component={AdsPage}></Route>
           {/*<Route path="/" component={AdsPage}></Route>
              <Route path="/">
               {(routeProps) => (<AdsPage adUrl={dinamicAdDetailsUrl} />)}
