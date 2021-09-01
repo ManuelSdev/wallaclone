@@ -13,7 +13,7 @@ const AdCard = ({ ad }) => {
     const adUrl = `${nameToUrl(ad.name)}-${ad._id}`
 
     return (
-        <Link className=" column is-one-quarter" to={`/ads/${adUrl}`}>
+        <Link target="_blank" to={`/ads/${adUrl}`} className=" column is-one-quarter" >
             <div className="AdCard ">
                 {/*<Button onClick={clica}></Button>*/}
                 <div className="card">

@@ -10,6 +10,8 @@ import usePromise from "../../customHooks/usePromise";
 //TODO: MANEJO ERRORES
 const NewAdPage = () => {
     const history = useHistory()
+
+
     const handleSubmit = async newAd => {
         try {
             await createAd(newAd);
@@ -35,3 +37,7 @@ const NewAdPage = () => {
 }
 
 export default NewAdPage
+
+
+
+

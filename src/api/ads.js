@@ -7,7 +7,24 @@ const oneAdPath = `${adsPath}/oneAd`
 const myFavsAds = `${adsPath}/favs`
 const memberAds = `${adsPath}/memberAds`
 const updateAdPath = `${adsPath}/update`
+/*
+const params = new URLSearchParams({
+    var1: "value",
+    var2: "value2",
+    arr: "foo",
+});
+console.log(params.toString());
+console.log(Date.now)
+
+export const getTest = () => {
+    //${filterPath && filterPath}
+    console.log(params)
+    return client.get(`${adsPath}/?${params}`);
+};
+
+*/
 export const getAds = () => {
+    console.log("haha")
     //${filterPath && filterPath}
     return client.get(`${adsPath}`);
 };

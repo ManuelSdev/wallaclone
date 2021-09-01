@@ -1,22 +1,43 @@
 
+import { getAds } from "../../api/ads";
+import { useAuthContext } from "../auth/context";
+import usePromise from "../customHooks/usePromise";
+import Button from "../shared/Button";
+import FormField from "../shared/formFields/FormField"
 
 
-const Search = () => {
+
+const Search = ({ onSubmit }) => {
+    const { handleChange, handleSubmit, validate, setFormValue, filter } = useAuthContext()
+    const { areFiltersOn, handleFiltersAreOn, handleFiltersAreOff } = useAuthContext();
+    const { searchKeys } = filter;
+    //searchKeys === "" || handleFiltersAreOn()
+
     return (
         <div className="Search is-flex-grow-1	">
-
-            <div className="field has-addons">
+            <form className="field has-addons " onSubmit={onSubmit}>
                 <div className="control is-expanded">
+                    <FormField
+                        type="text"
+                        name="searchKeys"
+                        //placeholder="¿Qué vas a vender?"
+                        //onChange={even => console.log(even.target)}
+                        //handleChange cambia el estado a medida que se escribe
+                        onChange={handleChange}
+                        //value toma el valor que vamos teniendo en el estado
+                        value={searchKeys}
+                    >
+                    </FormField>
+                </div>
+                <Button type="submit" >Buscar</Button>
 
-                    <input className="input" type="text" placeholder="Busca en todas las categorías" />
-                </div>
-                <div className="control ">
-                    <a className="button is-info">
-                        Buscar
-                    </a>
-                </div>
-            </div>
-        </div>
+
+            </form>
+            {/* <Button onClick={s}>SSSSSSSSSSS</Button>*/}
+        </div >
+
+
+
     )
 
 

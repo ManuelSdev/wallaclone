@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom"
 import { getOneAd, deleteAd } from "../../../api/ads"
 import usePromise from "../../customHooks/usePromise"
 import AdDetailsCard from "./AdDetailsCard"
-import { useAuthContext } from '../../../components/auth/context';
+import { useAuthContext } from '../../auth/context';
 import CardHeader from "./MemberCardHeader"
 import UserCardHeader from "./UserCardHeader"
 import Layout from "../../layout/Layout"
@@ -41,9 +41,6 @@ const AdDetailPage = () => {
             //setError(error);
             console.log(error)
             window.alert(error)
-        } finally {
-            //setIsLoading(false);
-            //console.log("PROMESA LOGIN OK")
         }
     }
     return (

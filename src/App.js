@@ -18,23 +18,47 @@ import HomePage from './components/homePage/HomePage';
 import NotFoundPage from './NotFoundPage';
 import PrivateRoute from './components/auth/privateRouter/PrivateRoute';
 import MemberPage from './components/memberPage/MemberPage';
+import usePromise from './components/customHooks/usePromise';
+import useForm from './components/customHooks/useForm';
+import { getAds } from './api/ads';
 
 
 function App({ autoLogged }) {
   //const autoLogged = false
   const history = useHistory()
-  const [isLogged, setIsLogged] = React.useState(autoLogged);
 
+  const [isLogged, setIsLogged] = React.useState(autoLogged);
   const handleLogin = () => setIsLogged(true);
   const handleLogout = () => {
     logout()
     setIsLogged(false)
     history.push('/')
   }
+
+  const { loading, error, throwPromise, data: ads } = usePromise([]);
+
+  const { handleChange, handleSubmit, validate, setFormValue, formValue: filter } = useForm({
+    searchKeys: "",
+
+  });
+
+  const [areFiltersOn, setAreFiltersOn] = React.useState(false);
+  const handleFiltersAreOn = () => setAreFiltersOn(true);
+  const handleFiltersAreOff = () => setAreFiltersOn(false);
+
   const loginProps = { isLogged, handleLogin, handleLogout };
+
+  const getAdProps = { loading, error, throwPromise, ads }
+  const searchFormProps = { handleSubmit, setFormValue, handleChange, filter }
+  const filtersProps = { areFiltersOn, handleFiltersAreOn, handleFiltersAreOff };
+
+  const allProps = { ...loginProps, ...filtersProps, ...searchFormProps, ...getAdProps }
+
+
+  // console.log(throwPromise)
   return (
     <div className="App ">
-      <AuthProvider {...loginProps}>
+      <AuthProvider {...allProps}>
         <Switch>
           <PrivateRoute path="/user" component={UserPage}></PrivateRoute>
           <PrivateRoute exact path="/chat" component={ChatPage}></PrivateRoute>
@@ -55,8 +79,9 @@ function App({ autoLogged }) {
           <Redirect to="/404" />
         </Switch>
       </AuthProvider>
-    </div>
+    </div >
   );
 }
 
 export default App;
+
