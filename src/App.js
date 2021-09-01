@@ -40,12 +40,12 @@ function App({ autoLogged }) {
   const { handleChange, handleSubmit, validate, setFormValue, formValue: filters } = useForm({
     searchKeys: "",
     maxPrice: 1000000,
-    minPrice: 0,
+    minPrice: 1,
     tags: []
 
   });
 
-  const [areFiltersOn, setAreFiltersOn] = React.useState(false);
+  const [areFiltersOn, setAreFiltersOn] = React.useState(true);
   const handleFiltersAreOn = () => setAreFiltersOn(true);
   const handleFiltersAreOff = () => setAreFiltersOn(false);
 

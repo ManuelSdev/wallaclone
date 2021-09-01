@@ -14,11 +14,11 @@ const AdsPage = ({ ...props }) => {
     const { areFiltersOn, handleFiltersAreOn, handleFiltersAreOff } = useAuthContext()
     const { filters } = useAuthContext()
     const { searchKeys } = filters;
-    /*
-        React.useEffect(() => {
-            throwPromise(getAds())
-        }, []);
-    */
+
+    React.useEffect(() => {
+        throwPromise(getAds())
+    }, []);
+
 
     console.log("FILTERS ON?", ads)
     return (
@@ -26,7 +26,7 @@ const AdsPage = ({ ...props }) => {
 
             <div className="AdsPage">
                 PAGINA DE ANUNCIOS
-                {areFiltersOn && <AdsGrid ads={ads} {...props} />}
+                <AdsGrid ads={ads} {...props} />
 
                 {loading &&
                     <Loader></Loader>

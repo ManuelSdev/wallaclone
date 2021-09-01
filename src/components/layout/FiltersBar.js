@@ -1,20 +1,33 @@
+import { useAuthContext } from "../auth/context"
+import FormField from "../shared/formFields/FormField"
+import SelectTags from "../shared/formFields/SelectTags/SelectTags"
 import SortButton from "./filtersButtons/SortButton"
 
 
 const FiltersBar = () => {
 
-
+    const { handleChange, handleSubmit, validate, setFormValue, filters } = useAuthContext()
+    const { tags, maxPrice, minPrice } = filters
     return (
         <nav className="navbar  ">
             <div className="navbar-menu">
                 <div className="navbar-start	">
                     <div className="navbar-item">
-                        <div>Precio desde hasta</div>
+                        <FormField
+                            type="number"
+                            name="minPrice"
+                            label="Precio desde"
+                            value={minPrice}
+                            //min="1"
+                            //step="10"
+                            onChange={handleChange}
+                        >
+                        </FormField>
                     </div>
                 </div>
                 <div className="navbar-end">
                     <div className="navbar-item">
-                        <div>Tags</div>
+                        <SelectTags multiple name="tags" value={tags} onChange={handleChange} />
                     </div>
                 </div>
             </div>

@@ -69,7 +69,7 @@ const AdForm = ({ onSubmit, isLoading, ad }) => {
                     label="Precio"
                     value={price}
                     //min="1"
-                    //step="10"
+                    //step="any"
                     onChange={handleChange}
                 >
                 </FormField>

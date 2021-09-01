@@ -32,7 +32,7 @@ const Search = ({ onSubmit }) => {
                     </FormField>
 
                 </div>
-                <Button type="submit" >Buscar</Button>
+                {/*<Button type="submit" >Buscar</Button>*/}
 
 
             </form>

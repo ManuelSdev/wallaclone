@@ -25,6 +25,7 @@ const getValueByType = {
   radio: ({ value }) => value === "sell" ? true : false,
 
   file: ({ files }) => files[0] || null,
+
 };
 
 const defaultGetValue = ({ value }) => value;

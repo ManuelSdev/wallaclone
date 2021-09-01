@@ -17,6 +17,7 @@ import React from "react"
 import usePromise from "../customHooks/usePromise"
 import { getAds } from "../../api/ads"
 import useForm from "../customHooks/useForm"
+import FiltersBar from "./FiltersBar"
 
 const Header = () => {
     const a = () => { console.log(client.defaults.headers) };
@@ -41,20 +42,21 @@ const Header = () => {
     }, [isLogged]);
 
 
-
-    const onSubmit = async () => {
-        if (!searchKeys == "") {
+    /*
+        const onSubmit = async () => {
+    
             await throwPromise(getAds())
-            handleFiltersAreOn()
-
+            //handleFiltersAreOn()
+    
             console.log("FILTERS ON?", areFiltersOn)
-
+    
             history.push("/ads")
             console.log("adios")
+    
+    
+    
         }
-
-
-    }
+        */
 
     return (
         <Fragment>
@@ -70,9 +72,12 @@ const Header = () => {
                 </div>
                 <div className="navbar-menu">
                     <div className="navbar-start is-expanded is-flex-grow-1	">
+                        <div className="navbar-item">
+                            <FiltersBar></FiltersBar>
+                        </div>
                         <div className="navbar-item is-expanded">
-                            <Search onSubmit={handleSubmit(onSubmit)}></Search>
-
+                            {/*<Search onSubmit={handleSubmit(onSubmit)}></Search>*/}
+                            <Search></Search>
                         </div>
                     </div>
                     <div className="navbar-end">

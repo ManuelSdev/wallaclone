@@ -15,12 +15,12 @@ const Layout = ({ children }) => {
         <div className="Layout" >
             <div className="section">
                 <Header ></Header>
+
             </div>
-            {areFiltersOn &&
-                <div style={{ position: "fixed" }} className="">
-                    <FiltersBar  ></FiltersBar>
-                </div>
-            }
+            <div style={{ position: "fixed" }} className="">
+
+            </div>
+
 
 
             <main className="container ">
