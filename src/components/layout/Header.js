@@ -24,8 +24,8 @@ const Header = () => {
 
     const { areFiltersOn, handleFiltersAreOn, handleFiltersAreOff } = useAuthContext();
     const { loading, throwPromise, ads } = useAuthContext()
-    const { handleChange, handleSubmit, validate, setFormValue, filter } = useAuthContext()
-    const { searchKeys } = filter;
+    const { handleChange, handleSubmit, validate, setFormValue, filters } = useAuthContext()
+    const { searchKeys } = filters;
     const { modalClass, openModal, closeModal, handleCloseModal, handleOpenModal } = useModal()
     const location = useLocation()
 
@@ -40,20 +40,7 @@ const Header = () => {
         isLogged && closeModal()
     }, [isLogged]);
 
-    // console.log("RENDER HEADER")
-    /**
-     * 
-     *
-     searchKeys === "" ||
-                await throwPromise(getAds())
-            //handleFiltersAreOn()
-    
-            console.log("FILTERS ON?", areFiltersOn)
-    
-            history.push("/ads")
-            console.log("adios") 
-    
-     */
+
 
     const onSubmit = async () => {
         if (!searchKeys == "") {

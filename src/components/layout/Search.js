@@ -4,19 +4,21 @@ import { useAuthContext } from "../auth/context";
 import usePromise from "../customHooks/usePromise";
 import Button from "../shared/Button";
 import FormField from "../shared/formFields/FormField"
+import SelectTags from "../shared/formFields/SelectTags/SelectTags";
 
 
 
 const Search = ({ onSubmit }) => {
-    const { handleChange, handleSubmit, validate, setFormValue, filter } = useAuthContext()
+    const { handleChange, handleSubmit, validate, setFormValue, filters } = useAuthContext()
     const { areFiltersOn, handleFiltersAreOn, handleFiltersAreOff } = useAuthContext();
-    const { searchKeys } = filter;
+    const { searchKeys, tags } = filters;
     //searchKeys === "" || handleFiltersAreOn()
 
     return (
         <div className="Search is-flex-grow-1	">
             <form className="field has-addons " onSubmit={onSubmit}>
                 <div className="control is-expanded">
+
                     <FormField
                         type="text"
                         name="searchKeys"
@@ -28,6 +30,7 @@ const Search = ({ onSubmit }) => {
                         value={searchKeys}
                     >
                     </FormField>
+
                 </div>
                 <Button type="submit" >Buscar</Button>
 

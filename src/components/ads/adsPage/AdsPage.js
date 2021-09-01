@@ -12,8 +12,8 @@ const AdsPage = ({ ...props }) => {
 
     const { loading, error, throwPromise, ads } = useAuthContext([]);
     const { areFiltersOn, handleFiltersAreOn, handleFiltersAreOff } = useAuthContext()
-    const { filter } = useAuthContext()
-    const { searchKeys } = filter;
+    const { filters } = useAuthContext()
+    const { searchKeys } = filters;
     /*
         React.useEffect(() => {
             throwPromise(getAds())

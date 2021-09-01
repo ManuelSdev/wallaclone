@@ -37,8 +37,11 @@ function App({ autoLogged }) {
 
   const { loading, error, throwPromise, data: ads } = usePromise([]);
 
-  const { handleChange, handleSubmit, validate, setFormValue, formValue: filter } = useForm({
+  const { handleChange, handleSubmit, validate, setFormValue, formValue: filters } = useForm({
     searchKeys: "",
+    maxPrice: 1000000,
+    minPrice: 0,
+    tags: []
 
   });
 
@@ -49,7 +52,7 @@ function App({ autoLogged }) {
   const loginProps = { isLogged, handleLogin, handleLogout };
 
   const getAdProps = { loading, error, throwPromise, ads }
-  const searchFormProps = { handleSubmit, setFormValue, handleChange, filter }
+  const searchFormProps = { handleSubmit, setFormValue, handleChange, filters }
   const filtersProps = { areFiltersOn, handleFiltersAreOn, handleFiltersAreOff };
 
   const allProps = { ...loginProps, ...filtersProps, ...searchFormProps, ...getAdProps }

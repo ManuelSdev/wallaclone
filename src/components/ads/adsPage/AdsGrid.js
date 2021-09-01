@@ -6,8 +6,8 @@ import React, { useRef } from 'react';
 const AdsGrid = ({ ads, ...props }) => {
     const { areFiltersOn, handleFiltersAreOn, handleFiltersAreOff } = useAuthContext()
     const { loading } = useAuthContext()
-    const { filter } = useAuthContext()
-    const { searchKeys } = filter;
+    const { filters } = useAuthContext()
+    const { searchKeys } = filters;
     //const { searchKeys } = filter;
     // loading || handleFiltersAreOff()
     console.log("SEARCHA KEYS VALUE", searchKeys)
