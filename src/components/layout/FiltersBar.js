@@ -14,11 +14,26 @@ const FiltersBar = () => {
             <div className="navbar-menu">
                 <div className="navbar-start	">
                     <div className="navbar-item">
+                        <div>Precio mínimo</div>
                         <FormField
-                            type="number"
+                            type="tel"
                             name="minPrice"
-                            label="Precio desde"
+                            // label="Precio desde"
                             value={minPrice}
+                            //min="1"
+                            //step="10"
+                            onChange={handleChange}
+                        >
+                        </FormField>
+                    </div>
+
+                    <div className="navbar-item">
+                        <div>Precio máximo</div>
+                        <FormField
+                            type="tel"
+                            name="maxPrice"
+                            // label="Precio desde"
+                            value={maxPrice}
                             //min="1"
                             //step="10"
                             onChange={handleChange}

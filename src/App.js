@@ -39,8 +39,8 @@ function App({ autoLogged }) {
   const { loading, error, throwPromise, data: ads } = usePromise([]);
   const { handleChange, handleSubmit, validate, setFormValue, formValue: filters } = useForm({
     searchKeys: "",
-    maxPrice: 1000000,
-    minPrice: 1,
+    maxPrice: "1000000",
+    minPrice: "0",
     tags: []
 
   });
