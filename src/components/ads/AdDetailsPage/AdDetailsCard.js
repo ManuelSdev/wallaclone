@@ -14,7 +14,7 @@ export default function AdDetailsCard({ ad, cardHeader }) {
                 <div className="card">
                     <div className="card-image">
                         <figure className="image is-5by4">
-                            <img src={foto} alt="Placeholder image"></img>
+                            <img src={ad.images} alt="Placeholder image"></img>
                         </figure>
                     </div>
                 </div>
