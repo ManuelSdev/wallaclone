@@ -8,33 +8,30 @@ import SelectTags from "../shared/formFields/SelectTags/SelectTags";
 
 
 
-const Search = ({ onSubmit }) => {
-    const { handleChange, handleSubmit, validate, setFormValue, filters } = useAuthContext()
-    const { areFiltersOn, handleFiltersAreOn, handleFiltersAreOff } = useAuthContext();
-    const { searchKeys, tags } = filters;
+const Search = ({ }) => {
+
     //searchKeys === "" || handleFiltersAreOn()
+    const handleChange = () => console.log("f")
 
     return (
-        <div className="Search is-flex-grow-1	">
-            <form className="field has-addons " onSubmit={onSubmit}>
-                <div className="control is-expanded">
+        <div className="Search is-flex-grow-1">
+            <form className="field has-addons " onSubmit={'onSubmit'}>
 
+                <div className="control is-expanded">
                     <FormField
                         type="text"
-                        name="searchKeys"
+                        name="name"
                         //placeholder="¿Qué vas a vender?"
                         //onChange={even => console.log(even.target)}
                         //handleChange cambia el estado a medida que se escribe
                         onChange={handleChange}
                         //value toma el valor que vamos teniendo en el estado
-                        value={searchKeys}
+                        value={"searchKeys"}
                     >
                     </FormField>
 
                 </div>
-                {/*<Button type="submit" >Buscar</Button>*/}
-
-
+                {<Button type="submit" >Buscar</Button>}
             </form>
             {/* <Button onClick={s}>SSSSSSSSSSS</Button>*/}
         </div >

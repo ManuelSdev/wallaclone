@@ -18,15 +18,13 @@ import usePromise from "../customHooks/usePromise"
 import { getAds } from "../../api/ads"
 import useForm from "../customHooks/useForm"
 import FiltersBar from "./FiltersBar"
+import FormField from "../shared/formFields/FormField"
+import SelectTags from "../shared/formFields/SelectTags/SelectTags"
 
 const Header = () => {
     const a = () => { console.log(client.defaults.headers) };
     const { isLogged, handleLogout } = useAuthContext()
 
-    const { areFiltersOn, handleFiltersAreOn, handleFiltersAreOff } = useAuthContext();
-    const { loading, throwPromise, ads } = useAuthContext()
-    const { handleChange, handleSubmit, validate, setFormValue, filters } = useAuthContext()
-    const { searchKeys } = filters;
     const { modalClass, openModal, closeModal, handleCloseModal, handleOpenModal } = useModal()
     const location = useLocation()
 
@@ -41,23 +39,14 @@ const Header = () => {
         isLogged && closeModal()
     }, [isLogged]);
 
+    const { handleChange, handleSubmit, validate, setFormValue, formValue: filters } = useForm({
+        name: "",
+        maxPrice: null,
+        minPrice: 1,
+        tags: [],
 
-    /*
-        const onSubmit = async () => {
-    
-            await throwPromise(getAds())
-            //handleFiltersAreOn()
-    
-            console.log("FILTERS ON?", areFiltersOn)
-    
-            history.push("/ads")
-            console.log("adios")
-    
-    
-    
-        }
-        */
-
+    });
+    const { name, maxPrice, minPrice, price, tags, } = filters;
     return (
         <Fragment>
 
@@ -72,13 +61,56 @@ const Header = () => {
                 </div>
                 <div className="navbar-menu">
                     <div className="navbar-start is-expanded is-flex-grow-1	">
-                        <div className="navbar-item">
-                            <FiltersBar></FiltersBar>
-                        </div>
-                        <div className="navbar-item is-expanded">
-                            {/*<Search onSubmit={handleSubmit(onSubmit)}></Search>*/}
-                            <Search></Search>
-                        </div>
+                        <form className="field has-addons is-flex-grow-1" onSubmit={'onSubmit'}>
+                            <div className="navbar-item ">
+                                <div>Precio mínimo</div>
+                                <FormField
+                                    type="number"
+                                    name="minPrice"
+                                    value={minPrice}
+
+                                    //min="1"
+                                    //step="10"
+                                    onChange={handleChange}
+                                >
+                                </FormField>
+
+
+
+                            </div>
+                            <div className="navbar-item ">
+                                <div>Precio máximo</div>
+                                <FormField
+                                    type="number"
+                                    name="maxPrice"
+                                    value={maxPrice}
+
+                                    //min="1"
+                                    //step="10"
+                                    onChange={handleChange}
+                                >
+                                </FormField>
+                            </div>
+                            <div className="navbar-item ">
+                                <SelectTags multiple name="tags" value={tags} onChange={handleChange} />
+                            </div>
+                            <div className="navbar-item is-expanded is-flex-grow-5">
+                                <div className="control is-expanded">
+                                    <FormField
+                                        type="text"
+                                        name="name"
+                                        //placeholder="¿Qué vas a vender?"
+                                        //onChange={even => console.log(even.target)}
+                                        //handleChange cambia el estado a medida que se escribe
+                                        onChange={handleChange}
+                                        //value toma el valor que vamos teniendo en el estado
+                                        value={"searchKeys"}
+                                    >
+                                    </FormField>
+                                </div>
+                                {<Button type="submit" >Buscar</Button>}
+                            </div>
+                        </form>
                     </div>
                     <div className="navbar-end">
                         <div className="navbar-item">

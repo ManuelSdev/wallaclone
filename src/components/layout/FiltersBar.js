@@ -6,8 +6,9 @@ import SortButton from "./filtersButtons/SortButton"
 
 const FiltersBar = () => {
 
-    const { handleChange, handleSubmit, validate, setFormValue, filters } = useAuthContext()
-    const { tags, maxPrice, minPrice } = filters
+    const tags = [1, 2, 3]
+    const minPrice = 2
+    const handleChange = () => console.log("f")
     return (
         <nav className="navbar  ">
             <div className="navbar-menu">
