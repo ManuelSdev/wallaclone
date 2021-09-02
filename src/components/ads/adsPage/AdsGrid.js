@@ -52,24 +52,31 @@ const AdsGrid = ({ ads, ...props }) => {
 
                 {ads.map(ad => (console.log(ad.tags[0].replaceAll(",", " "), ad._id, ad.name)))}
                 {ads.map(ad => (console.log(ad)))}
-                {ads.map(ad => (
-                    (!tags.length) ?
-                        ((ad.name).replaceAll(",", "  ").toLowerCase().includes((searchKeys.replaceAll(",", "  ").toLowerCase())) || (ad.description.replaceAll(",", "  ").toLowerCase()).includes((searchKeys.replaceAll(",", "  ").toLowerCase())))
-                            && (!ad.price) ?
-                            <AdCard key={ad._id} ad={ad} {...props}></AdCard>
-                            :
-                            (ad.price >= minPrice && ad.price <= maxPrice)
-                            && <AdCard key={ad._id} ad={ad} {...props}></AdCard>
-                        :
-                        checkTags(ad.tags).includes(true)
-                            //validTags.includes(true)
-                            && ((ad.name).replaceAll(",", "  ").toLowerCase().includes((searchKeys.replaceAll(",", "  ").toLowerCase())) || (ad.description.replaceAll(",", "  ").toLowerCase()).includes((searchKeys.replaceAll(",", "  ").toLowerCase())))
-                            && (!ad.price) ?
-                            <AdCard key={ad._id} ad={ad} {...props}></AdCard>
-                            :
-                            (ad.price >= minPrice && ad.price <= maxPrice)
-                            && <AdCard key={ad._id} ad={ad} {...props}></AdCard>
-                ))}
+                {ads.map(ad => {
+                    if (!tags.length
+                        && ((ad.name).replaceAll(",", "  ").toLowerCase().includes((searchKeys.replaceAll(",", "  ").toLowerCase())) || (ad.description.replaceAll(",", "  ").toLowerCase()).includes((searchKeys.replaceAll(",", "  ").toLowerCase())))
+                        && ad.sale
+                        && (ad.price >= minPrice && ad.price <= maxPrice)
+                    ) { return <AdCard key={ad._id} ad={ad} {...props}></AdCard> }
+                    if (!tags.length
+                        && ((ad.name).replaceAll(",", "  ").toLowerCase().includes((searchKeys.replaceAll(",", "  ").toLowerCase())) || (ad.description.replaceAll(",", "  ").toLowerCase()).includes((searchKeys.replaceAll(",", "  ").toLowerCase())))
+                        && !ad.sale
+                    ) { return <AdCard key={ad._id} ad={ad} {...props}></AdCard> }
+                    if (tags.length
+                        && checkTags(ad.tags).includes(true)
+                        && ((ad.name).replaceAll(",", "  ").toLowerCase().includes((searchKeys.replaceAll(",", "  ").toLowerCase())) || (ad.description.replaceAll(",", "  ").toLowerCase()).includes((searchKeys.replaceAll(",", "  ").toLowerCase())))
+                        && ad.sale
+                        && (ad.price >= minPrice && ad.price <= maxPrice)
+                    ) { return <AdCard key={ad._id} ad={ad} {...props}></AdCard> }
+                    if (tags.length
+                        && checkTags(ad.tags).includes(true)
+                        && ((ad.name).replaceAll(",", "  ").toLowerCase().includes((searchKeys.replaceAll(",", "  ").toLowerCase())) || (ad.description.replaceAll(",", "  ").toLowerCase()).includes((searchKeys.replaceAll(",", "  ").toLowerCase())))
+                        && !ad.sale
+                    ) { return <AdCard key={ad._id} ad={ad} {...props}></AdCard> }
+                }
+
+
+                )}
 
             </div>
         </div>
