@@ -86,7 +86,6 @@ const AdForm = ({ onSubmit, error, ad }) => {
                     checked={sale}
                     value="sell"
                 >
-
                 </RadioButton>
                 <RadioButton
                     name="sale"
@@ -106,7 +105,8 @@ const AdForm = ({ onSubmit, error, ad }) => {
                 value={description}
             >
             </TextAreaField>
-            {sale && <InputFile name="images" onChange={handleChange} />}
+
+            {sale && <InputFile name="images" editableSrc={ad?.images ?? null} onChange={handleChange} />}
 
             <Button type="submit" >Subir anuncio</Button>
             {error && <FormError error={error}></FormError>}

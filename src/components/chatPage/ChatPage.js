@@ -6,6 +6,7 @@ export default function ChatPage() {
         <Layout>
             <div>
                 CHAT PAGE
+
             </div>
         </Layout>
 

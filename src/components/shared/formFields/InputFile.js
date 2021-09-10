@@ -2,9 +2,14 @@ import React from 'react';
 
 import placeholder from '../../../assets/placeholder.png';
 
-function InputFile({ onChange, ...props }) {
+function InputFile({ onChange, editableSrc, ...props }) {
   const inputRef = React.createRef(null);
   const [src, setSrc] = React.useState(null);
+
+  React.useEffect(() => {
+    editableSrc && setSrc(editableSrc);
+    console.log('USE EFFECT DEL INPUT')
+  }, [editableSrc])
 
   const loadSrcFromFile = file => {
     if (!file) {
@@ -27,6 +32,8 @@ function InputFile({ onChange, ...props }) {
     loadSrcFromFile(file);
     onChange(ev);
   };
+
+
 
   return (
     <div className="file is-boxed">

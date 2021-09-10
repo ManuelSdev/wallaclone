@@ -9,6 +9,9 @@ import Button from "../../shared/Button";
 const nameToUrl = (adName) => (
     adName.replace(/\s/g, "-")
 )
+
+//const adUrl = `${nameToUrl(ad.name)}-${ad._id}`
+
 const AdFavoriteCard = ({ ad, trigger }) => {
 
 

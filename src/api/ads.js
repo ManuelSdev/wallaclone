@@ -49,11 +49,7 @@ export const getMemberAds = (authorParams) => {
     return client.get(`${memberAds}/${authorParams}`);
 };
 
-export const updateAd = (adIdParams, newValues) => {
-    //${filterPath && filterPath}
-    console.log("ID PARAMS", adIdParams)
-    return client.put(`${adsPath}/${adIdParams}`, newValues);
-};
+
 
 export const deleteAd = (adIdParams) => {
     //${filterPath && filterPath}
@@ -75,6 +71,18 @@ export const createAd = withFormData(newAd => {
     //console.log("NEW ADD*****************", newAd)
     return client.post(adsPath, newAd);
 });
+
+export const updateAd = withFormData((adIdParams, newValues) => {
+    console.log("ID PARAMSssssss", adIdParams)
+    return client.put(`${adsPath}/${adIdParams}`, newValues);
+})
+
+
+export const old_updateAd = (adIdParams, newValues) => {
+    //${filterPath && filterPath}
+    console.log("ID PARAMSssssss", adIdParams)
+    return client.put(`${adsPath}/${adIdParams}`, newValues);
+};
 
 export const updateImg = withFormData(newImg => {
     //console.log("NEW ADD*****************", newAd)
