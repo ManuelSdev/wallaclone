@@ -5,8 +5,15 @@ import CheckboxGroup from '../../../shared/formFields/CheckBoxGroup';
 function SelectTags({ mainLabel, ...props }) {
   const [tags, setTags] = React.useState([]);
 
+
   React.useEffect(() => {
-    getTags().then(setTags);
+    // getTags().then(setTags).then(console.log());
+    const applyTags = async () => {
+      //const tagss = await getTags()
+      setTags(await getTags())
+      // console.log("TAGS BAJADOS", tagss)
+    }
+    applyTags()
   }, []);
 
   return (

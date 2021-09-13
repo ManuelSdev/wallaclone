@@ -10,6 +10,7 @@ const AdsGrid = ({ ads, ...props }) => {
     const { searchKeys, minPrice, maxPrice, tags } = filters;
     //const { searchKeys } = filter;
     // loading || handleFiltersAreOff()
+    /*
     console.log("SEARCHA KEYS VALUE", searchKeys)
     console.log("RENDER ADS GRID")
 
@@ -17,7 +18,7 @@ const AdsGrid = ({ ads, ...props }) => {
 
     console.log("minprice", minPrice)
     console.log("tags", tags)
-
+*/
     //const staticsSearchKeys = React.useRef(searchKeys)
     // console.log("staticsSearchKeys", staticsSearchKeys.current)
 
@@ -40,8 +41,8 @@ const AdsGrid = ({ ads, ...props }) => {
     // tags.map(tag => (tag.includes(tags[0]) || tag.includes(tags[1]) || tag.includes(tags[2])) && true)
     //((ad.tags[0].includes(tags[0]) || ad.tags.includes(tags[1]) || ad.tags.includes(tags[0]))
 
-    console.log("####################", validTags)
-    console.log("####################", validTags.includes(true))
+    //console.log("####################", validTags)
+    // console.log("####################", validTags.includes(true))
 
     return (
         <div className="AdsGrid">
@@ -50,8 +51,8 @@ const AdsGrid = ({ ads, ...props }) => {
                     ad.name.includes(searchKeys) && <AdCard key={ad._id} ad={ad} {...props}></AdCard>
                 ))*/}
 
-                {ads.map(ad => (console.log(ad.tags[0].replaceAll(",", " "), ad._id, ad.name)))}
-                {ads.map(ad => (console.log(ad)))}
+                {/*ads.map(ad => (console.log(ad.tags[0].replaceAll(",", " "), ad._id, ad.name)))}
+                {/*ads.map(ad => (console.log(ad)))*/}
                 {ads.map(ad => {
                     if (!tags.length
                         && ((ad.name).replaceAll(",", "  ").toLowerCase().includes((searchKeys.replaceAll(",", "  ").toLowerCase())) || (ad.description.replaceAll(",", "  ").toLowerCase()).includes((searchKeys.replaceAll(",", "  ").toLowerCase())))

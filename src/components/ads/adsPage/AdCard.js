@@ -39,7 +39,7 @@ const AdCard = ({ ad }) => {
                         </div>
                         <div className="content">
                             {ad.tags.map(tag => (
-                                <span>{tag}</span>
+                                <span key={tag}>{tag}</span>
                             ))}
                         </div>
                     </div>
