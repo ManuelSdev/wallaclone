@@ -13,7 +13,9 @@ const AdCard = ({ ad }) => {
     const adUrl = `${nameToUrl(ad.name)}-${ad._id}`
 
     return (
-        <Link target="_blank" to={`/ads/${adUrl}`} className=" column is-one-quarter" >
+        //<Link target="_blank" to={`/ads/${adUrl}`} className=" column is-one-quarter" > 
+        //elimino target="_blank" , de momento,  para que no abra anuncio en nueva pestaña
+        <Link to={`/ads/${adUrl}`} className=" column is-one-quarter" >
             <div className="AdCard ">
                 {/*<Button onClick={clica}></Button>*/}
                 <div className="card">

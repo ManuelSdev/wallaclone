@@ -72,8 +72,13 @@ export const createAd = withFormData(newAd => {
     return client.post(adsPath, newAd);
 });
 
-export const updateAd = withFormData((adIdParams, newValues) => {
-    console.log("ID PARAMSssssss", adIdParams)
+export const updateAd = withFormData((newValues, adIdParams) => {
+    //console.log("ID PARAMSssssss", adIdParams)
+    /*
+    for (var value of newValues.values()) {
+        console.log("VALUESSSSSSSSSSSSSSSSSSSSSSSSSSS", value);
+    }
+    */
     return client.put(`${adsPath}/${adIdParams}`, newValues);
 })
 

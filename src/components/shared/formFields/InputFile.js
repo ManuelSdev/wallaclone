@@ -5,12 +5,16 @@ import placeholder from '../../../assets/placeholder.png';
 function InputFile({ onChange, editableSrc, ...props }) {
   const inputRef = React.createRef(null);
   const [src, setSrc] = React.useState(null);
-  /*
-    React.useEffect(() => {
-      editableSrc && setSrc(editableSrc);
-      console.log('USE EFFECT DEL INPUT')
-    }, [editableSrc])
-  */
+
+  /**
+   * ESTUDIA: Solo funciona con [editableSrc], con [] , editableSrc llega como null
+   */
+
+  React.useEffect(() => {
+    editableSrc && setSrc(editableSrc);
+    // console.log('USE EFFECT DEL INPUT', editableSrc)
+  }, [editableSrc])
+
   const loadSrcFromFile = file => {
     if (!file) {
       setSrc(null);

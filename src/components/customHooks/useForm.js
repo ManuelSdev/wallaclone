@@ -32,7 +32,6 @@ const defaultGetValue = ({ value }) => value;
 
 function useForm(initialFormValue) {
   const [formValue, setFormValue] = React.useState(initialFormValue);
-
   const updateFormValue = (name, value) => {
     setFormValue(currentFormValue => ({
       ...currentFormValue,
@@ -42,21 +41,20 @@ function useForm(initialFormValue) {
 
   const handleChange = ev => {
     //console.log("EVENT TARGET")
-    console.log("EVENT TARGET TYPE", ev.target.value)
+    //console.log("EVENT TARGET TYPE", ev.target.value)
 
     // console.log("EVENT TARGET TYPE", ev.target.type)
     const valueGetter = getValueByType[ev.target.type] || defaultGetValue;
     updateFormValue(ev.target.name, valueGetter(ev.target));
-    // console.log("EVENT TARGET NAME", ev.target.name)
+    //console.log("EVENT TARGET NAME", ev.target.name)
     //console.log("VALOR VALUE GETTER", valueGetter(ev.target))
-    console.log("FORM VALUE", formValue)
+    //console.log("FORM VALUE", formValue)
 
   };
 
   const handleSubmit = onSubmit => ev => {
     ev.preventDefault();
     onSubmit(formValue);
-    //console.log("adios")
   };
   /**
    * El método every de un array devuelve una función que recibé como parametro true si todos

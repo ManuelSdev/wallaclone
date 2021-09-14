@@ -5,31 +5,32 @@ const isValidValue = complement(isNullOrUndefined);
 
 const objectToFormData = object =>
   Object.entries(object).reduce((formData, [key, value]) => {
-    console.log("*-**-*-*-*-*-*-*-*--*-*-*", formData)
     if (isValidValue(value)) {
       Array.isArray(value)
         ? value.forEach(element => formData.append(key + '[]', element))
         : formData.append(key, value);
-
     }
     return formData;
   }, new FormData());
 
 
 
-const objectToFormDatas = object => {
+const own_objectToFormData = object => {
   var formData = new FormData();
   Object.entries(object).map(keyValue => formData.append(keyValue[0], keyValue[1]))
   return formData
 }
 
 
-export const withFormData = fn => object => {
-  //console.log("*-**-*-*-*-*-*-*-*--*-*-*", object)
-  const formData = objectToFormData(object);
+export const withFormData = fn => (object, adId) => {
+  /* 
   for (var value of formData.values()) {
     console.log(value);
   }
-  //console.log("*-**-*-*-*-*-*-*-*--*-*-*", formData.values)
-  return fn(formData);
+  */
+  const formData = objectToFormData(object);
+  return adId ?
+    fn(formData, adId)
+    :
+    fn(formData)
 };

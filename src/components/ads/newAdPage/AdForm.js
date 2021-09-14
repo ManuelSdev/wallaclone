@@ -14,7 +14,7 @@ import FormError from '../../shared/formFields/FormError';
 
 
 const AdForm = ({ onSubmit, error, ad }) => {
-    // console.log("RENDER EN AD FORM")
+    console.log("RENDER EN AD FORM")
     //console.log("primer ad", ad)
     const { formValue: advert, handleChange, handleSubmit, validate, setFormValue } = useForm({
         name: '',
@@ -25,7 +25,7 @@ const AdForm = ({ onSubmit, error, ad }) => {
         images: null,
     });
 
-
+    const { name, sale, price, tags, description } = advert;
 
     //useEffect solo aplica cuando recibimos la props "ad" que pasa EditAdPage.js, que usa este mismo
     //formulario para editar los detalles del anuncio
@@ -34,19 +34,19 @@ const AdForm = ({ onSubmit, error, ad }) => {
     React.useEffect(() => {
         //console.log("useEffect ad", ad)
         ad &&
-            setFormValue(
-                {
-                    name: ad?.name ?? '',
-                    sale: ad?.sale ?? true,
-                    price: ad?.price ?? '',
-                    tags: ad?.tags ?? [],
-                    description: ad?.description ?? '',
-                    images: null
-                }
-            )
+            setFormValue
+                (
+                    {
+                        name: ad?.name ?? '',
+                        sale: ad?.sale ?? true,
+                        price: ad?.price ?? '',
+                        tags: ad?.tags ?? [],
+                        description: ad?.description ?? '',
+                        images: null
+                    }
+                )
     }, [ad])
 
-    const { name, sale, price, tags, description } = advert;
 
     // console.log("FORMULARIO", advert)
     return (
