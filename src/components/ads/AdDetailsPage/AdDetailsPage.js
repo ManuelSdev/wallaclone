@@ -4,7 +4,7 @@ import { getOneAd, deleteAd } from "../../../api/ads"
 import usePromise from "../../customHooks/usePromise"
 import AdDetailsCard from "./AdDetailsCard"
 import { useAuthContext } from '../../auth/context';
-import CardHeader from "./MemberCardHeader"
+import MemberCardHeader from "./MemberCardHeader"
 import UserCardHeader from "./UserCardHeader"
 import Layout from "../../layout/Layout"
 import Loader from "../../shared/Loaders/Loader"
@@ -58,7 +58,7 @@ const AdDetailPage = () => {
                                 isLogged && ad.userId === ad.requesterId ?
                                     <UserCardHeader handleDelete={handleDelete} ad={ad} />
                                     :
-                                    <CardHeader ad={ad} />
+                                    <MemberCardHeader ad={ad} />
                         }
                     ></AdDetailsCard>
                 </div>

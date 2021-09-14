@@ -42,7 +42,7 @@ const FiltersBar = () => {
                 </div>
                 <div className="navbar-end">
                     <div className="navbar-item">
-                        <SelectTags multiple name="tags" value={tags} onChange={handleChange} />
+                        {/** <SelectTags multiple name="tags" value={tags} onChange={handleChange} /> */}
                     </div>
                 </div>
             </div>

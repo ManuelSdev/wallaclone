@@ -14,9 +14,9 @@ const nameToUrl = (adName) => (
 const test = "algo"
 export default function UserCardHeader({ ad, handleDelete }) {
     const { modalClass, openModal, closeModal, handleCloseModal, handleOpenModal } = useModal()
-    console.log("AD AUTHOR", ad.author)
+    //console.log("AD AUTHOR", ad.author)
     const authorUrl = ad.author && nameToUrl(ad.author)
-    console.log(ad)
+    // console.log(ad)
     return (
 
         <div className="is-flex is-flex-direction-row is-justify-content-space-between">

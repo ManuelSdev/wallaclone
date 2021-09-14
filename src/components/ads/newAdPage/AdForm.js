@@ -14,7 +14,7 @@ import FormError from '../../shared/formFields/FormError';
 
 
 const AdForm = ({ onSubmit, error, ad }) => {
-    console.log("RENDER EN AD FORM")
+    console.log("1) RENDER EN AD FORM")
     //console.log("primer ad", ad)
     const { formValue: advert, handleChange, handleSubmit, validate, setFormValue } = useForm({
         name: '',
@@ -32,7 +32,8 @@ const AdForm = ({ onSubmit, error, ad }) => {
     //
 
     React.useEffect(() => {
-        //console.log("useEffect ad", ad)
+        console.log("2) useEffect AdForm setea formulario con datos del ad")
+        console.log("3) usa estos datos para chequear tags ", ad.tags)
         ad &&
             setFormValue
                 (
@@ -75,7 +76,7 @@ const AdForm = ({ onSubmit, error, ad }) => {
                 >
                 </FormField>
             }
-            <SelectTags multiple name="tags" value={tags} onChange={handleChange} mainLabel="Selecciona,al menos, un tag" />
+            <SelectTags multiple name="tags" value={tags} onChange={handleChange} mainLabel="Selecciona, al menos, un tag" />
 
             <RadioField mainLabel="¿Vendes o compras?">
                 <RadioButton
@@ -110,11 +111,7 @@ const AdForm = ({ onSubmit, error, ad }) => {
 
             <Button type="submit" >Subir anuncio</Button>
             {error && <FormError error={error}></FormError>}
-
-
-
         </form >
-
     )
 }
 

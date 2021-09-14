@@ -10,7 +10,7 @@ import { useAuthContext } from "../auth/context"
 const Layout = ({ children }) => {
     const { areFiltersOn, handleFiltersAreOn, handleFiltersAreOff } = useAuthContext();
 
-    console.log("FILTERS ON EN LAYOUT?", areFiltersOn)
+    // console.log("FILTERS ON EN LAYOUT?", areFiltersOn)
     return (
         <div className="Layout" >
             <div className="section">
