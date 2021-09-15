@@ -34,34 +34,29 @@ function App({ autoLogged }) {
     setIsLogged(false)
     history.push('/')
   }
-
-  const { loading, error, throwPromise, data: ads } = usePromise([]);
-
-  const { handleChange, handleSubmit, validate, setFormValue, formValue: filters } = useForm({
-    searchKeys: "",
-    maxPrice: "1000000",
-    minPrice: "0",
-    tags: []
-
-  });
-
-  const [areFiltersOn, setAreFiltersOn] = React.useState(true);
-  const handleFiltersAreOn = () => setAreFiltersOn(true);
-  const handleFiltersAreOff = () => setAreFiltersOn(false);
-
   const loginProps = { isLogged, handleLogin, handleLogout };
 
-  const getAdProps = { loading, error, throwPromise, ads }
-  const searchFormProps = { handleSubmit, setFormValue, handleChange, filters }
-  const filtersProps = { areFiltersOn, handleFiltersAreOn, handleFiltersAreOff };
-
-  const allProps = { ...loginProps, ...filtersProps, ...searchFormProps, ...getAdProps }
-
-
-  // console.log(throwPromise)
+  /*
+    const { loading, error, throwPromise, data: ads } = usePromise([]);
+  
+    const { handleChange, handleSubmit, validate, setFormValue, formValue: filters } = useForm({
+      searchKeys: "",
+      maxPrice: "1000000",
+      minPrice: "0",
+      tags: []
+  
+    });
+    const [areFiltersOn, setAreFiltersOn] = React.useState(true);
+    const handleFiltersAreOn = () => setAreFiltersOn(true);
+    const handleFiltersAreOff = () => setAreFiltersOn(false);
+    const getAdProps = { loading, error, throwPromise, ads }
+    const searchFormProps = { handleSubmit, setFormValue, handleChange, filters }
+    const filtersProps = { areFiltersOn, handleFiltersAreOn, handleFiltersAreOff };
+    const allProps = { ...loginProps, ...filtersProps, ...searchFormProps, ...getAdProps }
+  */
   return (
     <div className="App ">
-      <AuthProvider {...allProps}>
+      <AuthProvider {...loginProps}>
         <Switch>
           <PrivateRoute path="/user" component={UserPage}></PrivateRoute>
           <PrivateRoute exact path="/chat" component={ChatPage}></PrivateRoute>

@@ -24,7 +24,7 @@ export const getTest = () => {
 
 */
 export const getAds = () => {
-    console.log("haha")
+
     //${filterPath && filterPath}
     return client.get(`${adsPath}`);
 };

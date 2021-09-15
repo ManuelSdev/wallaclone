@@ -1,5 +1,5 @@
 import Button from "../../shared/Button"
-import { AuthContextConsumer, useAuthContext } from "../context"
+import { useAuthContext } from "../context"
 
 const LogoutPage = ({ closeModal }) => {
     const { handleLogout } = useAuthContext()

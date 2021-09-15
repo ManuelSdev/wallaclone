@@ -23,10 +23,7 @@ const Header = () => {
     const a = () => { console.log(client.defaults.headers) };
     const { isLogged, handleLogout } = useAuthContext()
 
-    const { areFiltersOn, handleFiltersAreOn, handleFiltersAreOff } = useAuthContext();
-    const { loading, throwPromise, ads } = useAuthContext()
-    const { handleChange, handleSubmit, validate, setFormValue, filters } = useAuthContext()
-    const { searchKeys } = filters;
+
     const { modalClass, openModal, closeModal, handleCloseModal, handleOpenModal } = useModal()
     const location = useLocation()
 
@@ -44,37 +41,26 @@ const Header = () => {
 
     /*
         const onSubmit = async () => {
-    
             await throwPromise(getAds())
             //handleFiltersAreOn()
-    
             console.log("FILTERS ON?", areFiltersOn)
-    
             history.push("/ads")
             console.log("adios")
-    
-    
-    
         }
         */
 
     return (
         <Fragment>
-
             <nav className="navbar is-fixed-top  ">
                 <div className="navbar-brand " >
                     <div className="navbar-item">
                         <Link to="/">
                             <LogoIcon width="30" height="30"  ></LogoIcon>
                         </Link>
-                        { /*<Button onClick={onSubmit}>ddddddddd</Button>*/}
                     </div>
                 </div>
                 <div className="navbar-menu">
                     <div className="navbar-start is-expanded is-flex-grow-1	">
-                        <div className="navbar-item">
-                            <FiltersBar></FiltersBar>
-                        </div>
                         <div className="navbar-item is-expanded">
                             {/*<Search onSubmit={handleSubmit(onSubmit)}></Search>*/}
                             <Search></Search>

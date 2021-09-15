@@ -14,7 +14,6 @@ const UserFavoritesPage = ({ ...props }) => {
     }, []);
 
     const newPromise = () => throwPromise(getFavAds())
-    console.log(ads)
     return loading ? (
         <Loader />
     ) : (

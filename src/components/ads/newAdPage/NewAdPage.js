@@ -1,7 +1,5 @@
 import { createAd } from "../../../api/ads"
-import ModalWindow from "../../shared/modalWindow/ModalWindow";
 import style from './NewAdPage.module.scss'
-import { useAuthContext } from "../../auth/context";
 import Layout from "../../layout/Layout";
 import { useHistory } from "react-router-dom";
 import AdForm from "./AdForm";

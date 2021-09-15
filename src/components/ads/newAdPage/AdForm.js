@@ -33,7 +33,7 @@ const AdForm = ({ onSubmit, error, ad }) => {
 
     React.useEffect(() => {
         console.log("2) useEffect AdForm setea formulario con datos del ad")
-        console.log("3) usa estos datos para chequear tags ", ad.tags)
+        //console.log("3) usa estos datos para chequear tags ", ad.tags)
         ad &&
             setFormValue
                 (
