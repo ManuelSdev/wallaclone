@@ -9,7 +9,7 @@ import { Fragment } from "react"
 import { useAuthContext } from "../auth/context"
 
 
-const Navbar = (handleOpenModal) => {
+const Navbar = ({ handleOpenModal }) => {
     const { isLogged, handleLogout } = useAuthContext()
 
     return (
