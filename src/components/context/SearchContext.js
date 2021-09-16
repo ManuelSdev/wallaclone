@@ -1,7 +1,6 @@
 import React from 'react';
-import Layout from './Layout';
 
-const LayoutContext = React.createContext();
+const SearchContext = React.createContext();
 /**
  * A)
  * export const AuthContextProvider = AuthContext.Provider;
@@ -17,12 +16,12 @@ const LayoutContext = React.createContext();
  * Antes, tenía que destructurar cada prop en distintos objetos de esta forma
  * value={{...prop1} {...prop2}}
  */
-export const LayoutProvider = ({ children, ...props }) => (
-    <LayoutContext.Provider value={props}>{children}</LayoutContext.Provider>
+export const SearchProvider = ({ children, ...props }) => (
+    <SearchContext.Provider value={props}>{children}</SearchContext.Provider>
 );
 
 //El B lo paso igual con un nombre más elegante
-export const LayoutConsumer = LayoutContext.Consumer;
+export const SearchConsumer = SearchContext.Consumer;
 /**
  * C uso un custom hook que contiene el hook useContext
  * useContext recibe el objeto de contexto que retorna React.createContext()
@@ -33,10 +32,10 @@ export const LayoutConsumer = LayoutContext.Consumer;
  * en el componente Connected...
  * y hacer que el componente envuelto reciba las props como parametros de entrada
  */
-export const useLayoutContext = () => {
-    const layoutValue = React.useContext(LayoutContext);
+export const useSearchContext = () => {
+    const searchValue = React.useContext(SearchContext);
 
-    return layoutValue;
+    return searchValue;
 };
 
-export default LayoutContext;
+export default SearchContext;

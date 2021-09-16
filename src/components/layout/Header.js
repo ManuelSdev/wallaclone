@@ -1,6 +1,6 @@
-import { Link, useHistory, useLocation } from "react-router-dom"
+import { useHistory, useLocation } from "react-router-dom"
 import Button from "../shared/Button"
-import Search from "./Search"
+import SearchForm from "./SearchForm"
 import useModal from "../customHooks/useModal"
 import ModalWindow from "../shared/modalWindow/ModalWindow"
 import ModalButton from "../shared/modalWindow/ModalButton"
@@ -9,7 +9,7 @@ import LinkButton from "../shared/LinkButton"
 import { ReactComponent as LogoIcon } from "../../assets/letra.svg"
 import client from "../../api/client"
 import { useAuthContext } from "../auth/context"
-import { Fragment, useContext } from "react"
+import { Fragment } from "react"
 import LogoutPage from "../auth/LogoutPage/LogoutPage"
 import Modal from "../shared/modalWindow/Modal"
 import AuthPage from "../auth/AuthPage"
@@ -18,7 +18,7 @@ import usePromise from "../customHooks/usePromise"
 import { getAds } from "../../api/ads"
 import useForm from "../customHooks/useForm"
 import FiltersBar from "./FiltersBar"
-
+import Navbar from "./Navbar"
 const Header = () => {
     const a = () => { console.log(client.defaults.headers) };
     const { isLogged, handleLogout } = useAuthContext()
@@ -26,8 +26,6 @@ const Header = () => {
 
     const { modalClass, openModal, closeModal, handleCloseModal, handleOpenModal } = useModal()
     const location = useLocation()
-
-
     const history = useHistory()
     //console.log("Estado de modalClasss en Header", modalClass)
     //console.log("LOCATION QUE PILLA EL HEADER", location.pathname)
@@ -51,51 +49,8 @@ const Header = () => {
 
     return (
         <Fragment>
-            <nav className="navbar is-fixed-top  ">
-                <div className="navbar-brand " >
-                    <div className="navbar-item">
-                        <Link to="/">
-                            <LogoIcon width="30" height="30"  ></LogoIcon>
-                        </Link>
-                    </div>
-                </div>
-                <div className="navbar-menu">
-                    <div className="navbar-start is-expanded is-flex-grow-1	">
-                        <div className="navbar-item is-expanded">
-                            {/*<Search onSubmit={handleSubmit(onSubmit)}></Search>*/}
-                            <Search></Search>
-                        </div>
-                    </div>
-                    <div className="navbar-end">
-                        <div className="navbar-item">
-                            <div className="buttons">
-                                {isLogged ? (
-                                    <Fragment>
-                                        <LinkButton link={'/ads/new'}>Crear anuncio</LinkButton>
-                                        <LinkButton link={'/user'}>Mi zona</LinkButton>
-                                    </Fragment>
-                                ) : (
-                                    <Fragment>
-                                        <LinkButton
-                                            handleButton={handleOpenModal}
-                                            link={"/ads/new"}
-                                        >
-                                            Crear anuncio
-                                        </LinkButton>
-                                        <LinkButton
-                                            handleButton={handleOpenModal}
-                                            link={"/auth"}
-                                        >
-                                            Regístrate o inicia sesion
-                                        </LinkButton>
-                                    </Fragment>
-                                )}
-                                <Button onClick={handleLogout} ></Button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav >
+            <Navbar handleOpenModal={handleOpenModal}>    </Navbar>
+
             <ModalWindow
                 modalClass={modalClass}
                 openModal={openModal}

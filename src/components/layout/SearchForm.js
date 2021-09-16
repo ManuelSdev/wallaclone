@@ -4,17 +4,21 @@ import usePromise from "../customHooks/usePromise";
 import Button from "../shared/Button";
 import FormField from "../shared/formFields/FormField"
 import SelectTags from "../shared/formFields/SelectTags/SelectTags";
+import { useSearchContext } from "../context/SearchContext";
+//import useForm from "../customHooks/useForm";
+
+const SearchForm = ({ onSubmit }) => {
+    const { searchFilters, handleChange, handleSubmit, validate, setFormValue } = useSearchContext()
 
 
-
-const Search = ({ onSubmit }) => {
+    // console.log(searchKey)
 
     return (
 
-        <form className="is-expanded  is-flex-grow-1" onSubmit={onSubmit}>
+        <form className="is-expanded  is-flex-grow-1" onSubmit={handleSubmit}>
             <FormField
                 type="text"
-                name="searchKeys"
+                name="keywords"
             //placeholder="¿Qué vas a vender?"
             //onChange={even => console.log(even.target)}
             //handleChange cambia el estado a medida que se escribe
@@ -38,4 +42,4 @@ const Search = ({ onSubmit }) => {
 
 }
 
-export default Search
+export default SearchForm
