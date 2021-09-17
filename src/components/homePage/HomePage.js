@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import Layout from "../layout/Layout"
 import Button from "../shared/Button"
+import SelectRange from "../shared/SelectRange"
 
 
 
@@ -10,7 +11,7 @@ const HomePage = () => {
         <Layout>
             <div className="HomePage">
                 HOME PAGE
-                <Link to="/ads"><Button>ADS</Button></Link>
+                <SelectRange></SelectRange>
             </div>
         </Layout>
     )

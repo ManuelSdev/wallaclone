@@ -5,6 +5,7 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "../shared/Button";
 import React from "react";
+import SlidingPriceFilter from "./SlidingPriceFilter";
 
 const FiltersForm = () => {
 
@@ -13,6 +14,7 @@ const FiltersForm = () => {
 
 
     const handlepPriceDropdown = (buttonName) => {
+
         setTagsDropdownState("")
         priceDropdownState === "" ?
             setPriceDropdownState("is-active")
@@ -49,7 +51,12 @@ const FiltersForm = () => {
                     </div>
                     <div className="dropdown-menu" id="dropdown-menu" role="menu">
                         <div className="dropdown-content">
-                            contenido
+
+                            <SlidingPriceFilter
+                                onClick={handlepPriceDropdown}
+                            >
+
+                            </SlidingPriceFilter>
                         </div>
                     </div>
                 </div>
@@ -75,6 +82,7 @@ const FiltersForm = () => {
                     </div>
                 </div>
             </div>
+
         </div>
     )
 

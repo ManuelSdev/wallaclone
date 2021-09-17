@@ -13,18 +13,6 @@ import useForm from '../../customHooks/useForm';
 const AdsPage = ({ ...props }) => {
     /*
         const { loading, error, throwPromise, data: ads } = usePromise([]);
-    
-        const { searchKey, handleSearchKeys } = useSearchContext()
-    
-        const { formValue: advert, handleChange, handleSubmit, validate, setFormValue } = useForm({
-            name: '',
-            sale: true,
-            price: "",
-            tags: [],
-            description: '',
-            images: null,
-        });
-    
         React.useEffect(() => {
             throwPromise(getAds())
         }, []);
