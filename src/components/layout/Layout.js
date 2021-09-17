@@ -10,8 +10,8 @@ import { useSearchContext } from "./../context/SearchContext"
 
 const Layout = ({ children }) => {
     const { isLogged } = useAuthContext()
-    const { searchKey } = useSearchContext()
-    console.log(searchKey)
+    //const { searchKey } = useSearchContext()
+    //console.log(searchKey)
     // console.log("FILTERS ON EN LAYOUT?", areFiltersOn)
     return (
         <div className="Layout  " >

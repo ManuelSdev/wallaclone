@@ -41,7 +41,7 @@ function useForm(initialFormValue) {
 
   const handleChange = ev => {
     //console.log("EVENT TARGET")
-    //console.log("EVENT TARGET TYPE", ev.target.value)
+    console.log("EVENT TARGET TYPE", ev.target.value)
 
     // console.log("EVENT TARGET TYPE", ev.target.type)
     const valueGetter = getValueByType[ev.target.type] || defaultGetValue;

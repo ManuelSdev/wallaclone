@@ -23,6 +23,8 @@ import useForm from './components/customHooks/useForm';
 
 import { AuthProvider } from './components/auth/context';
 import { SearchProvider } from "./components/context/SearchContext"
+import usePromise from './components/customHooks/usePromise';
+import { getAds } from './api/ads';
 
 function App({ autoLogged }) {
   //const autoLogged = false
@@ -42,8 +44,10 @@ function App({ autoLogged }) {
   /**
    * SearchContext
    */
-  const [searchKeys, setSearchKeys] = React.useState("hola")
-  const { formValue: searchFilters, handleChange, handleSubmit, validate, setFormValue } = useForm({
+  //const [searchKeys, setSearchKeys] = React.useState("hola")
+
+
+  const { formValue: searchKeys, handleChange, handleSubmit, validate } = useForm({
     keywords: '',
     sale: true,
     maxPrice: "",
@@ -52,8 +56,21 @@ function App({ autoLogged }) {
     start: "",
     sort: ""
   });
-  const handleSearchKeys = (keys) => setSearchKeys(keys)
-  const searchProps = { searchKeys, searchFilters, handleChange, handleSubmit, validate, setFormValue }
+
+  console.log("APP.JS KEYWORD = ", searchKeys)
+  const { loading, error, throwPromise, data: ads } = usePromise([])
+
+  const onSubmit = async (searchKeys) => {
+    await throwPromise(getAds(searchKeys));
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+    console.log(searchKeys)
+    //getAds(searchKeys)
+    history.push("/ads");
+  };
+
+  const handleSearchSubmit = handleSubmit(onSubmit)
+
+  const searchProps = { ads, loading, searchKeys, handleChange, handleSearchSubmit, validate }
 
   /*
     const { loading, error, throwPromise, data: ads } = usePromise([]);
@@ -86,7 +103,7 @@ function App({ autoLogged }) {
 
             <Route path="/members/:memberId" component={MemberPage}></Route>
 
-            <Route path="/" component={AdsPage}></Route>
+            <Route path="/" component={HomePage}></Route>
             {/*<Route path="/" component={AdsPage}></Route>
              <Route path="/">
               {(routeProps) => (<AdsPage adUrl={dinamicAdDetailsUrl} />)}
