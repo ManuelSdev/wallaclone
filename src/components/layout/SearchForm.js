@@ -9,15 +9,55 @@ import { useHistory } from "react-router";
 //import useForm from "../customHooks/useForm";
 
 const SearchForm = ({ onSubmit }) => {
-    const { searchKeys, handleChange, handleSearchSubmit, validate, setFormValue } = useSearchContext()
+    //const SearchForm = () => {
+    const { throwPromise, searchKeys, handleChange, handleSearchSubmit, validate, setFormValue, updateFormValue } = useSearchContext()
     const { keywords } = searchKeys
 
+    const defaultFilters = {
+        sale: null,
+        price: [],
+        tags: [],
+        start: "",
+        sort: ""
+    };
 
+    /*
+        const cleanSearchKeys = (onSubmits) => {
+            
+                    setFormValue(currentFormValue => ({
+                        ...currentFormValue,
+                        ...defaultFilters
+                    }));
+            
+            console.log("holasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss")
+            return onSubmits
+        }
+    
+        const handleCleanSearchSubmit = cleanSearchKeys(handleSearchSubmit)
+    */
+
+    const cleanSearchKeys = (e) => {
+
+        setFormValue(currentFormValue => ({
+            ...currentFormValue,
+            ...defaultFilters
+        }));
+
+        console.log("holasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss", searchKeys)
+        handleSearchSubmit(e)
+    }
+
+    const handleCleanSearchSubmit = (e) => cleanSearchKeys(e)
+
+
+
+    //const a = () => handleCleanSearchSubmit(handleSearchSubmit)
+    const b = () => console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
 
     return (
 
-        <form className="is-expanded  is-flex-grow-1" onSubmit={handleSearchSubmit}>
+        <form className="is-expanded  is-flex-grow-1" onSubmit={handleCleanSearchSubmit}>
             <FormField
                 type="text"
                 name="keywords"

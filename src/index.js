@@ -13,6 +13,7 @@ configureClient({ accessToken });
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+
       <App autoLogged={!!accessToken} />
     </Router>
   </React.StrictMode>,

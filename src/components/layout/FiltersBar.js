@@ -14,7 +14,7 @@ const FiltersBar = () => {
                         <div>Precio mínimo</div>
                         <FormField
                             type="tel"
-                            name="minPrice"
+                        //   name="minPrice"
                         // label="Precio desde"
 
                         // value={minPrice}

@@ -31,18 +31,36 @@ const getValueByType = {
 const defaultGetValue = ({ value }) => value;
 
 function useForm(initialFormValue) {
+
   const [formValue, setFormValue] = React.useState(initialFormValue);
+
   const updateFormValue = (name, value) => {
+
     setFormValue(currentFormValue => ({
+
       ...currentFormValue,
       [name]: value,
     }));
+
+    /*
+     setFormValue(currentFormValue => {
+       // const a = [name]
+       // console.log("00000000000000000", name);
+       //console.log("11111111111111111", value);
+       currentFormValue[name] = value;
+ 
+       //console.log("222222222222222222", currentFormValue);
+       return { ...currentFormValue }
+     });
+ */
+
+
   };
 
   const handleChange = ev => {
     //console.log("EVENT TARGET")
-    console.log("EVENT TARGET TYPE", ev.target.value)
-
+    // console.log("EVENT TARGET TYPE", ev.target.value)
+    //console.log("EVENT TARGET NAME", ev.target.name)
     // console.log("EVENT TARGET TYPE", ev.target.type)
     const valueGetter = getValueByType[ev.target.type] || defaultGetValue;
     updateFormValue(ev.target.name, valueGetter(ev.target));
@@ -53,6 +71,7 @@ function useForm(initialFormValue) {
   };
 
   const handleSubmit = onSubmit => ev => {
+    console.log("9999999999999999999999999999999999")
     ev.preventDefault();
     onSubmit(formValue);
   };
@@ -74,6 +93,7 @@ function useForm(initialFormValue) {
   return {
     formValue,
     setFormValue,
+    updateFormValue,
     handleChange,
     handleSubmit,
     validate,

@@ -47,15 +47,51 @@ function App({ autoLogged }) {
   //const [searchKeys, setSearchKeys] = React.useState("hola")
 
 
-  const { formValue: searchKeys, handleChange, handleSubmit, validate, setFormValue, updateFormValue } = useForm({
+  const { formValue: searchKeys, handleChange, handleSubmit, validate, setFormValue } = useForm({
 
     keywords: '',
-    sale: null,
-    price: [],
+    sale: true,
+    /*
+        maxPrice: "",
+        minPrice: "",
+        
+      get price() {
+              return [this.minPrice, this.maxPrice]
+            },
+            set price(value) {
+              console.log("set");
+        
+              [this.minPrice, this.maxPrice] = value
+            },
+        */
+    get minPrice() {
+      console.log("+++++++++++++++++ MIN")
+      return this.price[0]
+    },
+    get maxPrice() {
+      console.log("+++++++++++++++++ MAX")
+      return this.price[1]
+    },
+
+    set minPrice(value) {
+      console.log("+++++++++++++++++ SET MIN")
+      console.log("value")
+      this.price[0] = value
+    },
+
+    set maxPrice(value) {
+      console.log("+++++++++++++++++ SET MAX")
+      console.log("value")
+      this.price[1] = value
+    },
+
+
+    price: ["", ""],
+
+
     tags: [],
     start: "",
     sort: ""
-
   });
 
 
@@ -63,28 +99,26 @@ function App({ autoLogged }) {
   const { loading, error, throwPromise, data: ads } = usePromise([])
 
   const onSubmit = async (searchKeys) => {
-    console.log("11111111111111111111111111111111111111", searchKeys)
     await throwPromise(getAds(searchKeys));
-    console.log("22222222222222222222222222222222222222", searchKeys)
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     console.log(searchKeys)
     //getAds(searchKeys)
     history.push("/ads");
   };
 
-
-
   const handleSearchSubmit = handleSubmit(onSubmit)
 
-  const searchProps = { throwPromise, ads, loading, searchKeys, handleChange, handleSearchSubmit, validate, setFormValue, updateFormValue }
+  const searchProps = { ads, loading, searchKeys, handleChange, handleSearchSubmit, validate, setFormValue }
   /*
     React.useEffect(() => {
     }, [searchKeys]);
   */
 
   console.log("-------------------------------------------------------------------  RENDER EN APP.JS")
-
+  /*
   console.log(searchKeys)
-
+  console.log(searchKeys.price)
+  */
   return (
     <div className="App ">
       <AuthProvider {...loginProps}>

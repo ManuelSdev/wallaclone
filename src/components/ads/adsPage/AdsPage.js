@@ -19,7 +19,7 @@ const AdsPage = ({ ...props }) => {
     */
 
     const { ads, loading } = useSearchContext()
-    console.log(ads)
+    //console.log(ads)
     return (
         <Layout>
 
