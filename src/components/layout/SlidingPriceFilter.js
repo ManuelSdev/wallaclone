@@ -17,9 +17,10 @@ const getSVGURI = (faIcon, color) => {
 };
 
 const SlidingPriceFilter = ({ onClick }) => {
-    //console.log("renderRRRRRRRRRRRRRRRR")
+
     const { ads, searchKeys, handleChange, handleSearchSubmit, validate, setFormValue } = useSearchContext()
     const { price } = searchKeys
+
     const cancelClick = ev => {
         ev.preventDefault();
         onClick()
@@ -38,8 +39,6 @@ const SlidingPriceFilter = ({ onClick }) => {
         })
     }
 
-
-    //const maximun = Math.max(ads.map(({ price }) => price));
     const s = (ads.map(({ price }) => price))
         .filter(price => price !== undefined && price !== null)
     const maximun = Math.max(...
@@ -47,8 +46,9 @@ const SlidingPriceFilter = ({ onClick }) => {
             .filter(price => price !== undefined && price !== null)
     )
     const style = { width: 600, margin: 50 };
-    // console.log("VALORES QUE ENTRAN A MATHS", s)
-    //console.log("MAXIMO", maximun)
+
+
+    console.log("PRICE en despleglableeee**********************", price)
     return (
         <form
             style={{
@@ -115,7 +115,7 @@ const SlidingPriceFilter = ({ onClick }) => {
                                 type="number"
                                 name="minPrice"
                                 label="Desde"
-                                value={price[0]}
+                                value={price[0] ? price[0] : ""}
                                 onChange={handlePriceChange}
                             >
                             </FormField>
@@ -127,7 +127,7 @@ const SlidingPriceFilter = ({ onClick }) => {
                                 type="number"
                                 name="maxPrice"
                                 label="Hasta"
-                                value={price[1]}
+                                value={price[1] ? price[1] : ""}
                                 onChange={handlePriceChange}
                             >
                             </FormField>

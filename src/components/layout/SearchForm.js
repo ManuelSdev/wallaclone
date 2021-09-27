@@ -1,16 +1,10 @@
-
-import { getAds } from "../../api/ads";
-import usePromise from "../customHooks/usePromise";
-import Button from "../shared/Button";
+import React from "react";
 import FormField from "../shared/formFields/FormField"
-import SelectTags from "../shared/formFields/SelectTags/SelectTags";
 import { useSearchContext } from "../context/SearchContext";
-import { useHistory } from "react-router";
-//import useForm from "../customHooks/useForm";
 
-const SearchForm = ({ onSubmit }) => {
-    //const SearchForm = () => {
-    const { throwPromise, searchKeys, handleChange, handleSearchSubmit, validate, setFormValue, updateFormValue } = useSearchContext()
+const SearchForm = () => {
+
+    const { searchKeys, handleChange, onSubmit, validate, setFormValue } = useSearchContext()
     const { keywords } = searchKeys
 
     const defaultFilters = {
@@ -21,39 +15,14 @@ const SearchForm = ({ onSubmit }) => {
         sort: ""
     };
 
-    /*
-        const cleanSearchKeys = (onSubmits) => {
-            
-                    setFormValue(currentFormValue => ({
-                        ...currentFormValue,
-                        ...defaultFilters
-                    }));
-            
-            console.log("holasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss")
-            return onSubmits
-        }
-    
-        const handleCleanSearchSubmit = cleanSearchKeys(handleSearchSubmit)
-    */
-
-    const cleanSearchKeys = (e) => {
-
+    const handleCleanSearchSubmit = (e) => {
+        e.preventDefault();
+        const onSubmitCb = (formValue) => onSubmit(formValue);
         setFormValue(currentFormValue => ({
             ...currentFormValue,
             ...defaultFilters
-        }));
-
-        console.log("holasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss", searchKeys)
-        handleSearchSubmit(e)
+        }), onSubmitCb)
     }
-
-    const handleCleanSearchSubmit = (e) => cleanSearchKeys(e)
-
-
-
-    //const a = () => handleCleanSearchSubmit(handleSearchSubmit)
-    const b = () => console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++")
-
 
     return (
 
@@ -61,19 +30,10 @@ const SearchForm = ({ onSubmit }) => {
             <FormField
                 type="text"
                 name="keywords"
-                //placeholder="¿Qué vas a vender?"
-                //onChange={even => console.log(even.target)}
-                //handleChange cambia el estado a medida que se escribe
                 onChange={handleChange}
-                //value toma el valor que vamos teniendo en el estado
                 value={keywords}
             >
             </FormField>
-
-
-            {/*<Button type="submit" >Buscar</Button>*/}
-
-
         </form >
 
 

@@ -47,7 +47,7 @@ function App({ autoLogged }) {
   //const [searchKeys, setSearchKeys] = React.useState("hola")
 
 
-  const { formValue: searchKeys, handleChange, handleSubmit, validate, setFormValue, updateFormValue } = useForm({
+  const { formValue: searchKeys, handleChange, handleSubmit, validate, setFormValue } = useForm({
 
     keywords: '',
     sale: null,
@@ -58,32 +58,23 @@ function App({ autoLogged }) {
 
   });
 
-
-
   const { loading, error, throwPromise, data: ads } = usePromise([])
 
   const onSubmit = async (searchKeys) => {
-    console.log("11111111111111111111111111111111111111", searchKeys)
     await throwPromise(getAds(searchKeys));
-    console.log("22222222222222222222222222222222222222", searchKeys)
-    console.log(searchKeys)
-    //getAds(searchKeys)
     history.push("/ads");
   };
 
-
-
   const handleSearchSubmit = handleSubmit(onSubmit)
 
-  const searchProps = { throwPromise, ads, loading, searchKeys, handleChange, handleSearchSubmit, validate, setFormValue, updateFormValue }
-  /*
-    React.useEffect(() => {
-    }, [searchKeys]);
-  */
+  const searchProps = { throwPromise, ads, loading, searchKeys, handleChange, onSubmit, handleSearchSubmit, validate, setFormValue }
 
-  console.log("-------------------------------------------------------------------  RENDER EN APP.JS")
+  //Borrar
+  React.useEffect(() => {
+    console.log("USE EFFECT DE APP : CAMBIO EN searchKeys y pasan a ser: ", searchKeys)
 
-  console.log(searchKeys)
+  }, [searchKeys]);
+
 
   return (
     <div className="App ">

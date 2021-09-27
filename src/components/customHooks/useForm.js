@@ -1,4 +1,6 @@
 import React from 'react';
+import useStateWithCb from './useStateWithCb';
+
 
 
 /**
@@ -32,10 +34,9 @@ const defaultGetValue = ({ value }) => value;
 
 function useForm(initialFormValue) {
 
-  const [formValue, setFormValue] = React.useState(initialFormValue);
-
+  //const [formValue, setFormValue] = React.useState(initialFormValue);
+  const [formValue, setFormValue] = useStateWithCb(initialFormValue)
   const updateFormValue = (name, value) => {
-
     setFormValue(currentFormValue => ({
 
       ...currentFormValue,
@@ -54,14 +55,18 @@ function useForm(initialFormValue) {
      });
  */
 
-
   };
+
+  React.useEffect(() => {
+    console.log("USE EFFECT DE useFORM : CAMBIO EN formValue y pasan a ser: ", formValue)
+  }, [formValue]);
 
   const handleChange = ev => {
     //console.log("EVENT TARGET")
     // console.log("EVENT TARGET TYPE", ev.target.value)
     //console.log("EVENT TARGET NAME", ev.target.name)
     // console.log("EVENT TARGET TYPE", ev.target.type)
+    console.log("llamada a handleChange de useForm")
     const valueGetter = getValueByType[ev.target.type] || defaultGetValue;
     updateFormValue(ev.target.name, valueGetter(ev.target));
     //console.log("EVENT TARGET NAME", ev.target.name)
@@ -71,7 +76,7 @@ function useForm(initialFormValue) {
   };
 
   const handleSubmit = onSubmit => ev => {
-    console.log("9999999999999999999999999999999999")
+    console.log("9999999999999999999999999999999999", formValue)
     ev.preventDefault();
     onSubmit(formValue);
   };
@@ -93,7 +98,6 @@ function useForm(initialFormValue) {
   return {
     formValue,
     setFormValue,
-    updateFormValue,
     handleChange,
     handleSubmit,
     validate,
