@@ -20,7 +20,7 @@ const params = new URLSearchParams({
 export const getAds = (searchKeys) => {
     const params = new URLSearchParams(searchKeys)
     //${filterPath && filterPath}
-    //console.log(params.toString())
+    console.log("ppppppppppppppp", params.toString())
     return client.get(`${adsPath}/?${params.toString()}`);
 };
 

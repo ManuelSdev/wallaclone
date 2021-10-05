@@ -3,32 +3,36 @@ import React, { useEffect, useRef, useState } from "react";
 //import React from 'react'
 
 function useStateWithCb(initialState) {
+
     const [state, setState] = useState(initialState);
     const callbackRef = useRef(null)
+    /*
     console.log("ACTIVA HOOK!!!!!!!!!!!")
     console.log(state)
     console.log(callbackRef.current)
-
+*/
     const handleSetState = (updatedState, cb) => {
+        /*
         console.log("VIEJO STATE", state)
         console.log("UPDATE STATE", updatedState)
         console.log("CALLBACK RECIBIDA", cb)
+        */
         //cb()
         callbackRef.current = cb ? cb : null;
         setState(updatedState);
-        console.log("=========================================================================", state)
-        //callbackRef.current()
+        //console.log("=========================================================================", state)
+
     };
 
     useEffect(() => {
         //console.log(callbackRef.current)
-        console.log("USE EFFECT DEL HOOK")
+        // console.log("USE EFFECT DEL HOOK")
 
         if (callbackRef.current !== null) {
-            console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$", state)
+            //console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$", state)
             callbackRef.current(state);
             callbackRef.current = null;
-            console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&", state)
+            //console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&", state)
         }
 
     }, [state]);

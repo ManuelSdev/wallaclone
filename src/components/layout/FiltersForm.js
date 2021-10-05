@@ -7,6 +7,8 @@ import Button from "../shared/Button";
 import React from "react";
 import SlidingPriceFilter from "./SlidingPriceFilter";
 
+import SlidingTagsFilter from "./SlidingTagsFilter";
+
 const FiltersForm = () => {
 
     const [priceDropdownState, setPriceDropdownState] = React.useState("")
@@ -77,7 +79,12 @@ const FiltersForm = () => {
                     </div>
                     <div className="dropdown-menu" id="dropdown-menu" role="menu">
                         <div className="dropdown-content">
-                            contenido
+                            <SlidingTagsFilter
+                                onClick={handleTagsDropdown}
+                            >
+
+                            </SlidingTagsFilter>
+
                         </div>
                     </div>
                 </div>

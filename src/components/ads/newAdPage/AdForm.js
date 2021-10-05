@@ -76,7 +76,16 @@ const AdForm = ({ onSubmit, error, ad }) => {
                 >
                 </FormField>
             }
-            <SelectTags multiple name="tags" value={tags} onChange={handleChange} mainLabel="Selecciona, al menos, un tag" />
+            <SelectTags
+                multiple
+                name="tags"
+                value={tags}
+                onChange={handleChange}
+                mainLabel="Selecciona, al menos, un tag"
+                checkBoxGroupClassName="field is-grouped"
+                checkBoxLabelBefore={true}
+
+            />
 
             <RadioField mainLabel="¿Vendes o compras?">
                 <RadioButton

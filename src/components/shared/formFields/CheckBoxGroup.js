@@ -1,6 +1,6 @@
 
 
-const CheckBoxGroup = ({ options, value, onChange, ...props }) => {
+const CheckBoxGroup = ({ options, value, onChange, checkBoxGroupClassName, checkBoxLabelBefore, ...props }) => {
     const handleChange = ev => {
         const { name, checked, value: optionValue } = ev.target;
         onChange({
@@ -14,18 +14,32 @@ const CheckBoxGroup = ({ options, value, onChange, ...props }) => {
     };
 
     return (
-        <div className="field is-grouped">
+        <div className={checkBoxGroupClassName}>
             {options.map(option => (
                 <div className="control" key={option}>
-                    <label className="checkbox">{option}{" "}
-                        <input
-                            type="checkbox"
-                            value={option}
-                            checked={value.includes(option)}
-                            onChange={handleChange}
-                            {...props}
-                        />
-                    </label>
+                    {
+                        checkBoxLabelBefore ?
+                            <label className="checkbox">{option}{" "}
+                                <input
+                                    type="checkbox"
+                                    value={option}
+                                    checked={value.includes(option)}
+                                    onChange={handleChange}
+                                    {...props}
+                                />
+                            </label>
+                            :
+                            <label className="checkbox">
+                                <input
+                                    type="checkbox"
+                                    value={option}
+                                    checked={value.includes(option)}
+                                    onChange={handleChange}
+                                    {...props}
+                                />{" "}{option}
+                            </label>
+                    }
+
                 </div>
             )
             )}

@@ -48,9 +48,10 @@ const SlidingPriceFilter = ({ onClick }) => {
     const style = { width: 600, margin: 50 };
 
 
-    console.log("PRICE en despleglableeee**********************", price)
+    // console.log("PRICE en despleglableeee**********************", price)
     return (
         <form
+            //MIRA ESTO QUE ES..creo que pruebas para las imagenes de las bolas del slider
             style={{
                 backgroundPosition: "center center",
                 backgroundSize: "20px 20px",
@@ -58,7 +59,8 @@ const SlidingPriceFilter = ({ onClick }) => {
                 //backgroundImage: `url(${getSVGURI(faCaretDown)})`
             }}
             // style={{ backgroundImage: 'url("https://mdn.mozillademos.org/files/6457/mdn_logo_only_color.png")' }}
-            className="AdForm" className="box" className="dropdown-item" autoComplete="off" onSubmit={handleSearchSubmit}>
+            className="AdForm" className="box" className="dropdown-item" autoComplete="off" onSubmit={handleSearchSubmit}
+        >
             <div className="field" >
                 <p className="control"> ¿Cuánto  quieres pagar?</p>
             </div>

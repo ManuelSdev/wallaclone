@@ -10,7 +10,7 @@ function SelectTags({ mainLabel, ...props }) {
   React.useEffect(() => {
     //getTags().then(setTags).then(console.log("Finaliza setTags con getTags:", tags));
 
-
+    //Uso de función cleanUp
     const applyTags = async () => {
       console.log("1- await getTagss")
       const tagss = await getTags()
