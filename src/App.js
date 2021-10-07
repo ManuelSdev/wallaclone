@@ -5,7 +5,7 @@ import logo from './logo.svg';
 import React from 'react';
 import LoginPage from './components/auth/LoginPage/LoginPage';
 import RegisterPage from './components/auth/RegisterPage/RegisterPage';
-import { Switch, Route, Redirect, Router, useHistory } from 'react-router-dom';
+import { Switch, Route, Redirect, Router, useHistory, useLocation } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import UserPage from './components/userPage/UserPage';
 import NewAdPage from './components/ads/newAdPage/NewAdPage'
@@ -29,6 +29,7 @@ import { getAds } from './api/ads';
 function App({ autoLogged }) {
   //const autoLogged = false
   const history = useHistory()
+  const location = useLocation()
   /**
    * AuthContext
    */
@@ -68,13 +69,23 @@ function App({ autoLogged }) {
   const handleSearchSubmit = handleSubmit(onSubmit)
 
   const searchProps = { throwPromise, ads, loading, searchKeys, handleChange, onSubmit, handleSearchSubmit, validate, setFormValue }
-
+  console.log("LOCATION QUE PILLA EL APP", location.pathname)
   //Borrar
   React.useEffect(() => {
-    console.log("USE EFFECT DE APP : CAMBIO EN searchKeys y pasan a ser: ", searchKeys)
+    //console.log("USE EFFECT DE APP : CAMBIO EN searchKeys y pasan a ser: ", location.pathname)
+    location.pathname === "/ads" || setFormValue(
+      {
+        keywords: '',
+        sale: null,
+        price: [],
+        tags: [],
+        start: "",
+        sort: ""
+      }
+    )
+  }, [location.pathname]);
 
-  }, [searchKeys]);
-
+  // console.log("Render en app.js: valor de searchKeys ", searchKeys)
 
   return (
     <div className="App ">

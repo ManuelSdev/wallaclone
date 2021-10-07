@@ -7,11 +7,12 @@ import LinkButton from "../shared/LinkButton"
 import { ReactComponent as LogoIcon } from "../../assets/letra.svg"
 import { Fragment } from "react"
 import { useAuthContext } from "../auth/context"
+import { useSearchContext } from "../context/SearchContext"
 
 
 const Navbar = ({ handleOpenModal }) => {
     const { isLogged, handleLogout } = useAuthContext()
-
+    const { ads } = useSearchContext()
     return (
         <div className="Navbar">
             <nav className="navbar  is-fixed-top  ">
@@ -59,14 +60,16 @@ const Navbar = ({ handleOpenModal }) => {
                     </div>
                 </div>
             </nav >
+            {ads.length !== 0 &&
+                <nav
+                    style={{ backgroundColor: "red", marginTop: "3.5em" }}
+                    className="navbar  is-fixed-top">
+                    <div className="navbar-menu">
+                        <FiltersForm></FiltersForm>
+                    </div>
+                </nav >
+            }
 
-            <nav
-                style={{ backgroundColor: "red", marginTop: "3.5em" }}
-                className="navbar  is-fixed-top">
-                <div className="navbar-menu">
-                    <FiltersForm></FiltersForm>
-                </div>
-            </nav >
         </div>
     )
 }
