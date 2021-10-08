@@ -3,7 +3,7 @@ import { ReactComponent as Heart } from "../../../assets/cards-heart.svg"
 import { updateFavId, getFavoritesIds } from '../../../api/user'
 import usePromise from '../../customHooks/usePromise'
 import { useAuthContext } from '../../auth/context'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 
 /**
  * Las ...props que recibe son las width y height que pasan al svg
@@ -12,7 +12,8 @@ const HeartIcon = ({ className, adId, ...props }) => {
     const { isLogged } = useAuthContext()
     const history = useHistory()
     const { throwPromise, data: userFavoritesIds } = usePromise([]);
-
+    const location = useLocation()
+    const b = "hola"
 
     React.useEffect(() => {
         throwPromise(getFavoritesIds())
@@ -34,7 +35,7 @@ const HeartIcon = ({ className, adId, ...props }) => {
                 }
             :
             {
-                fav: () => history.push("/auth"),
+                fav: () => history.push(`/auth?redirectTo=${location.pathname} `),
                 fill: "white",
                 stroke: "black",
             }

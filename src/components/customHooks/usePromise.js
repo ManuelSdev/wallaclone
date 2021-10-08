@@ -36,6 +36,7 @@ function usePromise(initialValue) {
     loading,
     error,
     data,
+    setData,
     throwPromise,
     resetError,
   };

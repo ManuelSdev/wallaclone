@@ -8,7 +8,7 @@ const nameToUrl = (adName) => (
     adName.replace(/\s/g, "-")
 )
 
-export default function MemberCardHeader({ ad }) {
+export default function MemberCardHeader({ ad, publishedAds }) {
 
     const authorUrl = ad.author && nameToUrl(ad.author)
 
@@ -21,7 +21,7 @@ export default function MemberCardHeader({ ad }) {
                     </figure>
                     <div>
                         <div >{ad.author}</div>
-                        <div>numeroProductos</div>
+                        <div>{`${publishedAds} Anuncios`}</div>
                     </div>
                 </div>
             </Link>

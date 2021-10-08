@@ -4,14 +4,16 @@ import AuthWelcome from "./AuthWelcome"
 import LoginPage from "./LoginPage/LoginPage"
 import RegisterPage from "./RegisterPage/RegisterPage"
 import React from "react"
-
+import queryString from 'query-string'
 
 const AuthPage = () => {
     const location = useLocation()
     const history = useHistory()
-    const { from } = location.state || { from: { pathname: '/' } };
-    //console.log("FROMMMMM", from)
-    //console.log("FROMMMMM", from)
+    const { redirectTo } = queryString.parse(location.search);
+    const { from } = { from: redirectTo } || location.state || { from: { pathname: '/' } };
+    console.log("REDI", { redirectTo })
+    console.log("FROMMMMM", from)
+    // console.log("FROMMMMM", queryString.parse(location.search))
     //console.log("ququuq", React.useRef(from))
     const refFrom = React.useRef(from)
     //console.log("AAAAAAA", refFrom.current)

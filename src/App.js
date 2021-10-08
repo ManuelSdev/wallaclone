@@ -59,7 +59,7 @@ function App({ autoLogged }) {
 
   });
 
-  const { loading, error, throwPromise, data: ads } = usePromise([])
+  const { loading, error, throwPromise, data: ads, setData: setAds } = usePromise([])
 
   const onSubmit = async (searchKeys) => {
     await throwPromise(getAds(searchKeys));
@@ -69,11 +69,10 @@ function App({ autoLogged }) {
   const handleSearchSubmit = handleSubmit(onSubmit)
 
   const searchProps = { throwPromise, ads, loading, searchKeys, handleChange, onSubmit, handleSearchSubmit, validate, setFormValue }
-  console.log("LOCATION QUE PILLA EL APP", location.pathname)
-  //Borrar
-  React.useEffect(() => {
-    //console.log("USE EFFECT DE APP : CAMBIO EN searchKeys y pasan a ser: ", location.pathname)
-    location.pathname === "/ads" || setFormValue(
+  //console.log("LOCATION QUE PILLA EL APP", location.pathname)
+
+  const cleanSearchProps = () => {
+    setFormValue(
       {
         keywords: '',
         sale: null,
@@ -83,8 +82,17 @@ function App({ autoLogged }) {
         sort: ""
       }
     )
+    setAds([])
+  }
+  React.useEffect(() => {
+    //console.log("USE EFFECT DE APP : CAMBIO EN searchKeys y pasan a ser: ", location.pathname)
+    location.pathname === "/ads" || cleanSearchProps()
   }, [location.pathname]);
 
+  const fecha = new Date();
+  const month = fecha.getMonth()
+  //console.log("fecha APP", fecha)
+  //console.log("Mes APP", month)
   // console.log("Render en app.js: valor de searchKeys ", searchKeys)
 
   return (

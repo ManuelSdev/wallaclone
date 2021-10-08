@@ -8,6 +8,7 @@ import MemberCardHeader from "./MemberCardHeader"
 import UserCardHeader from "./UserCardHeader"
 import Layout from "../../layout/Layout"
 import Loader from "../../shared/Loaders/Loader"
+import { getUserByName } from "../../../api/user"
 
 const catchAdIdUrl = (url) => {
     const index = 1 + url.lastIndexOf("-")
@@ -19,7 +20,8 @@ const catchAdIdUrl = (url) => {
 
 const AdDetailPage = () => {
     const { isLogged } = useAuthContext()
-    const { loading, error, throwPromise, data: ad } = usePromise({})
+    const { loading: loadingAd, error: errorAd, throwPromise: throwPromiseAd, data: ad } = usePromise({})
+    const { loading: loadingAdOwnerUser, error: errorAdOwnerUser, throwPromise: throwPromiseAdOwnerUser, data: adOwnerUser } = usePromise({})
     const history = useHistory()
 
     //Pillo los parametros de la url que ponen los Link de cada anuncio con el nombre+id de cada uno de ellos
@@ -28,13 +30,14 @@ const AdDetailPage = () => {
     const adId = catchAdIdUrl(adUrl)
 
     React.useEffect(() => {
-        throwPromise(getOneAd(adId))
+        throwPromiseAd(getOneAd(adId))
+            .then(ad => throwPromiseAdOwnerUser(getUserByName(ad.author)))
     }, [])
 
     const handleDelete = async (ev) => {
         ev.stopPropagation();
         try {
-            await throwPromise(deleteAd(ad._id))
+            await throwPromiseAd(deleteAd(ad._id))
             history.push("/user/ads");
             console.log("anuncio fuera")
         } catch (error) {
@@ -45,20 +48,20 @@ const AdDetailPage = () => {
     }
     return (
         <Layout>
-            {loading ?
+            {loadingAd || loadingAdOwnerUser ?
                 <Loader />
                 :
                 <div className="AdDetailPage">
                     <AdDetailsCard
                         ad={ad}
                         cardHeader={
-                            loading ?
+                            loadingAd && loadingAdOwnerUser ?
                                 null
                                 :
                                 isLogged && ad.userId === ad.requesterId ?
-                                    <UserCardHeader handleDelete={handleDelete} ad={ad} />
+                                    <UserCardHeader handleDelete={handleDelete} ad={ad} publishedAds={adOwnerUser.publishedAds} />
                                     :
-                                    <MemberCardHeader ad={ad} />
+                                    <MemberCardHeader ad={ad} publishedAds={adOwnerUser.publishedAds} />
                         }
                     ></AdDetailsCard>
                 </div>

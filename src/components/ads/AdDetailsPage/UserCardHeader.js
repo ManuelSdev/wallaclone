@@ -12,7 +12,8 @@ const nameToUrl = (adName) => (
     adName.replace(/\s/g, "-")
 )
 const test = "algo"
-export default function UserCardHeader({ ad, handleDelete }) {
+
+export default function UserCardHeader({ ad, handleDelete, publishedAds }) {
     const { modalClass, openModal, closeModal, handleCloseModal, handleOpenModal } = useModal()
     //console.log("AD AUTHOR", ad.author)
     const authorUrl = ad.author && nameToUrl(ad.author)
@@ -27,7 +28,7 @@ export default function UserCardHeader({ ad, handleDelete }) {
                     </figure>
                     <div>
                         <div >{ad.author}</div>
-                        <div>numeroProductos</div>
+                        <div>{`${publishedAds} Anuncios`}</div>
                     </div>
                 </div>
             </Link>

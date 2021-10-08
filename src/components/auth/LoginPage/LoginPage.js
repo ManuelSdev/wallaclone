@@ -28,6 +28,7 @@ const LoginPage = ({ from }) => {
     const handleSubmit = async credentials => {
         await throwPromise(login(credentials));
         handleLogin()
+        console.log(from)
         history.replace(from);
     };
 
