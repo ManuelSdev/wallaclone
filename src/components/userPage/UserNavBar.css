@@ -1,6 +1,8 @@
 
 .UserNavBar{
     background-color: aqua;
+    position: fixed;
+    height:100%;
 }
 .side-selected{
     background-color:burlywood;

@@ -67,8 +67,9 @@ function App({ autoLogged }) {
   };
 
   const handleSearchSubmit = handleSubmit(onSubmit)
-
-  const searchProps = { throwPromise, ads, loading, searchKeys, handleChange, onSubmit, handleSearchSubmit, validate, setFormValue }
+  //onSearch = busqueda en activo: cuando ads.length = 0, es false
+  const onSearch = !!ads.length
+  const searchProps = { onSearch, throwPromise, ads, loading, searchKeys, handleChange, onSubmit, handleSearchSubmit, validate, setFormValue }
   //console.log("LOCATION QUE PILLA EL APP", location.pathname)
 
   const cleanSearchProps = () => {

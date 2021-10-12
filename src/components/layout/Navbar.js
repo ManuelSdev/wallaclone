@@ -12,7 +12,7 @@ import { useSearchContext } from "../context/SearchContext"
 
 const Navbar = ({ handleOpenModal }) => {
     const { isLogged, handleLogout } = useAuthContext()
-    const { ads } = useSearchContext()
+    const { onSearch } = useSearchContext()
     return (
         <div className="Navbar">
             <nav className="navbar  is-fixed-top  ">
@@ -60,7 +60,7 @@ const Navbar = ({ handleOpenModal }) => {
                     </div>
                 </div>
             </nav >
-            {ads.length !== 0 &&
+            {onSearch &&
                 <nav
                     style={{ backgroundColor: "red", marginTop: "3.5em" }}
                     className="navbar  is-fixed-top">

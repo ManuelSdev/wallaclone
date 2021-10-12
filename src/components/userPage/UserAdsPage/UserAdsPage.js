@@ -3,7 +3,7 @@ import { getMyAds } from "../../../api/ads"
 import usePromise from '../../customHooks/usePromise';
 import Loader from '../../shared/Loaders/Loader';
 import AdsGrid from '../../ads/adsPage/AdsGrid'
-
+import UserAdsGrid from "./UserAdsGrid";
 
 const UserAdsPage = () => {
     const { loading, throwPromise, data: ads } = usePromise([]);
@@ -16,7 +16,7 @@ const UserAdsPage = () => {
     ) :
         ads.length ? (
             <div className="UserAdsPage container">
-                <AdsGrid ads={ads} />
+                <UserAdsGrid ads={ads} />
             </div>
         ) : (
             <div>NO TIENES ANUNCIOS</div>
